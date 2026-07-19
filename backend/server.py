@@ -1,9 +1,10 @@
-from fastapi import FastAPI, APIRouter, HTTPException
+from fastapi import FastAPI, APIRouter, HTTPException, Request
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import re
+import time
 import logging
 from pathlib import Path
 from pydantic import BaseModel, Field, ConfigDict, field_validator
@@ -79,6 +80,18 @@ def map_batch_to_gf(value: str) -> str:
 PHONE_RE = re.compile(r'^(?:\+?91[\-\s]?)?[6-9]\d{9}$')
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
+# --- Bot / abuse protection (best-effort, in-memory) ---
+MIN_FILL_MS = 2000          # submissions faster than 2s are treated as bots
+IP_THROTTLE_SECONDS = 12    # min seconds between submissions from the same IP
+_last_submit_by_ip: dict = {}
+
+
+def _client_ip(request: Request) -> str:
+    fwd = request.headers.get('x-forwarded-for')
+    if fwd:
+        return fwd.split(',')[0].strip()
+    return request.client.host if request.client else 'unknown'
+
 
 # ------------------------------- Models ------------------------------------
 class Lead(BaseModel):
@@ -104,6 +117,8 @@ class LeadCreate(BaseModel):
     message: Optional[str] = ""
     # Honeypot field — must remain empty (spam bots fill it)
     company_website: Optional[str] = ""
+    # Time (ms) the user spent on the form before submitting (bot time-trap)
+    elapsed_ms: Optional[int] = None
 
     @field_validator('full_name')
     @classmethod
@@ -169,11 +184,26 @@ async def get_config():
 
 
 @api_router.post("/leads", response_model=Lead)
-async def create_lead(payload: LeadCreate):
-    # Honeypot: silently accept but drop bot submissions
+async def create_lead(payload: LeadCreate, request: Request):
+    dummy = Lead(full_name="spam", phone="0000000000", email="spam@spam.com")
+
+    # 1) Honeypot: silently accept but drop bot submissions
     if payload.company_website:
         logger.info("Honeypot triggered — dropping spam lead")
-        return Lead(full_name="spam", phone="0000000000", email="spam@spam.com")
+        return dummy
+
+    # 2) Time-trap: forms filled unrealistically fast are almost always bots
+    if payload.elapsed_ms is not None and payload.elapsed_ms < MIN_FILL_MS:
+        logger.info(f"Time-trap triggered ({payload.elapsed_ms}ms) — dropping spam lead")
+        return dummy
+
+    # 3) Per-IP throttle to block automated rapid inserts
+    ip = _client_ip(request)
+    now = time.monotonic()
+    last = _last_submit_by_ip.get(ip)
+    if last is not None and (now - last) < IP_THROTTLE_SECONDS:
+        raise HTTPException(status_code=429, detail="Please wait a few seconds before submitting again.")
+    _last_submit_by_ip[ip] = now
 
     lead = Lead(
         full_name=payload.full_name,

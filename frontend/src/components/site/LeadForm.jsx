@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import axios from "axios";
 import { toast } from "sonner";
@@ -18,6 +18,11 @@ export default function LeadForm({ prefillCourse }) {
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [cooldown, setCooldown] = useState(false);
+  const renderedAt = useRef(Date.now());
+  const cooldownTimer = useRef(null);
+
+  useEffect(() => () => clearTimeout(cooldownTimer.current), []);
 
   useEffect(() => {
     if (prefillCourse) setForm((f) => ({ ...f, course_interest: prefillCourse }));
@@ -41,13 +46,21 @@ export default function LeadForm({ prefillCourse }) {
 
   const submit = async (ev) => {
     ev.preventDefault();
+    if (loading || cooldown) return;
     if (!validate()) return;
     setLoading(true);
     try {
-      await axios.post(`${API}/leads`, form);
+      await axios.post(`${API}/leads`, {
+        ...form,
+        elapsed_ms: Date.now() - renderedAt.current,
+      });
       setSuccess(true);
       toast.success("Thanks! We'll call you shortly for your free counselling session.");
       setForm(EMPTY);
+      // Silent 15s cooldown to block rapid resubmission
+      setCooldown(true);
+      clearTimeout(cooldownTimer.current);
+      cooldownTimer.current = setTimeout(() => setCooldown(false), 15000);
     } catch (err) {
       const msg = err?.response?.data?.detail?.[0]?.msg || "Something went wrong. Please try again or reach us on WhatsApp.";
       toast.error(msg);
@@ -97,7 +110,7 @@ export default function LeadForm({ prefillCourse }) {
                 >
                   <MessageCircle size={18} /> Prefer WhatsApp? Chat with us instantly
                 </a>
-                <button onClick={() => setSuccess(false)} className="block mx-auto mt-4 text-sm text-slate-400 underline">
+                <button onClick={() => { renderedAt.current = Date.now(); setSuccess(false); }} className="block mx-auto mt-4 text-sm text-slate-400 underline">
                   Submit another response
                 </button>
               </motion.div>
@@ -168,8 +181,8 @@ export default function LeadForm({ prefillCourse }) {
                   <button
                     data-testid="lead-submit-btn"
                     type="submit"
-                    disabled={loading}
-                    className="w-full flex items-center justify-center gap-2 bg-brand-orange text-white font-bold py-4 rounded-full hover:scale-[1.02] active:scale-95 transition-transform shadow-lg shadow-brand-orange/30 disabled:opacity-70"
+                    disabled={loading || cooldown}
+                    className="w-full flex items-center justify-center gap-2 bg-brand-orange text-white font-bold py-4 rounded-full hover:scale-[1.02] active:scale-95 transition-transform shadow-lg shadow-brand-orange/30 disabled:opacity-70 disabled:cursor-not-allowed"
                   >
                     {loading ? <><Loader2 size={18} className="animate-spin" /> Sending...</> : "Get Free Counselling Call"}
                   </button>
