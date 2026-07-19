@@ -22,8 +22,7 @@ export const LOGO_URL =
 export const SALESFORCE_LOGO =
   "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg";
 
-export const BROCHURE_URL =
-  "https://customer-assets-v7afamib.emergentagent.net/job_sfdc-mastery-hub/artifacts/iow3b9zy_Apexoria%20Course%20Brochure%20.pdf";
+export const BROCHURE_URL = "/apexoria-brochure.pdf";
 
 export const IMAGES = {
   heroAbstract:

@@ -1,12 +1,27 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Check, Clock, CalendarDays, Radio, ArrowRight, FlaskConical, Download } from "lucide-react";
+import { toast } from "sonner";
 import { DEV_CURRICULUM, DEV_OUTCOMES, QA_CURRICULUM, SALESFORCE_LOGO, BROCHURE_URL } from "../../data";
 import { Reveal } from "./Reveal";
 
 export default function FeaturedCourse({ onEnroll }) {
   const [active, setActive] = useState(DEV_CURRICULUM[0].key);
   const activeCol = DEV_CURRICULUM.find((c) => c.key === active);
+
+  const handleBrochureDownload = async (ev) => {
+    ev.preventDefault();
+    try {
+      const res = await fetch(BROCHURE_URL, { method: "HEAD" });
+      if (res.ok) {
+        window.open(BROCHURE_URL, "_blank", "noopener,noreferrer");
+      } else {
+        toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+      }
+    } catch {
+      toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+    }
+  };
 
   return (
     <section id="featured-course" data-testid="featured-course-section" className="bg-brand-gray py-24 lg:py-32">
@@ -191,15 +206,13 @@ export default function FeaturedCourse({ onEnroll }) {
         {/* Download brochure */}
         <Reveal>
           <div className="mt-10 flex justify-center">
-            <a
+            <button
               data-testid="course-brochure-btn"
-              href={BROCHURE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
+              onClick={handleBrochureDownload}
               className="group inline-flex items-center gap-2 border-2 border-navy text-navy font-bold px-8 py-4 rounded-full hover:bg-navy hover:text-white transition-colors"
             >
               <Download size={18} /> Download Course Brochure
-            </a>
+            </button>
           </div>
         </Reveal>
       </div>

@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import axios from "axios";
 import { toast } from "sonner";
 import { CheckCircle2, Loader2, MessageCircle } from "lucide-react";
 import {
@@ -8,8 +7,6 @@ import {
 } from "../ui/select";
 import { COURSE_OPTIONS, WHATSAPP_LINK, IMAGES } from "../../data";
 import { Reveal } from "./Reveal";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 const EMPTY = { full_name: "", phone: "", email: "", course_interest: "", preferred_batch: "", message: "", company_website: "" };
 
@@ -44,26 +41,84 @@ export default function LeadForm({ prefillCourse }) {
     return Object.keys(e).length === 0;
   };
 
+  const mapCourseToGF = (value) => {
+    const v = value.toLowerCase();
+    if (v.includes("foundation")) return "Salesforce Foundation";
+    if (v.includes("crash")) return "Salesforce Crashcourse";
+    if (v.includes("complete")) return "Salesforce Complete Course";
+    if (v.includes("special")) return "Special Offer";
+    if (v.includes("qa")) return "Salesforce QA Testing Course";
+    return "Not Sure Yet";
+  };
+
+  const mapBatchToGF = (value) => {
+    const v = value.toLowerCase();
+    if (v.includes("weekend")) return "Weekend";
+    if (v.includes("weekday")) return "Weekday";
+    return "";
+  };
+
   const submit = async (ev) => {
     ev.preventDefault();
     if (loading || cooldown) return;
-    if (!validate()) return;
-    setLoading(true);
-    try {
-      await axios.post(`${API}/leads`, {
-        ...form,
-        elapsed_ms: Date.now() - renderedAt.current,
-      });
+
+    // Honeypot — silently pretend success if bot filled the trap field
+    if (form.company_website) {
       setSuccess(true);
       toast.success("Thanks! We'll call you shortly for your free counselling session.");
       setForm(EMPTY);
-      // Silent 15s cooldown to block rapid resubmission
+      setCooldown(true);
+      clearTimeout(cooldownTimer.current);
+      cooldownTimer.current = setTimeout(() => setCooldown(false), 15000);
+      return;
+    }
+
+    // Time-trap — silently pretend success if submitted too fast (< 2s)
+    if (Date.now() - renderedAt.current < 2000) {
+      setSuccess(true);
+      toast.success("Thanks! We'll call you shortly for your free counselling session.");
+      setForm(EMPTY);
+      setCooldown(true);
+      clearTimeout(cooldownTimer.current);
+      cooldownTimer.current = setTimeout(() => setCooldown(false), 15000);
+      return;
+    }
+
+    // localStorage cooldown — survive page reloads (12s between submits)
+    const last = parseInt(localStorage.getItem("apex_lead_last") || "0", 10);
+    if (Date.now() - last < 12000) {
+      toast.error("Please wait a few seconds before submitting again.");
+      return;
+    }
+
+    if (!validate()) return;
+    setLoading(true);
+
+    try {
+      const fd = new FormData();
+      fd.append(process.env.REACT_APP_GF_ENTRY_NAME, form.full_name);
+      fd.append(process.env.REACT_APP_GF_ENTRY_PHONE, form.phone);
+      fd.append(process.env.REACT_APP_GF_ENTRY_EMAIL, form.email);
+      fd.append(process.env.REACT_APP_GF_ENTRY_COURSE, mapCourseToGF(form.course_interest));
+      const batchVal = mapBatchToGF(form.preferred_batch);
+      if (batchVal) fd.append(process.env.REACT_APP_GF_ENTRY_BATCH, batchVal);
+      if (form.message) fd.append(process.env.REACT_APP_GF_ENTRY_MESSAGE, form.message);
+
+      await fetch(process.env.REACT_APP_GF_ACTION_URL, {
+        method: "POST",
+        mode: "no-cors",
+        body: fd,
+      });
+
+      localStorage.setItem("apex_lead_last", String(Date.now()));
+      setSuccess(true);
+      toast.success("Thanks! We'll call you shortly for your free counselling session.");
+      setForm(EMPTY);
       setCooldown(true);
       clearTimeout(cooldownTimer.current);
       cooldownTimer.current = setTimeout(() => setCooldown(false), 15000);
     } catch (err) {
-      const msg = err?.response?.data?.detail?.[0]?.msg || "Something went wrong. Please try again or reach us on WhatsApp.";
-      toast.error(msg);
+      toast.error("Something went wrong. Please try again or reach us on WhatsApp.");
     } finally {
       setLoading(false);
     }

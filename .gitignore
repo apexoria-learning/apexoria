@@ -1,2 +1,74 @@
+# ---------------------------------------------------------------------------
+# Apexoria Learning — root .gitignore
+# Covers: Python (backend), Node/React CRA (frontend), env files, IDE, OS,
+# build artifacts, test reports, and platform-internal folders.
+# ---------------------------------------------------------------------------
+
+# ---- Node / React (CRA + craco) ----
 node_modules/
-/node_modules
+**/node_modules/
+frontend/build/
+frontend/.pnp
+frontend/.pnp.js
+frontend/coverage/
+frontend/.eslintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store/
+
+# ---- Python / FastAPI ----
+__pycache__/
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+.venv/
+venv/
+env/
+ENV/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+*.egg-info/
+dist/
+build/
+pip-wheel-metadata/
+
+# ---- Environment files (NEVER commit real secrets) ----
+.env
+.env.*
+!.env.example
+!.env.*.example
+
+# ---- Test / CI outputs ----
+test_reports/
+backend/tests/__pycache__/
+tests/__pycache__/
+*.log
+
+# ---- Editor / IDE ----
+.vscode/
+!.vscode/settings.json.example
+.idea/
+*.swp
+*.swo
+*~
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Platform-internal (Emergent preview host) ----
+.emergent/
+
+# ---- Local overrides / scratch ----
+*.local
+.tmp/
+tmp/

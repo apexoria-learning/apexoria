@@ -1,4 +1,5 @@
 import { Phone, Mail, Instagram, Linkedin, Facebook, Download, Heart } from "lucide-react";
+import { toast } from "sonner";
 import { CONTACT, LOGO_URL, BROCHURE_URL } from "../../data";
 
 export default function Footer({ onEnroll }) {
@@ -10,6 +11,20 @@ export default function Footer({ onEnroll }) {
     { label: "Contact", id: "contact" },
   ];
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+  const handleBrochureDownload = async (ev) => {
+    ev.preventDefault();
+    try {
+      const res = await fetch(BROCHURE_URL, { method: "HEAD" });
+      if (res.ok) {
+        window.open(BROCHURE_URL, "_blank", "noopener,noreferrer");
+      } else {
+        toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+      }
+    } catch {
+      toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+    }
+  };
 
   return (
     <footer data-testid="footer" className="bg-navy grain relative text-white pt-20 pb-10">
@@ -77,15 +92,13 @@ export default function Footer({ onEnroll }) {
               >
                 Enroll Now
               </button>
-              <a
+              <button
                 data-testid="footer-brochure-btn"
-                href={BROCHURE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
+                onClick={handleBrochureDownload}
                 className="inline-flex items-center gap-2 border border-white/25 text-white font-bold px-6 py-3 rounded-full hover:bg-white/10 transition-colors self-start"
               >
                 <Download size={16} /> Download Brochure
-              </a>
+              </button>
             </div>
           </div>
         </div>
