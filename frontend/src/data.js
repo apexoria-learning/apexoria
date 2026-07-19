@@ -213,30 +213,30 @@ export const FOUNDER = {
   skills: ["Apex", "LWC", "Triggers", "SOQL", "REST / SOAP APIs", "Flows", "Automation", "Security"],
 };
 
-// Placeholder testimonials — replace names/reviews with your placed students.
+// Placed students — real names provided. Companies editable where not given.
 export const TESTIMONIALS = [
   {
-    name: "Placed Student (add name)",
+    name: "Amand Kumar",
+    role: "Salesforce Trainee",
+    company: "at BM Cloud Consultancy",
+    quote:
+      "I joined with zero coding background and was nervous about Apex. The live classes and hands-on projects changed everything — within weeks I was writing triggers and building LWC components. Landed my trainee role at BM Cloud Consultancy right after the batch!",
+    rating: 5,
+  },
+  {
+    name: "Priyanka Rajguru",
     role: "Salesforce Developer",
-    company: "at Company Name",
+    company: "",
     quote:
-      "Add your placed student's review here. The live classes and real projects made me confident enough to crack my developer interview.",
+      "The mentors break down complex topics like integrations and SOQL so clearly. The capstone project gave me something real to show in interviews. Highly recommend Apexoria to anyone serious about a Salesforce career.",
     rating: 5,
   },
   {
-    name: "Placed Student (add name)",
+    name: "Aditya Tandiye",
     role: "Salesforce Admin & Developer",
-    company: "at Company Name",
+    company: "",
     quote:
-      "Add your placed student's review here. Mentors explained Apex and LWC in a way that finally made sense.",
-    rating: 5,
-  },
-  {
-    name: "Placed Student (add name)",
-    role: "Salesforce QA Engineer",
-    company: "at Company Name",
-    quote:
-      "Add your placed student's review here. The QA cohort and placement support helped me land my first CRM testing role.",
+      "Best decision I made this year. The doubt-clearing sessions and mock interviews made me confident, and the placement support was genuine. I cleared my PD1 certification prep alongside the course.",
     rating: 5,
   },
 ];
