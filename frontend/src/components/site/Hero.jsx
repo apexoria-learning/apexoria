@@ -114,7 +114,7 @@ export default function Hero({ onEnroll }) {
         className="absolute bottom-0 inset-x-0 z-10 border-t border-white/10 bg-white/5 backdrop-blur-sm"
       >
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-wrap items-center justify-center md:justify-between gap-4 text-white/90 text-base md:text-lg font-semibold">
-          {["500+ Learners Trained", "Guaranteed Placement Support", "Weekday Batches"].map((t, i) => (
+          {["200+ Learners Trained", "Guaranteed Placement Support", "Weekday Batches"].map((t, i) => (
             <span key={i} className="flex items-center gap-2.5">
               <span className="h-2 w-2 rounded-full bg-brand-gold" /> {t}
             </span>

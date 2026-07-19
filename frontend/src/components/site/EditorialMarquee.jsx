@@ -1,7 +1,7 @@
 import Marquee from "react-fast-marquee";
 
 const WORDS = [
-  "500+ Learners Trained",
+  "200+ Learners Trained",
   "No Coding Required",
   "Guaranteed Placement",
   "Job-Ready in 3 Months",

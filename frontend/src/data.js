@@ -250,8 +250,8 @@ export const GOOGLE_REVIEWS = {
 
 // Placeholder stats — clearly editable.
 export const STATS = [
-  { value: "500+", label: "Students Trained" },
-  { value: "40+", label: "Hiring Partners" },
+  { value: "200+", label: "Students Trained" },
+  { value: "10+", label: "Hiring Partners" },
   { value: "92%", label: "Batch Completion Rate" },
 ];
 
