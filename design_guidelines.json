@@ -1,0 +1,149 @@
+{
+  "project_name": "Apexoria Learning",
+  "theme_strategy": "Hybrid Editorial Tech. The core canvas is Light (for legibility, trust, and e-commerce conversion), punctuated by massive Dark Navy blocks (Hero, Final CTA, Footer) to create dramatic entrance/exit tension. Avoids generic AI-slop purple gradients in favor of structural, high-contrast, 'godly' Awwwards-style color blocking.",
+  "typography": {
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap",
+    "font_families": {
+      "heading": "'Outfit', sans-serif",
+      "body": "'Plus Jakarta Sans', sans-serif"
+    },
+    "scale_rules": {
+      "h1": "text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9]",
+      "h2": "text-4xl md:text-5xl font-extrabold tracking-tight",
+      "h3": "text-2xl md:text-3xl font-bold tracking-tight",
+      "body": "text-base md:text-lg leading-relaxed text-slate-700",
+      "overline": "text-xs font-bold uppercase tracking-[0.2em] text-primary-blue"
+    },
+    "anti_pattern_avoidance": "DO NOT use Inter or Roboto for headings. Keep headings tightly tracked to feel like editorial posters."
+  },
+  "colors": {
+    "palette": {
+      "primary_navy": "#0A1F44",
+      "primary_blue": "#1E90FF",
+      "accent_gold": "#F5B400",
+      "accent_orange": "#F4622A",
+      "success_green": "#2E7D32",
+      "neutral_light_gray": "#F2F4F7",
+      "white": "#FFFFFF"
+    },
+    "css_variables_setup": {
+      "--background": "0 0% 100%",
+      "--foreground": "218 73% 15%",
+      "--primary": "218 73% 15%",
+      "--primary-foreground": "0 0% 100%",
+      "--secondary": "210 100% 56%",
+      "--secondary-foreground": "0 0% 100%",
+      "--accent": "44 100% 48%",
+      "--destructive": "16 90% 56%",
+      "--muted": "216 20% 95%"
+    },
+    "usage_rules": "Orange (#F4622A) is strictly for primary conversion CTAs (Enroll Now). Gold (#F5B400) is used sparingly for highlighting inline text (e.g., 'No Coding'). Navy is for structural weight."
+  },
+  "spacing_and_layout": {
+    "grid_system": "Bento-style and asymmetrical grids. Avoid perfectly symmetric 3-column bootstrap looks. Use overlapping containers.",
+    "spacing_scale": "Extremely generous. Use py-24 or py-32 for section padding. Containers must have internal padding of p-8 or p-12.",
+    "borders_and_radii": "Rounded card corners (8px - 12px) for UI cards. Use 1px solid borders (border-slate-200) with soft, diffuse shadows (shadow-xl shadow-black/5)."
+  },
+  "motion_and_interactions": {
+    "libraries": ["framer-motion", "lenis", "react-fast-marquee"],
+    "hero_kinetic_reveal": "Masked line-by-line reveal: Wrap each H1 line in overflow-hidden, and animate y from '100%' to 0 with easing [0.16, 1, 0.3, 1] over 0.8s.",
+    "scroll_reveal": "All major sections use Framer Motion whileInView. Initial {opacity: 0, y: 40}, animate to {opacity: 1, y: 0} with slight stagger for children.",
+    "micro_interactions": "Buttons: Hover scaling (scale 1.05) and active press (scale 0.95). Cards: Hover translates up slightly (-translate-y-2) with increased shadow.",
+    "smooth_scroll": "Lenis wrapper must wrap the entire application for momentum scrolling."
+  },
+  "sections_breakdown": {
+    "header": {
+      "layout": "Sticky top, z-50. Glassmorphism: backdrop-blur-xl bg-white/70 (light theme portion) or dark glass if overlapping hero heavily. Left: Logo. Center: Nav links. Right: Click-to-call + Orange 'Enroll Now' button."
+    },
+    "hero": {
+      "theme": "Dark Mode (bg-[#0A1F44])",
+      "layout": "Min-h-[90vh] flex flex-col justify-center relative overflow-hidden.",
+      "visuals": "Kinetic typography. 3D Parallax background image (abstract blue 3D render) floating with Framer Motion useScroll/useTransform.",
+      "content": "H1: 'Launch Your Salesforce Career — No Coding, No Experience Needed'. CTAs: Orange 'Enroll Today', Outline Green 'WhatsApp'. Trust Strip anchored to bottom."
+    },
+    "editorial_marquee": {
+      "library": "react-fast-marquee",
+      "style": "Massive outline text (text-transparent webkit-text-stroke text-7xl font-black). Extremely slow speed. Text: '500+ LEARNERS TRAINED • NO CODING REQUIRED • GUARANTEED PLACEMENT •'"
+    },
+    "manifesto_why_apexoria": {
+      "layout": "Numbered manifesto chapters (01, 02, 03) in a staggered vertical or asymmetric 2-column grid.",
+      "typography": "Massive numerals (text-8xl font-black text-slate-100) sitting behind the card content."
+    },
+    "featured_course": {
+      "layout": "Highlighted container (bg-neutral_light_gray). Gold text highlight on 'No Coding'. 4-column bento grid for curriculum (Manual, API, Admin, QA Testing with Green Badge).",
+      "visuals": "Mini Project callout box overlapping the grid."
+    },
+    "pricing": {
+      "layout": "4-tier pricing cards. 'Complete Program' scaled up 1.1x with a green accent border and 'Most Popular' badge. Animated SVG step tracker connecting the tiers."
+    },
+    "lead_capture": {
+      "layout": "2-column section. Left: Emotional copy + image. Right: Embedded Shadcn Form inside a pristine white card.",
+      "form_details": "Fields: Name, Phone, Email, Course (Dropdown), Batch. Submit: Orange Button."
+    },
+    "success_stories": {
+      "layout": "Horizontal scrolling carousel or asymmetrical grid.",
+      "photography": "Spotlight/clipped-frame product photography treatment. Grayscale avatars that colorize on hover.",
+      "metrics": "Massive typography numbers for 'Students Placed', 'Hiring Partners'."
+    },
+    "placement_support": {
+      "layout": "Process flow. Connected steps with animated dashed SVGs. Resume -> Mock Interviews -> Referrals -> Support."
+    },
+    "footer": {
+      "theme": "Dark Navy band (bg-[#0A1F44])",
+      "layout": "py-24. Massive Logo mark, Contact info, standard links."
+    },
+    "floating_widget": {
+      "style": "Bottom-right, fixed z-50. bg-[#25D366]. Infinite pulse animation."
+    }
+  },
+  "components": {
+    "shadcn_customizations": {
+      "Card": "Remove default borders if creating bento box. Use custom soft shadows.",
+      "Button": "Override default ring-offset. Pill-shaped (rounded-full) for CTAs. Orange background for primary.",
+      "Form": "Use Shadcn Input and Select. Style inputs with bg-white, 1px border, focus:ring-2 focus:ring-primary-blue.",
+      "Badge": "Use for 'Most Popular' and 'Urgent Seats'. Pill-shaped, small uppercase text."
+    }
+  },
+  "image_urls": {
+    "logo": {
+      "url": "https://customer-assets-39nsmqrw.emergentagent.net/job_db7e5138-b5ed-4681-bdd0-bfef33bc1e2c/artifacts/9brny5z2_apexoria%20image.jpeg",
+      "description": "Apexoria Brand Logo"
+    },
+    "hero_3d_abstract": {
+      "url": "https://images.pexels.com/photos/29506610/pexels-photo-29506610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Abstract 3D render in blue hues. Use as parallax background in the dark Hero."
+    },
+    "success_student_1": {
+      "url": "https://images.unsplash.com/photo-1737573477556-ac3ed2db618c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjBzdHVkZW50JTIwbGFwdG9wJTIwc21pbGV8ZW58MHx8fHwxNzg0NDQ3Mzc4fDA&ixlib=rb-4.1.0&q=85",
+      "description": "Indian student smiling with laptop. Use for testimonial or featured success story."
+    },
+    "success_student_2": {
+      "url": "https://images.pexels.com/photos/30858451/pexels-photo-30858451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+      "description": "Indian female studying online. Use for testimonial."
+    },
+    "team_collaboration": {
+      "url": "https://images.unsplash.com/photo-1688380692117-63178554d76d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxidXNpbmVzcyUyMG9mZmljZSUyMHRlYW0lMjBtZWV0aW5nJTIwdGVjaHxlbnwwfHx8fDE3ODE4NDg2MDV8MA&ixlib=rb-4.1.0&q=85",
+      "description": "Office team meeting tech. Use in Placement Support or Why Apexoria section."
+    }
+  },
+  "testing_attributes": "All interactive and key informational elements MUST include a data-testid attribute to facilitate robust automated testing (e.g., data-testid='enroll-now-btn').",
+  "instructions_to_main_agent": [
+    "Execute the 'Awwwards' aesthetic by ensuring exact kinetic text reveals using Framer Motion.",
+    "Implement Lenis smooth scrolling globally.",
+    "Strictly follow the color palette: use #F4622A (Orange) only for primary conversion CTAs.",
+    "Use Cabinet Grotesk/Outfit for massive, tightly-tracked editorial headlines.",
+    "Structure the hero section with a dark #0A1F44 background and a subtle parallax effect on the 3D abstract image.",
+    "The Featured Course section MUST highlight the 'No Coding' text with the Accent Gold (#F5B400).",
+    "Pricing cards should feature an animated SVG connector to imply a step-by-step track.",
+    "Do not hallucinate images; strictly use the URLs provided in this JSON.",
+    "Apply clipped-frame or spotlight effects to portrait photos (grayscale to color transition on hover)."
+  ],
+  "universal_guidelines": [
+    "Do not use generic centered layouts or simplistic gradients.",
+    "Create depth through layered design elements with z-index hierarchy.",
+    "Every interaction needs micro-animations - hover states, transitions, parallax effects, and entrance animations.",
+    "Use 2-3x more spacing than feels comfortable.",
+    "Never use AI assistant Emoji characters like 🤖🧠💭💡🔮🎯 for icons. Use Phosphor or Lucide icons.",
+    "Prioritize using pre-existing Shadcn components, heavily customized via Tailwind classes to fit the brand."
+  ]
+}
