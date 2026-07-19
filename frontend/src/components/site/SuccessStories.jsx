@@ -65,7 +65,7 @@ export default function SuccessStories() {
         {/* Testimonials */}
         <div className="mt-14 grid md:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.1}>
+            <Reveal key={i} delay={i * 0.1}>
               <motion.div
                 whileHover={{ y: -8 }}
                 data-testid={`testimonial-${i}`}
