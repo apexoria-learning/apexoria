@@ -56,7 +56,6 @@ export default function Batches({ onEnroll }) {
             </Reveal>
           ))}
         </div>
-        <p className="text-xs text-slate-400 mt-4">*Batch dates &amp; seat counts are placeholders — editable in data.js.</p>
       </div>
     </section>
   );

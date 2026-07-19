@@ -1,5 +1,5 @@
-import { Phone, Mail, Instagram, Linkedin, Facebook } from "lucide-react";
-import { CONTACT, LOGO_URL } from "../../data";
+import { Phone, Mail, Instagram, Linkedin, Facebook, Download, Heart } from "lucide-react";
+import { CONTACT, LOGO_URL, BROCHURE_URL } from "../../data";
 
 export default function Footer({ onEnroll }) {
   const year = new Date().getFullYear();
@@ -65,20 +65,36 @@ export default function Footer({ onEnroll }) {
 
           <div>
             <h4 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Ready to start?</h4>
-            <p className="text-white/60 text-sm mb-4">Limited seats each batch. Book your counselling call today.</p>
-            <button
-              data-testid="footer-enroll-btn"
-              onClick={onEnroll}
-              className="bg-brand-orange text-white font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform"
-            >
-              Enroll Now
-            </button>
+            <p className="text-white/60 text-sm mb-4">
+              Seats fill fast each batch. Book a free counselling call to pick the right learning path, get your questions
+              answered, and reserve your spot in our next Salesforce Development or QA cohort — no commitment required.
+            </p>
+            <div className="flex flex-col gap-3">
+              <button
+                data-testid="footer-enroll-btn"
+                onClick={onEnroll}
+                className="bg-brand-orange text-white font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform self-start"
+              >
+                Enroll Now
+              </button>
+              <a
+                data-testid="footer-brochure-btn"
+                href={BROCHURE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-white/25 text-white font-bold px-6 py-3 rounded-full hover:bg-white/10 transition-colors self-start"
+              >
+                <Download size={16} /> Download Brochure
+              </a>
+            </div>
           </div>
         </div>
 
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-3 text-white/50 text-xs">
           <p>© {year} Apexoria Learning. All rights reserved.</p>
-          <p>Instagram: {CONTACT.instagramHandle} · LinkedIn &amp; Facebook links are placeholders.</p>
+          <p className="flex items-center gap-1.5">
+            Made with <Heart size={13} className="fill-brand-orange text-brand-orange" /> by Salesforce enthusiasts
+          </p>
         </div>
       </div>
     </footer>

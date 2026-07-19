@@ -119,6 +119,8 @@ export const DEV_OUTCOMES = [
   "Write clean Apex & build LWC components confidently",
   "Design & consume REST/SOAP integrations",
   "Automate business processes with Flows",
+  "Demo your own Salesforce org projects",
+  "Crack PD1 (Platform Developer I) or Admin certifications",
   "Crack Salesforce Developer & Admin interviews",
 ];
 
@@ -133,6 +135,7 @@ export const PATHS = [
     color: "#1E90FF",
     popular: false,
     includes: [
+      "Best for understanding the Salesforce ecosystem",
       "Salesforce basics & navigation",
       "Objects, fields & relationships",
       "Reports & dashboards",
@@ -149,6 +152,7 @@ export const PATHS = [
     color: "#F5B400",
     popular: false,
     includes: [
+      "Best suited for fast movers — interview ready",
       "Everything in Foundation",
       "Apex fundamentals & triggers",
       "SOQL / SOSL queries",
@@ -165,6 +169,7 @@ export const PATHS = [
     color: "#2E7D32",
     popular: true,
     includes: [
+      "Best for those who want complete hands-on knowledge & expertise",
       "Full Admin + Development track",
       "Advanced Apex & test classes",
       "Lightning Web Components in depth",
@@ -194,6 +199,7 @@ export const QA_CURRICULUM = [
   { title: "Manual Testing", items: ["STLC & SDLC", "Test Case Writing", "Bug Reporting", "Agile & JIRA"] },
   { title: "API Testing", items: ["REST & HTTP Methods", "Status Codes", "Postman", "Auth & Real Use Cases"] },
   { title: "Salesforce Testing", items: ["Testing SF Apps", "UI & Data Validation", "Integration Testing", "CRM Scenarios"] },
+  { title: "Automation Testing", items: ["Playwright", "Provar", "Selenium", "CI/CD & Frameworks — for high-end testers"] },
 ];
 
 // Founder — replace name & photo when provided

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Check, Clock, CalendarDays, Radio, ArrowRight, FlaskConical } from "lucide-react";
-import { DEV_CURRICULUM, DEV_OUTCOMES, QA_CURRICULUM, SALESFORCE_LOGO } from "../../data";
+import { Check, Clock, CalendarDays, Radio, ArrowRight, FlaskConical, Download } from "lucide-react";
+import { DEV_CURRICULUM, DEV_OUTCOMES, QA_CURRICULUM, SALESFORCE_LOGO, BROCHURE_URL } from "../../data";
 import { Reveal } from "./Reveal";
 
 export default function FeaturedCourse({ onEnroll }) {
@@ -185,6 +185,21 @@ export default function FeaturedCourse({ onEnroll }) {
                 ))}
               </div>
             </div>
+          </div>
+        </Reveal>
+
+        {/* Download brochure */}
+        <Reveal>
+          <div className="mt-10 flex justify-center">
+            <a
+              data-testid="course-brochure-btn"
+              href={BROCHURE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 border-2 border-navy text-navy font-bold px-8 py-4 rounded-full hover:bg-navy hover:text-white transition-colors"
+            >
+              <Download size={18} /> Download Course Brochure
+            </a>
           </div>
         </Reveal>
       </div>
