@@ -22,7 +22,8 @@ export const LOGO_URL =
 export const SALESFORCE_LOGO =
   "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg";
 
-export const BROCHURE_URL = `${process.env.REACT_APP_BACKEND_URL}/api/brochure`;
+export const BROCHURE_URL =
+  "https://customer-assets-v7afamib.emergentagent.net/job_sfdc-mastery-hub/artifacts/iow3b9zy_Apexoria%20Course%20Brochure%20.pdf";
 
 export const IMAGES = {
   heroAbstract:
@@ -206,7 +207,7 @@ export const QA_CURRICULUM = [
 export const FOUNDER = {
   name: "Founder & Lead Instructor", // PLACEHOLDER — add founder's name
   role: "Salesforce Developer · 4+ Years Experience",
-  photo: "", // PLACEHOLDER — add founder's photo URL here
+  photo: "https://customer-assets-v7afamib.emergentagent.net/job_sfdc-mastery-hub/artifacts/tji6a6ek_1718476012009.jpg",
   certifications: ["Salesforce Platform Developer I"],
   bio: "Highly skilled Salesforce Developer with 4+ years of experience in designing, developing, and implementing scalable Salesforce solutions. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
   skills: ["Apex", "LWC", "Triggers", "SOQL", "REST / SOAP APIs", "Flows", "Automation", "Security"],
@@ -244,7 +245,7 @@ export const TESTIMONIALS = [
 export const GOOGLE_REVIEWS = {
   rating: 4.9,
   count: 120, // PLACEHOLDER — total reviews
-  url: "https://www.google.com/search?q=Apexoria+Learning+reviews", // PLACEHOLDER — Google Business link
+  url: "https://share.google/2zZMGfpW2oKJqejO2",
 };
 
 // Placeholder stats — clearly editable.

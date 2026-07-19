@@ -46,6 +46,36 @@ GF_ENTRY_COURSE = os.environ.get('GF_ENTRY_COURSE', '').strip()
 GF_ENTRY_BATCH = os.environ.get('GF_ENTRY_BATCH', '').strip()
 GF_ENTRY_MESSAGE = os.environ.get('GF_ENTRY_MESSAGE', '').strip()
 
+# Map free-text course/batch values to the exact Google Form choice options.
+GF_COURSE_OPTIONS = [
+    "Salesforce Foundation", "Salesforce Crashcourse", "Salesforce Complete Course",
+    "Special Offer", "Salesforce QA Testing Course", "Not Sure Yet",
+]
+
+
+def map_course_to_gf(value: str) -> str:
+    v = (value or "").lower()
+    if "foundation" in v:
+        return "Salesforce Foundation"
+    if "crash" in v:
+        return "Salesforce Crashcourse"
+    if "complete" in v:
+        return "Salesforce Complete Course"
+    if "special" in v:
+        return "Special Offer"
+    if "qa" in v:
+        return "Salesforce QA Testing Course"
+    return "Not Sure Yet"
+
+
+def map_batch_to_gf(value: str) -> str:
+    v = (value or "").lower()
+    if "weekend" in v:
+        return "Weekend"
+    if "weekday" in v:
+        return "Weekday"
+    return ""
+
 PHONE_RE = re.compile(r'^(?:\+?91[\-\s]?)?[6-9]\d{9}$')
 EMAIL_RE = re.compile(r'^[^@\s]+@[^@\s]+\.[^@\s]+$')
 
@@ -110,9 +140,11 @@ async def forward_to_google_form(lead: Lead) -> bool:
     if GF_ENTRY_EMAIL:
         payload[GF_ENTRY_EMAIL] = lead.email
     if GF_ENTRY_COURSE:
-        payload[GF_ENTRY_COURSE] = lead.course_interest
+        payload[GF_ENTRY_COURSE] = map_course_to_gf(lead.course_interest)
     if GF_ENTRY_BATCH:
-        payload[GF_ENTRY_BATCH] = lead.preferred_batch
+        batch = map_batch_to_gf(lead.preferred_batch)
+        if batch:
+            payload[GF_ENTRY_BATCH] = batch
     if GF_ENTRY_MESSAGE:
         payload[GF_ENTRY_MESSAGE] = lead.message
     try:
