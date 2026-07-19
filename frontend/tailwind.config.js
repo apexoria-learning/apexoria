@@ -12,7 +12,20 @@ module.exports = {
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)'
       },
+      fontFamily: {
+        display: ['Outfit', 'sans-serif'],
+        body: ['"Plus Jakarta Sans"', 'sans-serif'],
+      },
       colors: {
+        navy: '#0A1F44',
+        brand: {
+          blue: '#1E90FF',
+          bluesoft: '#2E9DF7',
+          gold: '#F5B400',
+          orange: '#F4622A',
+          green: '#2E7D32',
+          gray: '#F2F4F7',
+        },
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {

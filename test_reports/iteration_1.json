@@ -1,0 +1,37 @@
+{
+  "summary": "Full-stack verification of Apexoria Learning marketing site. Backend (7/7 pytest tests) and Frontend (14/14 checks) passed. Lead API, honeypot, validation, brochure PDF, config flag, hero, curriculum, sections, WhatsApp widget, nav enroll scroll, pricing prefill, valid form submit success state (with WA fallback), and invalid-phone inline error all work as expected.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "SuccessStories", "issues": ["React console warning: 'Encountered two children with the same key: Placed Student (add name)'. Duplicate keys in stories list. Likely two placeholder testimonials share the same name string used as key. Use unique ids or index-suffixed keys."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/backend_test.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Fix duplicate React key warning in SuccessStories (or similar component) — replace `key={name}` on placeholder 'Placed Student (add name)' entries with unique ids/index."
+  ],
+  "critical_code_review_comments": [
+    "server.py: CORSMiddleware is added AFTER `app.include_router(api_router)`. Starlette applies middleware in reverse insertion order and mounting order works, but idiomatic pattern is to register middleware before routers. Currently works because CORS wraps the whole app; no functional bug.",
+    "server.py: Honeypot returns a Lead object with dummy values (200 OK) — good for bots, but downstream analytics could get confused if this path is ever logged as a real conversion. Fine for now since it is not persisted.",
+    "LeadForm.jsx: honeypot input uses `className='hidden'` which sets display:none — some bots skip these. Consider off-screen positioning as an extra layer (not blocking).",
+    "App.js still uses Lenis smooth scrolling which keeps requestAnimationFrame busy; playwright `networkidle` will not resolve. Test agents / SEO crawlers should use `domcontentloaded`. Not a code bug but worth noting."
+  ],
+  "updated_files": [
+    "/app/backend/tests/backend_test.py"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "N/A — no auth in this app",
+  "seed_data_creation": "Test leads with TEST_ prefix created via POST /api/leads. Not cleaned up (no delete endpoint). Safe to leave; identifiable by TEST_ prefix.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend endpoints tested: GET /api/config, POST /api/leads (valid, +91 prefix, invalid phone, invalid email, honeypot), GET /api/leads (persistence), GET /api/brochure. Frontend flows tested via Playwright at REACT_APP_BACKEND_URL: hero, WhatsApp widget href, curriculum cards, QA callout, special-offer, founder, google-reviews, batches, nav-enroll scroll, pricing-enroll-complete prefill, valid lead submit -> success + WA fallback, invalid phone -> inline error. Use `wait_for_load_state('domcontentloaded')` NOT `networkidle` because Lenis smooth-scroll rAF loop prevents networkidle.",
+  "rca of the issue": "N/A — no bugs found. Only one React duplicate-key console warning noted (non-blocking)."
+}
