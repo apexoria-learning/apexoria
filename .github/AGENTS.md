@@ -21,10 +21,11 @@ Apexoria Learning is a conversion-focused, single-page marketing site for a Sale
 |---|---|
 | `frontend/src/**` | Frontend agent |
 | `frontend/plugins/**`, `frontend/*.config.js`, `frontend/package.json` | Frontend agent (with concern check) |
-| `frontend/**/*.test.js`, `test_reports/**` | QA agent |
+| `frontend/**/*.test.js`, `e2e/**`, `test_reports/**` | QA agent |
 | `test_result.md` | Orchestrator (as `main_agent`) + QA (as `testing_agent`), per the protocol block inside that file |
 | `design_guidelines.json` | Design Auditor reads; nobody else edits |
 | `memory/PRD.md`, `README.md` | Orchestrator (with user approval for scope-changing edits) |
+| git branches, commits, pushes, PRs, merges to `main` (Vercel auto-deploy trigger) | Deployment agent |
 
 The `backend/` tree and the Backend specialist agent definition were both removed on 2026-07-19 (see [.github/GOTCHAS.md](GOTCHAS.md) top entry). If a real backend is ever reintroduced, restore the Backend agent under `.github/agents/backend.agent.md`, add it back to the Orchestrator's `agents:` list, and log a new GOTCHAS entry.
 
@@ -75,8 +76,11 @@ cd frontend
 npm install --legacy-peer-deps
 npm start
 
-# Tests
+# Jest / RTL tests
 cd frontend ; npm test
+
+# Playwright end-to-end tests (added 2026-07-20)
+cd e2e ; npm install ; npx playwright install chromium ; npm test
 ```
 
 No Python, no venv, no MongoDB. All lead traffic goes browser → Google Form.
@@ -89,4 +93,5 @@ No Python, no venv, no MongoDB. All lead traffic goes browser → Google Form.
 - Section composition: [frontend/src/App.js](../frontend/src/App.js)
 - Lead form (spam trio + GF POST): [frontend/src/components/site/LeadForm.jsx](../frontend/src/components/site/LeadForm.jsx)
 - Test id registry: [frontend/src/constants/testIds/](../frontend/src/constants/testIds/)
+- Playwright config + specs: [e2e/playwright.config.js](../e2e/playwright.config.js), [e2e/tests/](../e2e/tests/), [e2e/utils/gfStub.js](../e2e/utils/gfStub.js)
 - Prior test outputs: [test_reports/](../test_reports/)

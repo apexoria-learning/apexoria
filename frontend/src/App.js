@@ -55,7 +55,7 @@ function App() {
       <Batches onEnroll={handleEnroll} />
       <PlacementSupport onEnroll={handleEnroll} />
       <FinalCTA onEnroll={handleEnroll} />
-      <Footer onEnroll={() => handleEnroll()} />
+      <Footer />
       <WhatsAppWidget />
       <Toaster position="top-center" richColors />
     </div>

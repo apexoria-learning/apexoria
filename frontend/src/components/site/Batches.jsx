@@ -31,11 +31,18 @@ export default function Batches({ onEnroll }) {
                     <div className="text-xs text-slate-500 uppercase tracking-wider">Batch Start</div>
                   </div>
                 </div>
-                <div className="sm:w-52">
+                <div className="sm:w-64">
                   <div className="font-semibold text-navy text-sm">{b.course}</div>
-                  <span className="inline-block mt-1 bg-brand-blue/10 text-brand-blue font-semibold text-xs px-3 py-1 rounded-full">
-                    {b.mode}
-                  </span>
+                  <div className="mt-1 flex flex-wrap items-center gap-2">
+                    <span className="inline-block bg-brand-blue/10 text-brand-blue font-semibold text-xs px-3 py-1 rounded-full">
+                      {b.mode}
+                    </span>
+                    {b.time && (
+                      <span className="inline-block bg-brand-gold/15 text-navy font-semibold text-xs px-3 py-1 rounded-full">
+                        {b.time}
+                      </span>
+                    )}
+                  </div>
                 </div>
                 <div className="flex-1">
                   <span className={`inline-block font-bold text-sm px-4 py-1.5 rounded-full ${

@@ -1,9 +1,9 @@
 ---
 name: "Orchestrator"
-description: "Use for any task on the Apexoria Learning project. Plans work in plain English, asks options-first questions via the ask-questions tool, delegates to Frontend / QA / Design Auditor specialists, runs read-only diagnostic shell commands directly, and follows the main_agent protocol in test_result.md. (Backend specialist retired 2026-07-19 — site is frontend-only.)"
+description: "Use for any task on the Apexoria Learning project. Plans work in plain English, asks options-first questions via the ask-questions tool, delegates to Frontend / QA / Design Auditor / SEO Auditor / Deployment specialists, runs read-only diagnostic shell commands directly, and follows the main_agent protocol in test_result.md. (Backend specialist retired 2026-07-19 — site is frontend-only.)"
 tools: [read, search, edit, todo, agent, web, execute]
 model: ['Claude Sonnet 4.5 (copilot)', 'GPT-5 (copilot)']
-agents: [Frontend, QA, "Design Auditor"]
+agents: [Frontend, QA, "Design Auditor", "SEO Auditor", Deployment]
 user-invocable: true
 ---
 
@@ -52,7 +52,9 @@ If you skip these, QA will refuse the request. That is correct behavior.
 | React component, Tailwind, shadcn, animation, form UX, `frontend/src/**` | `Frontend` |
 | Adding/running tests, verifying a fix, reading `test_reports/` | `QA` |
 | Reviewing colors, typography, spacing, motion, `data-testid` coverage, WCAG contrast | `Design Auditor` |
-| Multi-domain change | Sequence: Frontend → QA → Design Auditor for a final pass |
+| SEO audit, meta tags, headings hierarchy, image alt, `robots.txt` / `sitemap.xml`, JSON-LD schema, Open Graph, canonical, keyword coverage | `SEO Auditor` |
+| Ship a change: branch off main, commit, push, raise PR, squash-merge to trigger Vercel deploy | `Deployment` |
+| Multi-domain change | Sequence: Frontend → QA → Design Auditor → SEO Auditor → Deployment for a final ship |
 
 ## Approach for every incoming user request
 
@@ -65,7 +67,8 @@ If you skip these, QA will refuse the request. That is correct behavior.
 7. **Update `test_result.md`** — per the protocol above.
 8. **Invoke QA** — for any change that touched product code.
 9. **Design Auditor final pass** — for any user-visible change.
-10. **Report** — plain English summary + the four-line structured report.
+10. **Invoke Deployment** — when the user says "ship it", "deploy", "push to main", "raise a PR", or the plan clearly ends in a release. The Deployment agent runs its own 9-gate pipeline and asks the user directly at every write gate (branch → commit → push → PR → merge). Never bypass it by running git commands yourself.
+11. **Report** — plain English summary + the four-line structured report.
 
 ## Gotchas capture (owner: Orchestrator)
 

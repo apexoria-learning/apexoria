@@ -62,66 +62,89 @@ export const VALUE_PROPS = [
   },
 ];
 
-// Featured course: SALESFORCE DEVELOPMENT
-export const DEV_CURRICULUM = [
+// Curriculum — two tracks (Development + QA), each with 2 course cards.
+// Every card carries its own `brochureUrl` so real per-course PDFs can
+// replace the shared fallback (/apexoria-brochure.pdf) later without a
+// code change.
+export const CURRICULUM_TRACKS = [
   {
-    key: "fundamentals",
-    title: "Salesforce Fundamentals",
-    items: [
-      "Salesforce Basics & Navigation",
-      "Standard & Custom Objects",
-      "Fields & Relationships",
-      "Validation Rules & Page Layouts",
-      "Reports & Dashboards",
-      "Security (Profiles, Roles, Permission Sets)",
+    key: "development",
+    title: "Development Courses",
+    overline: "For future Salesforce developers",
+    courses: [
+      {
+        key: "crash-course",
+        title: "Salesforce Crash Course",
+        tagline: "Interview-ready in one month",
+        chips: ["1 Month", "Intermediate", "Live Classes"],
+        description:
+          "A fast-paced dev primer for career-switchers who want to hit the ground running. Live classes, guided assignments, and just enough theory to make the code stick.",
+        highlights: [
+          "Apex fundamentals & triggers",
+          "SOQL / SOSL queries",
+          "Intro to Lightning Web Components",
+          "Guided hands-on assignment",
+        ],
+        brochureUrl: "/apexoria-brochure.pdf",
+        enrollLabel: "Salesforce Crash Course",
+      },
+      {
+        key: "complete-course",
+        title: "Salesforce Complete Course",
+        tagline: "End-to-end Admin + Dev mastery",
+        chips: ["3 Months", "Advanced", "Capstone Project"],
+        description:
+          "The full 3-month deep dive — Admin foundations, advanced Apex, LWC in depth, and real REST / SOAP integrations, capped with a deployable capstone project.",
+        highlights: [
+          "Full Admin + Development track",
+          "Advanced Apex & test classes",
+          "LWC in depth + REST / SOAP integrations",
+          "Loan / Case Management capstone project",
+        ],
+        brochureUrl: "/apexoria-brochure.pdf",
+        enrollLabel: "Salesforce Complete Course",
+      },
     ],
   },
   {
-    key: "apex",
-    title: "Apex Programming",
-    items: [
-      "Apex Classes & Methods",
-      "Triggers & Trigger Frameworks",
-      "SOQL & SOSL Queries",
-      "Collections & Control Flow",
-      "Asynchronous Apex (Future, Batch, Queueable)",
-      "Test Classes & Code Coverage",
+    key: "qa",
+    title: "QA Courses",
+    overline: "For no-code Salesforce testing roles",
+    courses: [
+      {
+        key: "salesforce-qa",
+        title: "Salesforce QA",
+        tagline: "Land a no-code Salesforce testing role",
+        chips: ["2.5 Months", "No-Code", "Live Classes"],
+        description:
+          "Manual + API testing built specifically around Salesforce apps — UI, data validation, and integration scenarios you'll actually be asked about in interviews.",
+        highlights: [
+          "Manual testing · STLC, test cases, bug reports",
+          "API testing with Postman",
+          "Salesforce UI & data validation",
+          "Agile & JIRA workflows",
+        ],
+        brochureUrl: "/apexoria-brochure.pdf",
+        enrollLabel: "Salesforce QA Testing Course",
+      },
+      {
+        key: "salesforce-automation-qa",
+        title: "Salesforce Automation QA",
+        tagline: "Level up into high-end automation testing",
+        chips: ["Advanced", "Automation Track", "Playwright · Provar"],
+        description:
+          "For QA engineers who want to automate. Playwright, Provar, and Selenium against real CRM scenarios, plus CI/CD framework patterns used in production teams.",
+        highlights: [
+          "Playwright & Provar automation",
+          "Selenium fundamentals",
+          "CI/CD & framework design",
+          "Real-world Salesforce automation scenarios",
+        ],
+        brochureUrl: "/apexoria-brochure.pdf",
+        enrollLabel: "Salesforce Automation QA Course",
+      },
     ],
   },
-  {
-    key: "lwc",
-    title: "Lightning Web Components",
-    items: [
-      "LWC Fundamentals & Structure",
-      "Component Communication & Events",
-      "Wire Service & Apex Integration",
-      "Lightning Data Service",
-      "Reactive Properties & Lifecycle Hooks",
-      "Building Real UI Components",
-    ],
-  },
-  {
-    key: "integration",
-    title: "Integration & Automation",
-    badge: "Career Booster",
-    items: [
-      "REST & SOAP API Integrations",
-      "Named Credentials & Callouts",
-      "Flows, Process Builder & Workflows",
-      "Deployment (Change Sets / SFDX)",
-      "Best Practices & Governor Limits",
-      "Real-Time Integration Scenarios",
-    ],
-  },
-];
-
-export const DEV_OUTCOMES = [
-  "Write clean Apex & build LWC components confidently",
-  "Design & consume REST/SOAP integrations",
-  "Automate business processes with Flows",
-  "Demo your own Salesforce org projects",
-  "Crack PD1 (Platform Developer I) or Admin certifications",
-  "Crack Salesforce Developer & Admin interviews",
 ];
 
 // Learning paths — Salesforce DEVELOPMENT tracks
@@ -178,11 +201,28 @@ export const PATHS = [
       "Placement & interview support",
     ],
   },
+  {
+    id: "qa",
+    tier: "Salesforce QA Testing",
+    level: "No-Code Track",
+    price: "₹17,999",
+    detail: "60 hrs · 2.5 months",
+    color: "#8E44AD",
+    popular: false,
+    includes: [
+      "Best for those who want a no-coding Salesforce role",
+      "Manual + Automation testing fundamentals",
+      "Salesforce app testing (UI, data, integration)",
+      "API testing with Postman",
+      "Automation with Playwright / Provar / Selenium",
+      "Placement & interview support",
+    ],
+  },
 ];
 
 export const SPECIAL_OFFER = {
   id: "special",
-  tier: "Special Offer",
+  tier: "Enrollment Special Offer",
   level: "All Levels",
   price: "₹4,999",
   tagline: "Start now, pay the rest once you're confident.",
@@ -194,21 +234,13 @@ export const SPECIAL_OFFER = {
   ],
 };
 
-// QA course (secondary offering — batches running)
-export const QA_CURRICULUM = [
-  { title: "Manual Testing", items: ["STLC & SDLC", "Test Case Writing", "Bug Reporting", "Agile & JIRA"] },
-  { title: "API Testing", items: ["REST & HTTP Methods", "Status Codes", "Postman", "Auth & Real Use Cases"] },
-  { title: "Salesforce Testing", items: ["Testing SF Apps", "UI & Data Validation", "Integration Testing", "CRM Scenarios"] },
-  { title: "Automation Testing", items: ["Playwright", "Provar", "Selenium", "CI/CD & Frameworks — for high-end testers"] },
-];
-
 // Founder — replace name & photo when provided
 export const FOUNDER = {
   name: "Founder & Lead Instructor", // PLACEHOLDER — add founder's name
-  role: "Salesforce Developer · 4+ Years Experience",
+  role: "Salesforce Ecosystem · 5+ Years Experience · 3+ Years Teaching",
   photo: "https://customer-assets-v7afamib.emergentagent.net/job_sfdc-mastery-hub/artifacts/tji6a6ek_1718476012009.jpg",
-  certifications: ["Salesforce Platform Developer I"],
-  bio: "Highly skilled Salesforce Developer with 4+ years of experience in designing, developing, and implementing scalable Salesforce solutions. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
+  certifications: [],
+  bio: "Salesforce professional with 5+ years of hands-on experience in the Salesforce ecosystem and 3+ years of teaching experience mentoring aspiring developers and QA testers. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
   skills: ["Apex", "LWC", "Triggers", "SOQL", "REST / SOAP APIs", "Flows", "Automation", "Security"],
 };
 
@@ -254,12 +286,11 @@ export const STATS = [
   { value: "92%", label: "Batch Completion Rate" },
 ];
 
-// Editable batch data — includes both Development & QA cohorts.
+// Editable batch data — weekday cohorts covering both Development & QA tracks.
 export const BATCHES = [
-  { start: "12 Jan 2026", mode: "Weekday", seats: 5, course: "Salesforce Development" },
-  { start: "19 Jan 2026", mode: "Weekend", seats: 8, course: "Salesforce QA Testing" },
-  { start: "26 Jan 2026", mode: "Weekend", seats: 9, course: "Salesforce Development" },
-  { start: "09 Feb 2026", mode: "Weekday", seats: 12, course: "Salesforce QA Testing" },
+  { start: "27 Jul 2026", mode: "Weekday", time: "Morning (9 AM – 11 AM)", seats: 12, course: "Salesforce Development & QA" },
+  { start: "11 Aug 2026", mode: "Weekday", time: "Afternoon (1 PM – 4 PM)", seats: 12, course: "Salesforce Development & QA" },
+  { start: "26 Aug 2026", mode: "Weekday", time: "Evening (8 PM – 10 PM)", seats: 12, course: "Salesforce Development & QA" },
 ];
 
 export const PLACEMENT_STEPS = [
@@ -273,8 +304,15 @@ export const COURSE_OPTIONS = [
   "Salesforce Foundation — ₹1,999",
   "Salesforce Crash Course — ₹9,999",
   "Salesforce Complete Course — ₹21,999",
-  "Special Offer — ₹4,999",
-  "Salesforce Development Course",
-  "Salesforce QA Testing Course",
+  "Salesforce QA Testing Course — ₹17,999",
+  "Enrollment Special Offer — ₹4,999",
   "Not sure yet — need guidance",
+];
+
+// Downloadable study notes shown in the Footer Resources section.
+// PDFs live under frontend/public/resources/ — buttons fall back to a toast if missing.
+export const RESOURCES = [
+  { label: "LWC Notes", file: "/resources/apexoria-lwc-notes.pdf" },
+  { label: "Apex Notes", file: "/resources/apexoria-apex-notes.pdf" },
+  { label: "QA Notes", file: "/resources/apexoria-qa-notes.pdf" },
 ];

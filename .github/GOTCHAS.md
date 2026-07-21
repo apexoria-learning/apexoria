@@ -43,6 +43,13 @@ Read the whole file at the start of every session. If any entry applies to your 
 
 ## Entries
 
+### 2026-07-20 — Playwright `networkidle` never resolves (Lenis rAF loop)
+- Category: workaround
+- Fact: `page.waitForLoadState('networkidle')` never resolves on this app because the Lenis smooth-scroll wrapper in [frontend/src/App.js](../frontend/src/App.js) runs a permanent `requestAnimationFrame` loop that keeps the browser event queue busy. Use `'domcontentloaded'`, `'load'`, or explicit locator waits (`await expect(locator).toBeVisible()`, `.toBeInViewport()`) in every Playwright spec.
+- Affects: QA (E2E)
+- Impact: All specs under [e2e/tests/](../e2e/tests/) use `page.goto('/', { waitUntil: 'domcontentloaded' })` and locator-based waits. The [e2e/playwright.config.js](../e2e/playwright.config.js) header comment restates this. Every LeadForm submit spec also installs the Google Form `page.route` stub from [e2e/utils/gfStub.js](../e2e/utils/gfStub.js) so no real submission ever reaches the production Sheet.
+- Source: prior test agent report in [test_reports/iteration_1.json](../test_reports/iteration_1.json) (`critical_code_review_comments[3]`), reconfirmed by user on 2026-07-20 when installing Playwright and expanding the QA agent to own E2E.
+
 ### 2026-07-19 — Backend removed entirely; frontend posts directly to Google Form
 - Category: product-decision
 - Fact: The FastAPI backend has been deleted. `POST /api/leads` no longer exists — the React lead form POSTs directly to `GOOGLE_FORM_ACTION_URL` from the browser using `fetch(..., { mode: 'no-cors', body: FormData })`. The `/api/brochure` PDF endpoint is gone; the download button points to a static file at `frontend/public/apexoria-brochure.pdf` (user will upload the actual PDF post-Vercel-deploy). `/api/config` is gone. Vercel deploys the whole project as a static site with zero Python surface.

@@ -53,8 +53,9 @@ export default function LeadForm({ prefillCourse }) {
 
   const mapBatchToGF = (value) => {
     const v = value.toLowerCase();
-    if (v.includes("weekend")) return "Weekend";
-    if (v.includes("weekday")) return "Weekday";
+    if (v.includes("morning")) return "Morning";
+    if (v.includes("afternoon")) return "Afternoon";
+    if (v.includes("evening")) return "Evening";
     return "";
   };
 
@@ -215,14 +216,15 @@ export default function LeadForm({ prefillCourse }) {
                       {errors.course_interest && <p className="text-xs text-red-500 mt-1">{errors.course_interest}</p>}
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-navy mb-1.5">Preferred Batch</label>
+                      <label className="block text-sm font-semibold text-navy mb-1.5">Preferred Batch Timing</label>
                       <Select value={form.preferred_batch} onValueChange={(v) => set("preferred_batch", v)}>
                         <SelectTrigger data-testid="lead-batch" className="rounded-xl py-6 border-slate-200">
-                          <SelectValue placeholder="Weekday / Weekend" />
+                          <SelectValue placeholder="Morning / Afternoon / Evening" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="Weekday">Weekday</SelectItem>
-                          <SelectItem value="Weekend">Weekend</SelectItem>
+                          <SelectItem value="Morning (9 AM – 11 AM)">Morning (9 AM – 11 AM)</SelectItem>
+                          <SelectItem value="Afternoon (1 PM – 4 PM)">Afternoon (1 PM – 4 PM)</SelectItem>
+                          <SelectItem value="Evening (8 PM – 10 PM)">Evening (8 PM – 10 PM)</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>

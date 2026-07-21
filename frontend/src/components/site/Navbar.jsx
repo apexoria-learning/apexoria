@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
 import { CONTACT, LOGO_URL } from "../../data";
 
@@ -57,7 +57,7 @@ export default function Navbar({ onEnroll }) {
               data-testid={`nav-link-${l.id}`}
               onClick={() => go(l.id)}
               className={`text-sm font-semibold transition-colors hover:text-brand-blue ${
-                scrolled ? "text-navy/80" : "text-white/85"
+                scrolled ? "text-navy" : "text-white"
               }`}
             >
               {l.label}
@@ -88,43 +88,43 @@ export default function Navbar({ onEnroll }) {
           onClick={() => setOpen((v) => !v)}
           className={`lg:hidden ${scrolled ? "text-navy" : "text-white"}`}
           aria-label="Toggle menu"
+          aria-expanded={open}
+          aria-controls="mobile-menu"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </nav>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            data-testid="mobile-menu"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            className="lg:hidden bg-white overflow-hidden border-t border-slate-100"
+      <motion.div
+        id="mobile-menu"
+        data-testid="mobile-menu"
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        className={`lg:hidden bg-white overflow-hidden border-t border-slate-100 ${open ? "" : "pointer-events-none"}`}
+        aria-hidden={!open}
+      >
+        <div className="px-5 py-4 flex flex-col gap-1">
+          {LINKS.map((l) => (
+            <button
+              key={l.id}
+              onClick={() => go(l.id)}
+              className="text-left py-3 font-semibold text-navy/80 border-b border-slate-100"
+            >
+              {l.label}
+            </button>
+          ))}
+          <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 py-3 font-bold text-navy">
+            <Phone size={16} className="text-brand-blue" /> {CONTACT.phone}
+          </a>
+          <button
+            onClick={() => { setOpen(false); onEnroll(); }}
+            className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2"
           >
-            <div className="px-5 py-4 flex flex-col gap-1">
-              {LINKS.map((l) => (
-                <button
-                  key={l.id}
-                  onClick={() => go(l.id)}
-                  className="text-left py-3 font-semibold text-navy/80 border-b border-slate-100"
-                >
-                  {l.label}
-                </button>
-              ))}
-              <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 py-3 font-bold text-navy">
-                <Phone size={16} className="text-brand-blue" /> {CONTACT.phone}
-              </a>
-              <button
-                onClick={() => { setOpen(false); onEnroll(); }}
-                className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2"
-              >
-                Enroll Now
-              </button>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            Enroll Now
+          </button>
+        </div>
+      </motion.div>
     </motion.header>
   );
 }

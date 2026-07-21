@@ -1,9 +1,24 @@
 import { motion } from "framer-motion";
-import { Phone, Instagram, Linkedin, Facebook, ArrowRight } from "lucide-react";
-import { CONTACT } from "../../data";
+import { Phone, Instagram, Linkedin, Facebook, ArrowRight, Download } from "lucide-react";
+import { toast } from "sonner";
+import { CONTACT, BROCHURE_URL } from "../../data";
 import { Reveal } from "./Reveal";
 
 export default function FinalCTA({ onEnroll }) {
+  const handleBrochureDownload = async (ev) => {
+    ev.preventDefault();
+    try {
+      const res = await fetch(BROCHURE_URL, { method: "HEAD" });
+      if (res.ok) {
+        window.open(BROCHURE_URL, "_blank", "noopener,noreferrer");
+      } else {
+        toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+      }
+    } catch {
+      toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+    }
+  };
+
   return (
     <section data-testid="final-cta-section" className="bg-navy grain relative overflow-hidden py-24 lg:py-32">
       <div className="absolute -left-20 top-10 h-80 w-80 rounded-full bg-brand-blue/20 blur-[120px]" />
@@ -46,6 +61,16 @@ export default function FinalCTA({ onEnroll }) {
             </a>
           </div>
           <p className="mt-4 text-white/50 text-sm">Follow us {CONTACT.instagramHandle}</p>
+
+          <div className="mt-6 flex justify-center">
+            <button
+              data-testid="final-brochure-btn"
+              onClick={handleBrochureDownload}
+              className="inline-flex items-center gap-2 border-2 border-white/25 text-white font-bold px-6 py-3 rounded-full hover:bg-white/10 transition-colors"
+            >
+              <Download size={18} className="text-brand-gold" /> Download Brochure
+            </button>
+          </div>
         </Reveal>
       </div>
     </section>

@@ -1,0 +1,10 @@
+# robots.txt for Apexoria Learning
+# https://www.apexorialearning.in/
+
+User-agent: *
+Allow: /
+
+# Optional: block common no-value paths (none apply to this SPA today,
+# but keep the block ready for future expansion — e.g. /admin, /api).
+
+Sitemap: https://www.apexorialearning.in/sitemap.xml

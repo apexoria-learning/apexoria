@@ -1,8 +1,8 @@
-import { Phone, Mail, Instagram, Linkedin, Facebook, Download, Heart } from "lucide-react";
+import { Phone, Mail, Download, Heart, FileText } from "lucide-react";
 import { toast } from "sonner";
-import { CONTACT, LOGO_URL, BROCHURE_URL } from "../../data";
+import { CONTACT, LOGO_URL, RESOURCES } from "../../data";
 
-export default function Footer({ onEnroll }) {
+export default function Footer() {
   const year = new Date().getFullYear();
   const links = [
     { label: "Courses", id: "featured-course" },
@@ -12,17 +12,16 @@ export default function Footer({ onEnroll }) {
   ];
   const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
 
-  const handleBrochureDownload = async (ev) => {
-    ev.preventDefault();
+  const handleResourceDownload = async (path, label) => {
     try {
-      const res = await fetch(BROCHURE_URL, { method: "HEAD" });
+      const res = await fetch(path, { method: "HEAD" });
       if (res.ok) {
-        window.open(BROCHURE_URL, "_blank", "noopener,noreferrer");
+        window.open(path, "_blank", "noopener,noreferrer");
       } else {
-        toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+        toast.info(`${label} will be available shortly. Please reach out on WhatsApp for a copy.`);
       }
     } catch {
-      toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
+      toast.info(`${label} will be available shortly. Please reach out on WhatsApp for a copy.`);
     }
   };
 
@@ -65,41 +64,27 @@ export default function Footer({ onEnroll }) {
                 <Mail size={15} className="text-brand-blue" /> {CONTACT.email}
               </li>
             </ul>
-            <div className="flex items-center gap-3 mt-5">
-              <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-orange transition-colors">
-                <Instagram size={18} />
-              </a>
-              <a href={CONTACT.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn (placeholder)" className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-blue transition-colors">
-                <Linkedin size={18} />
-              </a>
-              <a href={CONTACT.facebook} target="_blank" rel="noopener noreferrer" aria-label="Facebook (placeholder)" className="h-10 w-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-brand-blue transition-colors">
-                <Facebook size={18} />
-              </a>
-            </div>
           </div>
 
           <div>
-            <h4 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Ready to start?</h4>
+            <h4 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Resources</h4>
             <p className="text-white/60 text-sm mb-4">
-              Seats fill fast each batch. Book a free counselling call to pick the right learning path, get your questions
-              answered, and reserve your spot in our next Salesforce Development or QA cohort — no commitment required.
+              Free study notes to help you prep for Salesforce Development & QA roles.
             </p>
-            <div className="flex flex-col gap-3">
-              <button
-                data-testid="footer-enroll-btn"
-                onClick={onEnroll}
-                className="bg-brand-orange text-white font-bold px-6 py-3 rounded-full hover:scale-105 transition-transform self-start"
-              >
-                Enroll Now
-              </button>
-              <button
-                data-testid="footer-brochure-btn"
-                onClick={handleBrochureDownload}
-                className="inline-flex items-center gap-2 border border-white/25 text-white font-bold px-6 py-3 rounded-full hover:bg-white/10 transition-colors self-start"
-              >
-                <Download size={16} /> Download Brochure
-              </button>
-            </div>
+            <ul className="space-y-2.5">
+              {RESOURCES.map((r) => (
+                <li key={r.file}>
+                  <button
+                    data-testid={`footer-resource-${r.file.split("/").pop().replace(/\.pdf$/, "")}`}
+                    onClick={() => handleResourceDownload(r.file, r.label)}
+                    className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-brand-gold transition-colors"
+                  >
+                    <FileText size={16} className="text-brand-blue" /> {r.label}
+                    <Download size={14} className="opacity-60" />
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

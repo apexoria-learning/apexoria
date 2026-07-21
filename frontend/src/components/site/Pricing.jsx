@@ -18,14 +18,16 @@ export default function Pricing({ onEnroll }) {
         <Reveal>
           <div className="hidden lg:flex items-center gap-2 mt-10 mb-4 text-xs font-bold uppercase tracking-wider text-slate-400">
             <span>Foundation</span>
-            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="h-0.5 w-16 bg-brand-blue origin-left" />
+            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="h-0.5 w-12 bg-brand-blue origin-left" />
             <span>Crash Course</span>
-            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="h-0.5 w-16 bg-brand-gold origin-left" />
+            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="h-0.5 w-12 bg-brand-gold origin-left" />
             <span className="text-brand-green">Complete Course</span>
+            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }} className="h-0.5 w-12 bg-[#8E44AD] origin-left" />
+            <span className="text-[#8E44AD]">QA Testing</span>
           </div>
         </Reveal>
 
-        <div className="mt-8 grid md:grid-cols-3 gap-6 items-stretch">
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
           {PATHS.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08} className="h-full">
               <motion.div
@@ -33,7 +35,7 @@ export default function Pricing({ onEnroll }) {
                 data-testid={`pricing-card-${p.id}`}
                 className={`relative flex flex-col h-full rounded-2xl border bg-white p-7 transition-shadow ${
                   p.popular
-                    ? "border-brand-green ring-2 ring-brand-green/30 shadow-2xl shadow-brand-green/10 lg:scale-[1.03] z-10"
+                    ? "border-brand-green ring-2 ring-brand-green/30 shadow-2xl shadow-brand-green/10 z-10"
                     : "border-slate-200 shadow-lg shadow-navy/5"
                 }`}
               >
@@ -101,7 +103,7 @@ export default function Pricing({ onEnroll }) {
               <div className="lg:text-right">
                 <button
                   data-testid="special-offer-enroll"
-                  onClick={() => onEnroll(`Special Offer — ${SPECIAL_OFFER.price}`)}
+                  onClick={() => onEnroll(`Enrollment Special Offer — ${SPECIAL_OFFER.price}`)}
                   className="inline-flex items-center justify-center bg-brand-orange text-white font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-xl shadow-brand-orange/30"
                 >
                   Grab This Offer

@@ -52,6 +52,11 @@ backend/tests/__pycache__/
 tests/__pycache__/
 *.log
 
+# ---- Playwright (e2e/) ----
+e2e/test-results/
+e2e/playwright-report/
+e2e/.playwright/
+
 # ---- Editor / IDE ----
 .vscode/
 !.vscode/settings.json.example
