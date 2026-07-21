@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import "@/App.css";
 import Lenis from "lenis";
 import { Toaster } from "@/components/ui/sonner";
+import { Analytics } from "@vercel/analytics/react";
 
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
@@ -66,6 +67,7 @@ function App() {
       <Footer />
       <WhatsAppWidget />
       <Toaster position="top-center" richColors />
+      <Analytics />
     </div>
   );
 }
