@@ -25,7 +25,13 @@ export default function Navbar({ onEnroll }) {
   const go = (id) => {
     setOpen(false);
     const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el);
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   };
 
   return (

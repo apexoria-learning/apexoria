@@ -23,6 +23,7 @@ function App() {
 
   useEffect(() => {
     const lenis = new Lenis({ duration: 1.1, smoothWheel: true });
+    window.__lenis = lenis;
     let raf;
     const loop = (t) => {
       lenis.raf(t);
@@ -32,13 +33,20 @@ function App() {
     return () => {
       cancelAnimationFrame(raf);
       lenis.destroy();
+      delete window.__lenis;
     };
   }, []);
 
   const handleEnroll = useCallback((course) => {
     if (course) setPrefillCourse(course);
     const el = document.getElementById("contact");
-    if (el) el.scrollIntoView({ behavior: "smooth" });
+    if (el) {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el);
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
   }, []);
 
   return (

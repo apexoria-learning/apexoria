@@ -10,7 +10,16 @@ export default function Footer() {
     { label: "About", id: "why" },
     { label: "Contact", id: "contact" },
   ];
-  const go = (id) => document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+  const go = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      if (window.__lenis) {
+        window.__lenis.scrollTo(el);
+      } else {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   const handleResourceDownload = async (path, label) => {
     try {
