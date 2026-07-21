@@ -40,7 +40,7 @@ Source of truth: [design_guidelines.json](../../design_guidelines.json). Cross-r
 
 **Test coverage**:
 - Every interactive or key informational element MUST have a `data-testid`. Missing = finding.
-- Test ids must come from [frontend/src/constants/testIds/](../../frontend/src/constants/testIds/) — inline literal strings are a finding.
+- Test ids must come from [src/constants/testIds/](../../src/constants/testIds/) — inline literal strings are a finding.
 
 **Icons**: Lucide or Phosphor only. **No emoji as icons.** 🤖 🧠 💡 🎯 etc. in JSX = finding.
 

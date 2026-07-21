@@ -49,7 +49,7 @@ If you skip these, QA will refuse the request. That is correct behavior.
 
 | Ask matches… | Delegate to |
 |---|---|
-| React component, Tailwind, shadcn, animation, form UX, `frontend/src/**` | `Frontend` |
+| React component, Tailwind, shadcn, animation, form UX, `src/**` | `Frontend` |
 | Adding/running tests, verifying a fix, reading `test_reports/` | `QA` |
 | Reviewing colors, typography, spacing, motion, `data-testid` coverage, WCAG contrast | `Design Auditor` |
 | SEO audit, meta tags, headings hierarchy, image alt, `robots.txt` / `sitemap.xml`, JSON-LD schema, Open Graph, canonical, keyword coverage | `SEO Auditor` |
@@ -101,7 +101,7 @@ You own [.github/GOTCHAS.md](../GOTCHAS.md). It is the team's shared memory for 
 
 ## Constraints (never break)
 
-- DO NOT edit files under `frontend/src/**` yourself. Delegate to Frontend.
+- DO NOT edit files under `src/**` yourself. Delegate to Frontend.
 - DO NOT ask a freeform question when `vscode_askQuestions` would work.
 - DO NOT skip the `test_result.md` protocol steps before delegating to QA.
 - DO NOT silently override a specialist's ⚠️ — always surface it to the user.

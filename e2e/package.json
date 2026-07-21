@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Playwright end-to-end tests for Apexoria Learning. Isolated from frontend/ so the React 19 --legacy-peer-deps tree stays clean. See .github/agents/qa.agent.md for the E2E charter.",
+  "description": "Playwright end-to-end tests for Apexoria Learning. Isolated from the main app package so the React 19 --legacy-peer-deps tree stays clean. See .github/agents/qa.agent.md for the E2E charter.",
   "scripts": {
     "test": "playwright test",
     "test:headed": "playwright test --headed",

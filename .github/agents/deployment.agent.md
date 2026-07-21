@@ -15,7 +15,7 @@ For every change the user wants shipped:
 
 1. Branch off `main` with a Conventional-Commits-style name.
 2. Verify the working tree — no stray/unrelated changes, no secrets.
-3. Verify the build — `npm run build` in `frontend/` is green.
+3. Verify the build — `npm run build` in `` is green.
 4. Delegate to `QA` for a test sign-off (Jest + Playwright green) when product code changed.
 5. Stage the intended files, write a Conventional-Commits short subject + a scoped body.
 6. Push the branch to `origin`.
@@ -32,7 +32,7 @@ For every change the user wants shipped:
 - **Conventional Commits** for subject line — see "Commit style" below. Hard max 72 chars for the subject, 50 preferred.
 - **Squash-merge by default.** Keeps `main` linear and matches Vercel's one-deploy-per-commit model. Ask before choosing another strategy.
 - **Never `--force`, never `--force-with-lease`, never `--no-verify`, never `reset --hard` on `main`** — even with an Override. Per [.github/AGENTS.md](../AGENTS.md) §12.
-- **Never merge without**: (a) clean `git status` other than the intended files, (b) `npm run build` green, (c) QA sign-off if `frontend/src/**` or `e2e/**` changed, (d) user Confirm on the merge prompt.
+- **Never merge without**: (a) clean `git status` other than the intended files, (b) `npm run build` green, (c) QA sign-off if `src/**` or `e2e/**` changed, (d) user Confirm on the merge prompt.
 - **Never commit secrets.** Grep the diff for `entry.`, `.env`, `AIza`, `sk-`, `ghp_`, `gho_`, `xoxb-`, private key headers before every commit. If matched → stop, escalate.
 - **Never push to a branch that already has an open PR** without pulling first (avoids force-push scenarios).
 - **Never delete `main`, `origin/main`, or a branch with an open PR** without an explicit user Override.
@@ -104,8 +104,8 @@ Never use: spaces, `#`, `~`, `^`, `:`, `?`, `*`, `[`, `\`, uppercase in the slug
 <link the backlog item in memory/PRD.md or the gotcha in .github/GOTCHAS.md that motivated this>
 
 ## How to verify
-- [ ] `cd frontend ; npm run build` succeeds locally
-- [ ] `cd frontend ; npm test -- --watchAll=false --ci` all green
+- [ ] `npm run build` succeeds locally
+- [ ] `npm test -- --watchAll=false --ci` all green
 - [ ] `cd e2e ; npm test` all green (if UI/behavior changed)
 - [ ] Vercel Preview URL loads and the changed section behaves as described
 
@@ -128,7 +128,7 @@ Every ship goes through these gates in order. Each **W-gate** (write) needs a Co
 | 1 | Situate | R | `git status`, `git branch --show-current`, `git log --oneline -n 5`, **`gh pr list --author @me --state open --base main --json number,title,headRefName,updatedAt,mergeable,statusCheckRollup`** | Working tree in an unexpected state, **any open PR from a prior ship still un-merged** (see "Last-PR check" below) |
 | 2 | Branch | W | `git checkout main` → `git pull --ff-only origin main` → `git checkout -b <branch>` | Un-fast-forwardable main, dirty tree, unresolved open PR from gate 1 |
 | 3 | Diff review | R | `git diff` on intended files, secret scan | Unintended files, secrets found |
-| 4 | Build | R | `cd frontend ; npm run build` | Build error, ESLint error, chunk size regression > +10% |
+| 4 | Build | R | `npm run build` | Build error, ESLint error, chunk size regression > +10% |
 | 5 | QA | R (delegates) | Invoke `QA` subagent for Jest + Playwright | Any failing test |
 | 6 | Commit | W | `git add <intended-files>` → `git commit -m "<subject>" -m "<body>"` | Pre-commit hook failure, secret scan hit |
 | 7 | Push | W | `git push -u origin <branch>` | Non-fast-forward, remote rejects |
@@ -255,7 +255,7 @@ Every one of these needs a Confirm:
 - `git push -u origin <branch>`, `git push origin <branch>`
 - `git branch -d <branch>` (safe delete only), `git branch -D <branch>` (⚠️ needs explicit Override)
 - `gh pr create …`, `gh pr edit …`, `gh pr merge …`, `gh pr close …`, `gh pr comment …`
-- `cd frontend ; npm run build` (writes to `frontend/build/`)
+- `npm run build` (writes to `build/`)
 
 ## Terminal usage — forbidden (even with Override)
 
@@ -278,10 +278,10 @@ git status ; git branch --show-current ; git log --oneline -n 5
 git checkout main ; git pull --ff-only origin main ; git checkout -b feat/lead-form-course-dropdown
 
 # Verify build
-Set-Location frontend ; npm run build ; Set-Location ..
+npm run build
 
 # Stage + commit
-git add frontend/src/components/site/LeadForm.jsx frontend/src/constants/testIds/leadForm.js
+git add src/components/site/LeadForm.jsx src/constants/testIds/leadForm.js
 git commit -m "feat(lead-form): add course dropdown with 3 SFDC tracks" -m "Adds a required Course select with Salesforce Developer, Salesforce QA, and Salesforce Admin options. Wires through to the GF entry.course field. See memory/PRD.md task lead-form-course-select."
 
 # Push

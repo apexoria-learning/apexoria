@@ -41,7 +41,7 @@ test.describe('lead form — happy path', () => {
     expect(req.method).toBe('POST');
     expect(req.url).toContain('/formResponse');
 
-    // Entry-ID mapping (fixture values live in frontend/.env — placeholder
+    // Entry-ID mapping (fixture values live in .env — placeholder
     // ids like entry.111 are fine as long as they match).
     const values = Object.values(req.fields);
     expect(values).toContain('Test User');

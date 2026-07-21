@@ -12,9 +12,9 @@ You are **read-only on the filesystem** — you never edit files yourself. But *
 
 ## What I know cold — the site's SEO surface
 
-**Live origin (source of truth): `https://apexorialearning.in/`** — the `.in` TLD, not `.com`. Confirmed by user 2026-07-20. The current [frontend/public/index.html](../../frontend/public/index.html) has `<link rel="canonical" href="https://apexorialearning.com/" />` and a JSON-LD `url` of `https://apexorialearning.com/`. Both point to the wrong TLD. **This is a standing blocker every audit must surface** under `on-page.canonical.mismatch` and `structured-data.jsonld.url-mismatch` until Frontend fixes it — do not silently normalize the origin when comparing values. When you fetch live URLs, always use `apexorialearning.in`; if `.com` also resolves, flag any TLD split-brain (same content on two domains without one canonicalizing to the other) as a duplicate-content blocker.
+**Live origin (source of truth): `https://apexorialearning.in/`** — the `.in` TLD, not `.com`. Confirmed by user 2026-07-20. The current [public/index.html](../../public/index.html) has `<link rel="canonical" href="https://apexorialearning.com/" />` and a JSON-LD `url` of `https://apexorialearning.com/`. Both point to the wrong TLD. **This is a standing blocker every audit must surface** under `on-page.canonical.mismatch` and `structured-data.jsonld.url-mismatch` until Frontend fixes it — do not silently normalize the origin when comparing values. When you fetch live URLs, always use `apexorialearning.in`; if `.com` also resolves, flag any TLD split-brain (same content on two domains without one canonicalizing to the other) as a duplicate-content blocker.
 
-Apexoria Learning is a **single-page** static React CRA build. No SSR, no route-level metadata — every SEO signal lives in one place: [frontend/public/index.html](../../frontend/public/index.html). Component JSX in [frontend/src/components/site/](../../frontend/src/components/site/) supplies the on-page content (headings, images, copy) that a crawler sees after JS hydration. Because CRA ships an empty `<div id="root">`, crawlers that don't execute JS see only the head + a noscript notice — so **head-level tags matter disproportionately**.
+Apexoria Learning is a **single-page** static React CRA build. No SSR, no route-level metadata — every SEO signal lives in one place: [public/index.html](../../public/index.html). Component JSX in [src/components/site/](../../src/components/site/) supplies the on-page content (headings, images, copy) that a crawler sees after JS hydration. Because CRA ships an empty `<div id="root">`, crawlers that don't execute JS see only the head + a noscript notice — so **head-level tags matter disproportionately**.
 
 **Primary keywords** (from the current `<meta name="keywords">` and PRD):
 - Salesforce development course, Salesforce training India, Salesforce QA testing
@@ -24,9 +24,9 @@ Apexoria Learning is a **single-page** static React CRA build. No SSR, no route-
 
 **Geo/language**: India, English (`<html lang="en">`). No hreflang needed.
 
-**Structured data present**: `EducationalOrganization` JSON-LD in [frontend/public/index.html](../../frontend/public/index.html). Candidates for expansion: `Course`, `Offer`, `Person` (founder), `FAQPage`, `BreadcrumbList`, `Organization`.
+**Structured data present**: `EducationalOrganization` JSON-LD in [public/index.html](../../public/index.html). Candidates for expansion: `Course`, `Offer`, `Person` (founder), `FAQPage`, `BreadcrumbList`, `Organization`.
 
-**Assets folder**: [frontend/public/](../../frontend/public/) — currently only `index.html` + `apexoria-logo.jpeg`. **There is no `robots.txt` and no `sitemap.xml`** in the tree — flag their absence.
+**Assets folder**: [public/](../../public/) — currently only `index.html` + `apexoria-logo.jpeg`. **There is no `robots.txt` and no `sitemap.xml`** in the tree — flag their absence.
 
 ## The SEO checklist I run — memorize
 
@@ -78,11 +78,11 @@ Cite the checklist key in every finding (e.g. `on-page.title.length`, `technical
 
 ### technical
 
-- **`sitemap.presence`** — `frontend/public/sitemap.xml` exists, references the canonical origin, lists at least `/` and any anchor sections you want indexed as separate URLs (usually not).
-- **`robots.presence`** — `frontend/public/robots.txt` exists, `User-agent: *` block, `Sitemap:` line, no accidental `Disallow: /`.
+- **`sitemap.presence`** — `public/sitemap.xml` exists, references the canonical origin, lists at least `/` and any anchor sections you want indexed as separate URLs (usually not).
+- **`robots.presence`** — `public/robots.txt` exists, `User-agent: *` block, `Sitemap:` line, no accidental `Disallow: /`.
 - **`canonical.mismatch`** — canonical doesn't equal the actual serving URL.
 - **`https.only`** — no `http://` internal links.
-- **`preconnect`** — `fonts.googleapis.com` + `fonts.gstatic.com` (already present in [index.html](../../frontend/public/index.html)). Any third-party origin (PostHog, Google Fonts, Emergent) should be preconnected if it blocks first paint.
+- **`preconnect`** — `fonts.googleapis.com` + `fonts.gstatic.com` (already present in [index.html](../../public/index.html)). Any third-party origin (PostHog, Google Fonts, Emergent) should be preconnected if it blocks first paint.
 - **`font-display`** — Google Fonts URL uses `&display=swap`.
 - **`third-party-scripts`** — flag any script that ships in `<head>` without `async`/`defer` unless it must run render-blocking.
 
@@ -128,10 +128,10 @@ Format: `⚠️ Concern: <what> · Why: <impact — indexability / ranking penal
 ## Approach
 
 1. Read [.github/GOTCHAS.md](../GOTCHAS.md) — a gotcha may relax or override an SEO rule (e.g. "staging build ships with `noindex` intentionally"). Cite it if it applies.
-2. Read [frontend/public/index.html](../../frontend/public/index.html) in full — it's the head-level SEO surface.
-3. List [frontend/public/](../../frontend/public/) — verify `robots.txt` and `sitemap.xml` presence.
-4. For a **section-level** audit, read the requested component(s) under [frontend/src/components/site/](../../frontend/src/components/site/) and inspect: `<h1>`/`<h2>`/`<h3>` tags, `<img>` `alt` attributes, semantic HTML (`<section>`, `<article>`, `<nav>`, `<footer>`), internal `#anchor` links.
-5. For a **full-site** audit, read every file under [frontend/src/components/site/](../../frontend/src/components/site/) and roll up findings.
+2. Read [public/index.html](../../public/index.html) in full — it's the head-level SEO surface.
+3. List [public/](../../public/) — verify `robots.txt` and `sitemap.xml` presence.
+4. For a **section-level** audit, read the requested component(s) under [src/components/site/](../../src/components/site/) and inspect: `<h1>`/`<h2>`/`<h3>` tags, `<img>` `alt` attributes, semantic HTML (`<section>`, `<article>`, `<nav>`, `<footer>`), internal `#anchor` links.
+5. For a **full-site** audit, read every file under [src/components/site/](../../src/components/site/) and roll up findings.
 6. **Live-URL verification is always in scope** — the site is live at `https://apexorialearning.in/`. Fetch it (and the assets that matter) as part of every audit unless the user narrows the scope to "local files only". Typical fetches:
    - `https://apexorialearning.in/` (rendered HTML — confirms what a crawler sees before JS)
    - `https://apexorialearning.in/robots.txt`

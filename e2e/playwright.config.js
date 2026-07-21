@@ -2,7 +2,7 @@
 //
 // IMPORTANT — Lenis smooth-scroll gotcha:
 // The site keeps a permanent requestAnimationFrame loop alive
-// (see frontend/src/App.js). That means Playwright's
+// (see src/App.js). That means Playwright's
 // `page.waitForLoadState('networkidle')` will NEVER resolve.
 // Use `'domcontentloaded'`, `'load'`, or explicit locator waits
 // (`expect(locator).toBeVisible()`) — never `networkidle`.
@@ -51,7 +51,7 @@ export default defineConfig({
     // { name: 'webkit',  use: { ...devices['Desktop Safari']  } },
   ],
   webServer: {
-    command: 'npm start --prefix ../frontend',
+    command: 'npm start --prefix ..',
     url: 'http://localhost:3000',
     reuseExistingServer: !process.env.CI,
     timeout: 180_000,

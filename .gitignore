@@ -7,11 +7,11 @@
 # ---- Node / React (CRA + craco) ----
 node_modules/
 **/node_modules/
-frontend/build/
-frontend/.pnp
-frontend/.pnp.js
-frontend/coverage/
-frontend/.eslintcache
+build/
+.pnp
+.pnp.js
+coverage/
+.eslintcache
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
