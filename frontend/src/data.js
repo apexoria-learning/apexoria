@@ -247,7 +247,7 @@ export const FOUNDER = {
 // Placed students — real names provided. Companies editable where not given.
 export const TESTIMONIALS = [
   {
-    name: "Amand Kumar",
+    name: "Anand Kumar",
     role: "Salesforce Trainee",
     company: "at BM Cloud Consultancy",
     quote:
@@ -288,9 +288,9 @@ export const STATS = [
 
 // Editable batch data — weekday cohorts covering both Development & QA tracks.
 export const BATCHES = [
-  { start: "27 Jul 2026", mode: "Weekday", time: "Morning (9 AM – 11 AM)", seats: 12, course: "Salesforce Development & QA" },
-  { start: "11 Aug 2026", mode: "Weekday", time: "Afternoon (1 PM – 4 PM)", seats: 12, course: "Salesforce Development & QA" },
-  { start: "26 Aug 2026", mode: "Weekday", time: "Evening (8 PM – 10 PM)", seats: 12, course: "Salesforce Development & QA" },
+  { start: "27 Jul 2026", mode: "Weekday", time: "Morning (9 AM – 11 AM)", seats: 3, course: "Salesforce Crash Course" },
+  { start: "11 Aug 2026", mode: "Weekday", time: "Afternoon (1 PM – 4 PM)", seats: 5, course: "Salesforce Development" },
+  { start: "26 Aug 2026", mode: "Weekday", time: "Evening (8 PM – 10 PM)", seats: 12, course: "Salesforce QA" },
 ];
 
 export const PLACEMENT_STEPS = [
