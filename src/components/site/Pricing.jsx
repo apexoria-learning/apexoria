@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Check, Gift } from "lucide-react";
 import { PATHS, SPECIAL_OFFER } from "../../data";
 import { Reveal } from "./Reveal";
+import { trackEvent } from "@/lib/analytics";
 
 export default function Pricing({ onEnroll }) {
   return (
@@ -64,7 +65,14 @@ export default function Pricing({ onEnroll }) {
 
                 <button
                   data-testid={`pricing-enroll-${p.id}`}
-                  onClick={() => onEnroll(`${p.tier} — ${p.price}`)}
+                  onClick={() => {
+                    trackEvent("pricing_enroll_click", {
+                      tier: p.tier,
+                      price: p.price,
+                      level: p.level,
+                    });
+                    onEnroll(`${p.tier} — ${p.price}`);
+                  }}
                   className={`mt-6 w-full font-bold py-3.5 rounded-full transition-transform hover:scale-105 active:scale-95 ${
                     p.popular ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30" : "bg-navy text-white"
                   }`}
@@ -103,7 +111,14 @@ export default function Pricing({ onEnroll }) {
               <div className="lg:text-right">
                 <button
                   data-testid="special-offer-enroll"
-                  onClick={() => onEnroll(`Enrollment Special Offer — ${SPECIAL_OFFER.price}`)}
+                  onClick={() => {
+                    trackEvent("pricing_enroll_click", {
+                      tier: SPECIAL_OFFER.tier,
+                      price: SPECIAL_OFFER.price,
+                      level: SPECIAL_OFFER.level,
+                    });
+                    onEnroll(`Enrollment Special Offer — ${SPECIAL_OFFER.price}`);
+                  }}
                   className="inline-flex items-center justify-center bg-brand-orange text-white font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-xl shadow-brand-orange/30"
                 >
                   Grab This Offer

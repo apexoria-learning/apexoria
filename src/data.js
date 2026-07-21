@@ -288,9 +288,9 @@ export const STATS = [
 
 // Editable batch data — weekday cohorts covering both Development & QA tracks.
 export const BATCHES = [
-  { start: "27 Jul 2026", mode: "Weekday", time: "Morning (9 AM – 11 AM)", seats: 3, course: "Salesforce Crash Course" },
-  { start: "11 Aug 2026", mode: "Weekday", time: "Afternoon (1 PM – 4 PM)", seats: 5, course: "Salesforce Development" },
-  { start: "26 Aug 2026", mode: "Weekday", time: "Evening (8 PM – 10 PM)", seats: 12, course: "Salesforce QA" },
+  { start: "27 Jul 2026", mode: "Weekday", time: "Morning (9 AM – 11 AM)", seats: 12, course: "Salesforce Development & QA" },
+  { start: "11 Aug 2026", mode: "Weekday", time: "Afternoon (1 PM – 4 PM)", seats: 12, course: "Salesforce Development & QA" },
+  { start: "26 Aug 2026", mode: "Weekday", time: "Evening (8 PM – 10 PM)", seats: 12, course: "Salesforce Development & QA" },
 ];
 
 export const PLACEMENT_STEPS = [
@@ -315,4 +315,43 @@ export const RESOURCES = [
   { label: "LWC Notes", file: "/resources/apexoria-lwc-notes.pdf" },
   { label: "Apex Notes", file: "/resources/apexoria-apex-notes.pdf" },
   { label: "QA Notes", file: "/resources/apexoria-qa-notes.pdf" },
+];
+
+// FAQ — order matters (most-common concern first for SEO + conversion).
+// Answers should mirror what a counsellor would say on the phone: warm,
+// concrete, no marketing fluff. Every question also lands in the FAQPage
+// JSON-LD in public/index.html — keep the two in sync when editing.
+export const FAQ_ITEMS = [
+  {
+    q: "Do I need coding experience to join?",
+    a: "No. Our courses are designed for absolute beginners. We start from Salesforce fundamentals, walk you through Apex step by step, and pair every concept with hands-on practice so it sticks — no prior programming background required.",
+  },
+  {
+    q: "Are the classes live or pre-recorded?",
+    a: "All batches are 100% live, instructor-led sessions on Google Meet / Zoom. You interact in real time, ask questions, and pair on code. Recordings are shared after each class so you can revisit anything you missed.",
+  },
+  {
+    q: "How long does each course run?",
+    a: "The Crash Course is 1 month, the QA track is ~2.5 months, and the Complete Course (Admin + Development + LWC + Integration + Capstone) runs over 3 months. Each includes structured weekly assignments and a real project.",
+  },
+  {
+    q: "Do you actually help with placements?",
+    a: "Yes — placement support is included in every paid track. You get resume reviews, mock interviews, LinkedIn optimisation, and direct referrals to our 10+ hiring partners. Support continues through your first 90 days on the job.",
+  },
+  {
+    q: "Can I pay in instalments or EMI?",
+    a: "Yes. Our Enrollment Special Offer lets you start at ₹4,999 and pay the remainder once you're confident with the material. Talk to a counsellor on WhatsApp for a plan that fits your budget.",
+  },
+  {
+    q: "Will I get a certificate?",
+    a: "You receive an Apexoria Learning course-completion certificate, and we prepare you for the official Salesforce Platform Developer I (PD1) and Salesforce Administrator certifications — the ones recruiters actually screen for.",
+  },
+  {
+    q: "What if I miss a class?",
+    a: "Every session is recorded and shared in the cohort group within a few hours. You'll also have direct WhatsApp access to your mentor for doubts, and dedicated doubt-clearing sessions each week.",
+  },
+  {
+    q: "How do I get started?",
+    a: "Fill in the enquiry form on this page or ping us on WhatsApp. A counsellor will call you back for a free 15-minute chat, map you to the right batch, and walk you through payment options — no pressure to enrol.",
+  },
 ];

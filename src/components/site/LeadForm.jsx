@@ -7,6 +7,7 @@ import {
 } from "../ui/select";
 import { COURSE_OPTIONS, WHATSAPP_LINK, IMAGES } from "../../data";
 import { Reveal } from "./Reveal";
+import { trackEvent } from "@/lib/analytics";
 
 const EMPTY = { full_name: "", phone: "", email: "", course_interest: "", preferred_batch: "", message: "", company_website: "" };
 
@@ -112,6 +113,10 @@ export default function LeadForm({ prefillCourse }) {
       });
 
       localStorage.setItem("apex_lead_last", String(Date.now()));
+      trackEvent("lead_form_submit_success", {
+        course: mapCourseToGF(form.course_interest),
+        batch: mapBatchToGF(form.preferred_batch) || "unspecified",
+      });
       setSuccess(true);
       toast.success("Thanks! We'll call you shortly for your free counselling session.");
       setForm(EMPTY);

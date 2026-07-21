@@ -3,6 +3,7 @@ import { Phone, Instagram, Linkedin, Facebook, ArrowRight, Download } from "luci
 import { toast } from "sonner";
 import { CONTACT, BROCHURE_URL } from "../../data";
 import { Reveal } from "./Reveal";
+import { trackEvent } from "@/lib/analytics";
 
 export default function FinalCTA({ onEnroll }) {
   const handleBrochureDownload = async (ev) => {
@@ -10,11 +11,14 @@ export default function FinalCTA({ onEnroll }) {
     try {
       const res = await fetch(BROCHURE_URL, { method: "HEAD" });
       if (res.ok) {
+        trackEvent("brochure_download", { location: "final_cta", available: true });
         window.open(BROCHURE_URL, "_blank", "noopener,noreferrer");
       } else {
+        trackEvent("brochure_download", { location: "final_cta", available: false });
         toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
       }
     } catch {
+      trackEvent("brochure_download", { location: "final_cta", available: false });
       toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
     }
   };
@@ -34,7 +38,10 @@ export default function FinalCTA({ onEnroll }) {
           <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
             <button
               data-testid="final-enroll-btn"
-              onClick={() => onEnroll()}
+              onClick={() => {
+                trackEvent("cta_click", { location: "final_cta" });
+                onEnroll();
+              }}
               className="group inline-flex items-center gap-2 bg-brand-orange text-white font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-xl shadow-brand-orange/30"
             >
               Enroll Today

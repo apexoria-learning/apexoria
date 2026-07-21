@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { WHATSAPP_LINK } from "../../data";
+import { trackEvent } from "@/lib/analytics";
 
 export default function WhatsAppWidget() {
   return (
@@ -9,6 +10,7 @@ export default function WhatsAppWidget() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
+      onClick={() => trackEvent("whatsapp_click", { location: "floating_widget" })}
       initial={{ scale: 0, rotate: -30 }}
       animate={{ scale: 1, rotate: 0 }}
       transition={{ delay: 1.6, type: "spring", stiffness: 200, damping: 12 }}

@@ -2,6 +2,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { IMAGES, WHATSAPP_LINK } from "../../data";
+import { trackEvent } from "@/lib/analytics";
 
 const ease = [0.16, 1, 0.3, 1];
 
@@ -85,7 +86,10 @@ export default function Hero({ onEnroll }) {
         >
           <button
             data-testid="hero-enroll-btn"
-            onClick={onEnroll}
+            onClick={() => {
+              trackEvent("cta_click", { location: "hero" });
+              onEnroll && onEnroll();
+            }}
             className="group inline-flex items-center justify-center gap-2 bg-brand-orange text-white font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-xl shadow-brand-orange/30"
           >
             Enroll Today
@@ -96,6 +100,7 @@ export default function Hero({ onEnroll }) {
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackEvent("whatsapp_click", { location: "hero" })}
             className="inline-flex items-center justify-center gap-2 border-2 border-[#25D366] text-white font-bold px-8 py-4 rounded-full hover:bg-[#25D366]/10 transition-colors"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="#25D366" aria-hidden="true">

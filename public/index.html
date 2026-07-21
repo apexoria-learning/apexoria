@@ -1,6 +1,17 @@
 <!doctype html>
 <html lang="en">
     <head>
+        <!-- Google tag (gtag.js) — GA4 property G-2GWDGQ115Q.
+             Must sit immediately after <head> per Google's install
+             instructions. Named events fan out via trackEvent() in
+             src/lib/analytics.js (checks window.gtag). -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GWDGQ115Q"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-2GWDGQ115Q');
+        </script>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#0A1F44" />
@@ -49,6 +60,78 @@
           "telephone": "+917498490687",
           "sameAs": ["https://instagram.com/apexoria_learning"],
           "areaServed": "IN"
+        }
+        </script>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Do I need coding experience to join?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "No. Our courses are designed for absolute beginners. We start from Salesforce fundamentals, walk you through Apex step by step, and pair every concept with hands-on practice so it sticks — no prior programming background required."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are the classes live or pre-recorded?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All batches are 100% live, instructor-led sessions on Google Meet / Zoom. You interact in real time, ask questions, and pair on code. Recordings are shared after each class so you can revisit anything you missed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does each course run?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The Crash Course is 1 month, the QA track is about 2.5 months, and the Complete Course (Admin + Development + LWC + Integration + Capstone) runs over 3 months. Each includes structured weekly assignments and a real project."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you actually help with placements?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes — placement support is included in every paid track. You get resume reviews, mock interviews, LinkedIn optimisation, and direct referrals to our 10+ hiring partners. Support continues through your first 90 days on the job."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I pay in instalments or EMI?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Our Enrollment Special Offer lets you start at INR 4,999 and pay the remainder once you're confident with the material. Talk to a counsellor on WhatsApp for a plan that fits your budget."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Will I get a certificate?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "You receive an Apexoria Learning course-completion certificate, and we prepare you for the official Salesforce Platform Developer I (PD1) and Salesforce Administrator certifications — the ones recruiters actually screen for."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What if I miss a class?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Every session is recorded and shared in the cohort group within a few hours. You'll also have direct WhatsApp access to your mentor for doubts, and dedicated doubt-clearing sessions each week."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I get started?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Fill in the enquiry form on the site or ping us on WhatsApp. A counsellor will call you back for a free 15-minute chat, map you to the right batch, and walk you through payment options — no pressure to enrol."
+              }
+            }
+          ]
         }
         </script>
         <script>window.addEventListener("error",function(e){if(e.error instanceof DOMException&&e.error.name==="DataCloneError"&&e.message&&e.message.includes("PerformanceServerTiming")){e.stopImmediatePropagation();e.preventDefault()}},true);</script>

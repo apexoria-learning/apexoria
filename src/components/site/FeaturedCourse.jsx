@@ -3,6 +3,16 @@ import { toast } from "sonner";
 import { CURRICULUM_TRACKS, SALESFORCE_LOGO } from "../../data";
 import { Reveal } from "./Reveal";
 
+// Chip color palette — cycled by index across every card so the three chips
+// on each card land on {blue, orange, green} in order. Full class strings
+// are listed here so Tailwind's JIT scanner keeps them in the build.
+const CHIP_COLORS = [
+  "bg-brand-blue/10 text-brand-blue ring-1 ring-inset ring-brand-blue/20",
+  "bg-brand-orange/10 text-brand-orange ring-1 ring-inset ring-brand-orange/20",
+  "bg-brand-green/10 text-brand-green ring-1 ring-inset ring-brand-green/20",
+  "bg-purple-100 text-purple-700 ring-1 ring-inset ring-purple-300/50",
+];
+
 export default function FeaturedCourse({ onEnroll }) {
   const handleBrochureDownload = async (url, ev) => {
     ev.preventDefault();
@@ -73,10 +83,10 @@ export default function FeaturedCourse({ onEnroll }) {
 
                         {course.chips?.length > 0 && (
                           <ul className="mt-4 flex flex-wrap gap-2">
-                            {course.chips.map((chip) => (
+                            {course.chips.map((chip, ci) => (
                               <li
                                 key={chip}
-                                className="inline-flex items-center bg-brand-gray text-navy rounded-full px-3 py-1 text-xs font-semibold tracking-wide"
+                                className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tracking-wide ${CHIP_COLORS[ci % CHIP_COLORS.length]}`}
                               >
                                 {chip}
                               </li>
