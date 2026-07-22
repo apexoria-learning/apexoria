@@ -3,6 +3,7 @@ import "@/App.css";
 import Lenis from "lenis";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 import { initAnalytics } from "@/lib/analytics";
 
 import Navbar from "@/components/site/Navbar";
@@ -72,6 +73,7 @@ function App() {
       <WhatsAppWidget />
       <Toaster position="top-center" richColors />
       <Analytics />
+      <SpeedInsights />
     </div>
   );
 }
