@@ -6,20 +6,48 @@ import { CONTACT, LOGO_URL } from "../../data";
 const LINKS = [
   { label: "Home", id: "home" },
   { label: "Courses", id: "featured-course" },
-  { label: "Curriculum", id: "curriculum" },
+  { label: "Pricing", id: "pricing" },
+  { label: "Batches", id: "batches" },
+  { label: "Placement", id: "placement" },
   { label: "Success Stories", id: "success-stories" },
-  { label: "About Us", id: "why" },
+  { label: "FAQ", id: "faq" },
   { label: "Contact", id: "contact" },
 ];
 
 export default function Navbar({ onEnroll }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [activeId, setActiveId] = useState("home");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scroll-spy: highlight the nav link whose section is currently in view.
+  // rootMargin: -80px top clears the fixed h-20 navbar; -60% bottom makes a
+  // section become "active" only once its top passes ~40% down the viewport.
+  useEffect(() => {
+    const elements = LINKS
+      .map((l) => document.getElementById(l.id))
+      .filter(Boolean);
+    if (elements.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible.length > 0) {
+          setActiveId(visible[0].target.id);
+        }
+      },
+      { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
+    );
+
+    elements.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
   }, []);
 
   const go = (id) => {
@@ -56,19 +84,23 @@ export default function Navbar({ onEnroll }) {
           </span>
         </button>
 
-        <div className="hidden lg:flex items-center gap-8">
-          {LINKS.map((l) => (
-            <button
-              key={l.id}
-              data-testid={`nav-link-${l.id}`}
-              onClick={() => go(l.id)}
-              className={`text-sm font-semibold transition-colors hover:text-brand-blue ${
-                scrolled ? "text-navy" : "text-white"
-              }`}
-            >
-              {l.label}
-            </button>
-          ))}
+        <div className="hidden lg:flex items-center gap-6">
+          {LINKS.map((l) => {
+            const isActive = activeId === l.id;
+            return (
+              <button
+                key={l.id}
+                data-testid={`nav-link-${l.id}`}
+                onClick={() => go(l.id)}
+                aria-current={isActive ? "true" : undefined}
+                className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
+                  isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${scrolled ? "text-navy" : "text-white"}`
+                }`}
+              >
+                {l.label}
+              </button>
+            );
+          })}
         </div>
 
         <div className="hidden lg:flex items-center gap-4">
@@ -111,15 +143,21 @@ export default function Navbar({ onEnroll }) {
         aria-hidden={!open}
       >
         <div className="px-5 py-4 flex flex-col gap-1">
-          {LINKS.map((l) => (
-            <button
-              key={l.id}
-              onClick={() => go(l.id)}
-              className="text-left py-3 font-semibold text-navy/80 border-b border-slate-100"
-            >
-              {l.label}
-            </button>
-          ))}
+          {LINKS.map((l) => {
+            const isActive = activeId === l.id;
+            return (
+              <button
+                key={l.id}
+                onClick={() => go(l.id)}
+                aria-current={isActive ? "true" : undefined}
+                className={`text-left py-3 font-semibold border-b border-slate-100 transition-colors ${
+                  isActive ? "text-brand-blue border-l-2 border-l-brand-blue pl-2" : "text-navy/80"
+                }`}
+              >
+                {l.label}
+              </button>
+            );
+          })}
           <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 py-3 font-bold text-navy">
             <Phone size={16} className="text-brand-blue" /> {CONTACT.phone}
           </a>
