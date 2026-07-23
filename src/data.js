@@ -238,7 +238,7 @@ export const SPECIAL_OFFER = {
 export const FOUNDER = {
   name: "Founder & Lead Instructor", // PLACEHOLDER — add founder's name
   role: "Salesforce Ecosystem · 5+ Years Experience · 3+ Years Teaching",
-  photo: "/public/founder-img.png",
+  photo: "/founder-img",
   certifications: [],
   bio: "Salesforce professional with 5+ years of hands-on experience in the Salesforce ecosystem and 3+ years of teaching experience mentoring aspiring developers and QA testers. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
   skills: ["Apex", "LWC", "Triggers", "SOQL", "REST / SOAP APIs", "Flows", "Automation", "Security"],
