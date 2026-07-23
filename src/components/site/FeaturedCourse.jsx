@@ -112,7 +112,7 @@ export default function FeaturedCourse({ onEnroll }) {
                             onClick={(ev) => handleBrochureDownload(course.brochureUrl, ev)}
                             className="group inline-flex w-full items-center justify-center gap-2 border-2 border-navy text-navy font-bold px-6 py-3 rounded-full hover:bg-navy hover:text-white transition-colors"
                           >
-                            <Download size={16} /> Download Brochure
+                            <Download size={16} /> Download Curriculum
                           </button>
                         </div>
                       </article>
