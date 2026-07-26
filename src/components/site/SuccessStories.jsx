@@ -29,7 +29,6 @@ export default function SuccessStories() {
             </Reveal>
           ))}
         </div>
-        <p className="text-center text-xs text-slate-400 mt-3">*Placement figures are illustrative placeholders — editable.</p>
 
         {/* Google Reviews badge */}
         <Reveal>

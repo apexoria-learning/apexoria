@@ -290,9 +290,9 @@ export const STATS = [
 // Seat counts drive the row badge in Batches.jsx: <=5 shows orange
 // "Only N seats left" urgency, >5 shows green "N seats available".
 export const BATCHES = [
-  { start: "27 Jul 2026", mode: "Weekday", time: "Morning (9 AM – 11 AM)", seats: 3,  course: "Salesforce Crash Course" },
-  { start: "11 Aug 2026", mode: "Weekday", time: "Afternoon (1 PM – 4 PM)", seats: 7,  course: "Salesforce Complete Course" },
-  { start: "26 Aug 2026", mode: "Weekday", time: "Evening (8 PM – 10 PM)", seats: 12, course: "Salesforce QA" },
+  { start: "27 Jul 2026", mode: "Weekday", time: "Morning (9 AM – 11 AM)", seats: 2,  course: "Salesforce Crash Course" },
+  { start: "11 Aug 2026", mode: "Weekday", time: "Afternoon (1 PM – 4 PM)", seats: 5,  course: "Salesforce Complete Course" },
+  { start: "26 Aug 2026", mode: "Weekday", time: "Evening (8 PM – 10 PM)", seats: 8, course: "Salesforce QA" },
 ];
 
 export const PLACEMENT_STEPS = [
