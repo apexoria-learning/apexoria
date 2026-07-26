@@ -49,7 +49,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Quick Links</h4>
+            <h3 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Quick Links</h3>
             <ul className="space-y-3 text-sm text-white/70">
               {links.map((l) => (
                 <li key={l.id}>
@@ -62,7 +62,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Contact</h4>
+            <h3 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Contact</h3>
             <ul className="space-y-3 text-sm text-white/70">
               <li>
                 <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 hover:text-brand-gold transition-colors">
@@ -76,7 +76,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Resources</h4>
+            <h3 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Resources</h3>
             <p className="text-white/60 text-sm mb-4">
               Free study notes to help you prep for Salesforce Development & QA roles.
             </p>

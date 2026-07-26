@@ -5,11 +5,11 @@
 export const CONTACT = {
   phone: "+91 7498490687",
   phoneRaw: "917498490687",
-  email: "hello@apexorialearning.com", // PLACEHOLDER — replace with real email
+  email: "apexorialearning@gmail.com",
   instagram: "https://instagram.com/apexoria_learning",
   instagramHandle: "@apexoria_learning",
-  linkedin: "https://linkedin.com/company/apexoria-learning", // PLACEHOLDER
-  facebook: "https://facebook.com/apexorialearning", // PLACEHOLDER
+  linkedin: "https://linkedin.com/company/apexoria-learning",
+  facebook: "https://facebook.com/people/Apexoria-Learning/61579552420160",
 };
 
 export const WHATSAPP_LINK =

@@ -1,0 +1,32 @@
+<svg width="1200" height="630" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <radialGradient id="navyGlow" cx="85%" cy="85%" r="60%">
+      <stop offset="0%" style="stop-color:#F4622A;stop-opacity:0.25" />
+      <stop offset="100%" style="stop-color:#0A1F44;stop-opacity:0" />
+    </radialGradient>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@800;900&amp;display=swap');
+      .brand { font-family: 'Outfit', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; }
+      .headline { font-family: 'Outfit', sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: -0.02em; }
+    </style>
+  </defs>
+  
+  <!-- Background: Navy with subtle orange glow in bottom-right -->
+  <rect width="1200" height="630" fill="#0A1F44"/>
+  <rect width="1200" height="630" fill="url(#navyGlow)"/>
+  
+  <!-- Top-left: APEXORIA LEARNING -->
+  <text x="60" y="80" class="brand" fill="#FFFFFF" font-size="48">APEXORIA LEARNING</text>
+  
+  <!-- Center: Multi-line headline -->
+  <text x="60" y="250" class="headline" fill="#FFFFFF" font-size="110" letter-spacing="-0.03em">MASTER</text>
+  <text x="60" y="360" class="headline" fill="#1E90FF" font-size="110" letter-spacing="-0.03em">SALESFORCE</text>
+  <text x="60" y="450" class="headline" fill="#FFFFFF" font-size="110" letter-spacing="-0.03em">FROM ZERO TO</text>
+  <text x="60" y="560" class="headline" fill="#F5B400" font-size="110" letter-spacing="-0.03em">JOB-READY.</text>
+  
+  <!-- Bottom-right badge: Live Online · India · Placement Support -->
+  <g transform="translate(720, 550)">
+    <rect width="420" height="60" rx="8" fill="#FFFFFF" fill-opacity="0.1"/>
+    <text x="210" y="38" font-family="'Plus Jakarta Sans', sans-serif" font-size="18" font-weight="600" fill="#FFFFFF" text-anchor="middle" letter-spacing="0.03em">Live Online · India · Placement Support</text>
+  </g>
+</svg>
