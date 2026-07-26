@@ -43,6 +43,27 @@ Read the whole file at the start of every session. If any entry applies to your 
 
 ## Entries
 
+### 2026-07-27 — Google Tag Manager installed inline (container `GTM-PR4M68SJ`) — do NOT add a GA4 Config tag inside the container
+- Category: integration
+- Fact: GTM install snippet is hardcoded inline in [public/index.html](../public/index.html) — head loader immediately after the GA4 gtag block, `<noscript>` iframe immediately after `<body>`. Container id `GTM-PR4M68SJ`. Placement matches the GA4 pattern (see 2026-07-21 entry) so both fire before React mounts. A `preconnect` to `https://www.googletagmanager.com` was added to keep the LCP path warm. The runtime GTM injector in [src/lib/analytics.js](../src/lib/analytics.js) (`initAnalytics()` behind `REACT_APP_GTM_ID`) is now redundant for this container — leave the code but do not set `REACT_APP_GTM_ID` to `GTM-PR4M68SJ` in Vercel env, otherwise the container will load twice.
+- Affects: Frontend + SEO Auditor + QA
+- Impact: **CRITICAL — do NOT add a "GA4 Configuration" tag inside the GTM container UI targeting `G-2GWDGQ115Q`.** GA4 already fires inline from `public/index.html` (per 2026-07-21 entry); a GA4 Config tag inside GTM would double-fire every pageview and every named event, inflating engaged-sessions, users, and conversion counts in the GA4 property. GTM is safe to use inside the container UI for **third-party tags only** — LinkedIn Insight, Meta Pixel, Microsoft UET, Hotjar, custom HTML — but any GA4 wiring must stay inline in `index.html`. `trackEvent()` in [src/lib/analytics.js](../src/lib/analytics.js) already pushes to `window.dataLayer` so GTM triggers (e.g. LinkedIn conversions on `lead_form_submitted`) can fire off the same event stream without a GA4 tag. Ad-blockers block `googletagmanager.com` for both GTM and GA4 simultaneously — PostHog and Vercel Analytics remain the reliable fallbacks. When Consent Mode v2 ships (Q4 backlog), gate the head-side GTM `<script>` as well as the noscript iframe.
+- Source: user pasted the GTM install snippet in chat on 2026-07-27 during SEO Sprint 1 ("Mean while I got this from Google Tag Manager ...").
+
+### 2026-07-27 — Emergent template overlay script removed from `public/index.html`
+- Category: workaround
+- Fact: The `<script src="https://.../emergent-badge.js">` (or equivalent Emergent source-template overlay) was removed from [public/index.html](../public/index.html) as part of SEO Sprint 1. A dated HTML comment `<!-- Emergent template script removed 2026-07-27 (SEO Sprint 1) — source-template overlay, not required. -->` was left in place so future agents don't reintroduce it.
+- Affects: Frontend + SEO Auditor
+- Impact: One fewer third-party request per pageview (small LCP win, small ad-blocker-noise win). Do NOT re-add — it renders a source-branding badge that has no product value on the live domain and drags in a `<script>` block Google's Core-Web-Vitals pass will flag. If Emergent tooling ever needs to inject again, gate it behind a `NODE_ENV !== 'production'` check.
+- Source: agent action on 2026-07-27 during SEO Sprint 1 (no user prompt required — item R9 in the SEO audit backlog).
+
+### 2026-07-27 — Open Graph share image is a rasterised PNG (`public/og-cover.png`); SVG source kept for edits
+- Category: workaround
+- Fact: The Open Graph share image lives at [public/og-cover.png](../public/og-cover.png) (1200×630, ~175 KB, brand palette — navy `#0A1F44` / blue `#1E90FF` / gold `#F5B400`). Source-of-truth SVG kept at [public/og-cover.svg](../public/og-cover.svg) for future edits. PNG was rasterised from the SVG via headless Chrome (`chrome --headless=new --window-size=1200,630 --screenshot=... file:///.../og-cover.svg`). Both `og:image` and `twitter:image` in [public/index.html](../public/index.html) point at `/og-cover.png` (absolute URL, includes `og:image:type = image/png`, width, height, alt).
+- Affects: Frontend + SEO Auditor
+- Impact: When editing the OG cover, always edit the `.svg` first and re-rasterise to PNG — do not edit the PNG directly (it's a build artifact of the SVG). If the design changes, the one-liner to regenerate is `chrome --headless=new --disable-gpu --hide-scrollbars --window-size=1200,630 --screenshot="public/og-cover.png" "file:///…/public/og-cover.svg"` (Chrome must be Chromium 112+). Facebook / LinkedIn / Slack / WhatsApp all consume PNG reliably — SVG-as-`og:image` fails on Facebook (rejected at scrape time) and Slack (rendered as broken image), which is why the SVG is **not** the served asset.
+- Source: agent action on 2026-07-27 during SEO Sprint 1 (item P2 in the SEO audit backlog; prior aborted Frontend run had left an SVG-only file with the meta tags pointing at a non-existent `.jpg`).
+
 ### 2026-07-21 — `frontend/` directory flattened into repo root; Vercel Root Directory flipped to `.`
 - Category: infra
 - Fact: The `frontend/` sub-directory was removed and its entire tree (React source, `public/`, `package.json`, `craco.config.js`, `tailwind.config.js`, `components.json`, `postcss.config.js`, `jsconfig.json`, `plugins/`, `.env`) was hoisted to the repo root. There is now one npm package at the root — no nested `frontend/package.json`. All path references in docs, agent files, and the Playwright E2E config were rewritten (`../frontend/...` → `../...`, `frontend/xxx` → `xxx`). The Vercel project's **Root Directory** setting was flipped from `frontend` to `.` (repo root) by the user before this commit so deploys keep working. `.gitignore` was rewritten to un-prefix the CRA build/cache patterns.
