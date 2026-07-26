@@ -38,6 +38,7 @@ export default function LeadForm({ prefillCourse }) {
     if (!/^(?:\+?91)?[6-9]\d{9}$/.test(phone)) e.phone = "Enter a valid Indian mobile number";
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(form.email.trim())) e.email = "Enter a valid email";
     if (!form.course_interest) e.course_interest = "Select a course";
+    if (!form.preferred_batch) e.preferred_batch = "Select a batch timing";
     setErrors(e);
     return Object.keys(e).length === 0;
   };
@@ -221,9 +222,9 @@ export default function LeadForm({ prefillCourse }) {
                       {errors.course_interest && <p className="text-xs text-red-500 mt-1">{errors.course_interest}</p>}
                     </div>
                     <div>
-                      <label className="block text-sm font-semibold text-navy mb-1.5">Preferred Batch Timing</label>
+                      <label className="block text-sm font-semibold text-navy mb-1.5">Preferred Batch Timing *</label>
                       <Select value={form.preferred_batch} onValueChange={(v) => set("preferred_batch", v)}>
-                        <SelectTrigger data-testid="lead-batch" className="rounded-xl py-6 border-slate-200">
+                        <SelectTrigger data-testid="lead-batch" className={`rounded-xl py-6 ${errors.preferred_batch ? "border-red-400" : "border-slate-200"}`}>
                           <SelectValue placeholder="Morning / Afternoon / Evening" />
                         </SelectTrigger>
                         <SelectContent>
@@ -232,6 +233,7 @@ export default function LeadForm({ prefillCourse }) {
                           <SelectItem value="Evening (8 PM – 10 PM)">Evening (8 PM – 10 PM)</SelectItem>
                         </SelectContent>
                       </Select>
+                      {errors.preferred_batch && <p className="text-xs text-red-500 mt-1">{errors.preferred_batch}</p>}
                     </div>
                   </div>
 

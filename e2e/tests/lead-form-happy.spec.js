@@ -28,6 +28,10 @@ test.describe('lead form — happy path', () => {
     await page.getByTestId(LEAD_FORM.course).click();
     await page.getByRole('option', { name: /foundation/i }).first().click();
 
+    // Preferred Batch Timing is required — pick Evening.
+    await page.getByTestId(LEAD_FORM.batch).click();
+    await page.getByRole('option', { name: /evening/i }).first().click();
+
     await page.getByTestId(LEAD_FORM.message).fill('End-to-end test — please ignore.');
 
     await page.getByTestId(LEAD_FORM.submitBtn).click();
