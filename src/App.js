@@ -60,14 +60,14 @@ function App() {
       <Hero onEnroll={() => handleEnroll()} />
       <EditorialMarquee />
       <WhyApexoria />
+      <Founder />
       <FeaturedCourse onEnroll={handleEnroll} />
       <Pricing onEnroll={handleEnroll} />
-      <Founder />
-      <LeadForm prefillCourse={prefillCourse} />
-      <SuccessStories />
       <Batches onEnroll={handleEnroll} />
       <PlacementSupport onEnroll={handleEnroll} />
+      <SuccessStories />
       <FaqSection onEnroll={handleEnroll} />
+      <LeadForm prefillCourse={prefillCourse} />
       <FinalCTA onEnroll={handleEnroll} />
       <Footer />
       <WhatsAppWidget />
