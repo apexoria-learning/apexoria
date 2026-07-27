@@ -259,6 +259,7 @@ export const TESTIMONIALS = [
     quote:
       "I joined with zero coding background and was nervous about Apex. The live classes and hands-on projects changed everything — within weeks I was writing triggers and building LWC components. Landed my trainee role at BM Cloud Consultancy right after the batch!",
     rating: 5,
+    photo: "",
   },
   {
     name: "Priyanka Rajguru",
@@ -267,6 +268,7 @@ export const TESTIMONIALS = [
     quote:
       "The mentors break down complex topics like integrations and SOQL so clearly. The capstone project gave me something real to show in interviews. Highly recommend Apexoria to anyone serious about a Salesforce career.",
     rating: 5,
+    photo: "",
   },
   {
     name: "Aditya Tandiye",
@@ -275,6 +277,7 @@ export const TESTIMONIALS = [
     quote:
       "Best decision I made this year. The doubt-clearing sessions and mock interviews made me confident, and the placement support was genuine. I cleared my PD1 certification prep alongside the course.",
     rating: 5,
+    photo: "",
   },
 ];
 
