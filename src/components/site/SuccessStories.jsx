@@ -78,7 +78,7 @@ export default function SuccessStories() {
                 <p className="text-slate-600 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
                   <img
-                    src={avatars[i % avatars.length]}
+                    src={t.photo || avatars[i % avatars.length]}
                     alt={t.name}
                     width={48}
                     height={48}

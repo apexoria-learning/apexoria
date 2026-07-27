@@ -5,8 +5,6 @@ import FileUpload from "../components/FileUpload";
 
 const IMAGE_KEYS = [
   { key: "heroAbstract", label: "Hero background", hint: "Wide landscape image shown in the hero." },
-  { key: "student1", label: "Student photo #1", hint: "Used in the SuccessStories section." },
-  { key: "student2", label: "Student photo #2", hint: "Used in the SuccessStories section." },
   { key: "team", label: "Team photo", hint: "Used near the hiring partners strip." },
 ];
 
