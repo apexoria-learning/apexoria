@@ -40,6 +40,17 @@
         <link rel="canonical" href="https://www.apexorialearning.in/" />
         <link rel="alternate" hreflang="en-IN" href="https://www.apexorialearning.in/" />
         <link rel="alternate" hreflang="x-default" href="https://www.apexorialearning.in/" />
+        <!-- Preload LCP hero image so it starts downloading in parallel with
+             the JS bundle. imagesrcset + imagesizes must match the <picture>
+             in src/components/site/Hero.jsx. -->
+        <link
+            rel="preload"
+            as="image"
+            type="image/webp"
+            imagesrcset="/images/hero-abstract-640w.webp 640w, /images/hero-abstract.webp 940w, /images/hero-abstract-1280w.webp 1280w"
+            imagesizes="(min-width: 1024px) 70vw, 100vw"
+            fetchpriority="high"
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="preconnect" href="https://www.googletagmanager.com" />

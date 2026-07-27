@@ -79,7 +79,7 @@ export default function Navbar({ onEnroll }) {
           onClick={(e) => { e.preventDefault(); go("home"); }}
           className="flex items-center gap-2.5 group"
         >
-          <img src={LOGO_URL} alt="Apexoria Learning logo" className="h-11 w-11 rounded-lg object-cover" />
+          <img src={LOGO_URL} alt="Apexoria Learning logo" width={44} height={44} loading="eager" decoding="async" className="h-11 w-11 rounded-lg object-cover" />
           <span className={`font-display font-extrabold text-lg tracking-tight ${scrolled ? "text-navy" : "text-white"}`}>
             Apexoria <span className="text-brand-blue">Learning</span>
           </span>

@@ -138,7 +138,14 @@ async function runLighthouse(targetUrl) {
     });
     return runnerResult;
   } finally {
-    await chrome.kill();
+    // Chrome's tmp cleanup on Windows sometimes fails with EPERM because
+    // the browser process is still releasing file handles. Swallow the
+    // cleanup error — the audit itself has already succeeded by this point.
+    try {
+      await chrome.kill();
+    } catch (killErr) {
+      console.warn(`[perf] chrome cleanup warning (non-fatal): ${killErr.message}`);
+    }
   }
 }
 

@@ -15,24 +15,30 @@ export const CONTACT = {
 export const WHATSAPP_LINK =
   "https://wa.me/917498490687?text=Hi%20Apexoria%20Learning%2C%20I%27m%20interested%20in%20your%20Salesforce%20courses";
 
-export const LOGO_URL =
-  "https://customer-assets-39nsmqrw.emergentagent.net/job_db7e5138-b5ed-4681-bdd0-bfef33bc1e2c/artifacts/9brny5z2_apexoria%20image.jpeg";
+// All assets are self-hosted from /public/images/ so we don't pay
+// third-party DNS + TLS on the LCP path. Hero has explicit responsive
+// variants (640/940/1280) because Hero.jsx uses <picture> with srcset.
+export const LOGO_URL = "/apexoria-logo.jpeg";
 
 // Official Salesforce cloud logo (used instead of the word "Salesforce")
-export const SALESFORCE_LOGO =
-  "https://upload.wikimedia.org/wikipedia/commons/f/f9/Salesforce.com_logo.svg";
+export const SALESFORCE_LOGO = "/images/salesforce-cloud.svg";
 
 export const BROCHURE_URL = "/apexoria-brochure.pdf";
 
 export const IMAGES = {
-  heroAbstract:
-    "https://images.pexels.com/photos/29506610/pexels-photo-29506610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-  student1:
-    "https://images.unsplash.com/photo-1737573477556-ac3ed2db618c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzMzl8MHwxfHNlYXJjaHw0fHxpbmRpYW4lMjBzdHVkZW50JTIwbGFwdG9wJTIwc21pbGV8ZW58MHx8fHwxNzg0NDQ3Mzc4fDA&ixlib=rb-4.1.0&q=85",
-  student2:
-    "https://images.pexels.com/photos/30858451/pexels-photo-30858451.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-  team:
-    "https://images.unsplash.com/photo-1688380692117-63178554d76d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2OTF8MHwxfHNlYXJjaHwyfHxidXNpbmVzcyUyMG9mZmljZSUyMHRlYW0lMjBtZWV0aW5nJTIwdGVjaHxlbnwwfHx8fDE3ODE4NDg2MDV8MA&ixlib=rb-4.1.0&q=85",
+  // Hero abstract — served as <picture> in Hero.jsx. WebP + JPEG at three
+  // widths. `heroAbstract` remains the default 940w JPEG for backward
+  // compatibility with any consumer that still reads it as a plain URL.
+  heroAbstract: "/images/hero-abstract.jpg",
+  heroAbstract640: "/images/hero-abstract-640w.jpg",
+  heroAbstract1280: "/images/hero-abstract-1280w.jpg",
+  heroAbstract640Webp: "/images/hero-abstract-640w.webp",
+  heroAbstract940Webp: "/images/hero-abstract.webp",
+  heroAbstract1280Webp: "/images/hero-abstract-1280w.webp",
+
+  student1: "/images/student-1.jpg",
+  student2: "/images/student-2.jpg",
+  team: "/images/team.jpg",
 };
 
 export const VALUE_PROPS = [

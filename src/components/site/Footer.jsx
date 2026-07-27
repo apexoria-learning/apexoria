@@ -40,7 +40,7 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-12 pb-14 border-b border-white/10">
           <div className="md:col-span-1">
             <div className="flex items-center gap-2.5 mb-4">
-              <img src={LOGO_URL} alt="Apexoria Learning" className="h-11 w-11 rounded-lg" />
+              <img src={LOGO_URL} alt="Apexoria Learning" width={44} height={44} loading="lazy" decoding="async" className="h-11 w-11 rounded-lg" />
               <span className="font-display font-extrabold text-lg">Apexoria</span>
             </div>
             <p className="text-white/60 text-sm leading-relaxed">

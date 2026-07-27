@@ -39,7 +39,7 @@ export default function FeaturedCourse({ onEnroll }) {
         <Reveal>
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-blue">Curriculum</span>
           <div className="flex flex-wrap items-center gap-4 mt-4">
-            <img src={SALESFORCE_LOGO} alt="Salesforce" className="h-12 md:h-14" loading="lazy" />
+            <img src={SALESFORCE_LOGO} alt="Salesforce" width={112} height={78} loading="lazy" decoding="async" className="h-12 md:h-14 w-auto" />
             <h2 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight text-navy">
               Our Curriculum
             </h2>

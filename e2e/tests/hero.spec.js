@@ -27,4 +27,19 @@ test.describe('hero', () => {
     const href = await wa.getAttribute('href');
     expect(href).toMatch(/wa\.me|whatsapp/i);
   });
+
+  // Perf-critical: the hero image must be a real <img> (not a CSS
+  // background) with fetchpriority="high" so the browser's preload scanner
+  // + <link rel="preload"> in index.html can fetch it in parallel with the
+  // JS bundle. Guards the LCP fix landed 2026-07-27.
+  test('hero LCP image is <img> with fetchpriority="high"', async ({ page }) => {
+    const heroImg = page.locator('section#home img[fetchpriority="high"]').first();
+    await expect(heroImg).toHaveCount(1);
+    const src = await heroImg.getAttribute('src');
+    // Must be same-origin (self-hosted), never pexels/unsplash/emergent CDN.
+    expect(src).toMatch(/^\/images\//);
+    // Preload link in <head> must reference the same asset stem.
+    const preload = page.locator('link[rel="preload"][as="image"][fetchpriority="high"]').first();
+    await expect(preload).toHaveCount(1);
+  });
 });

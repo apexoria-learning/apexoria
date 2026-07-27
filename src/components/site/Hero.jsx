@@ -34,12 +34,33 @@ export default function Hero({ onEnroll }) {
       data-testid="hero-section"
       className="relative min-h-[100svh] flex items-center bg-navy grain overflow-hidden"
     >
-      {/* Parallax abstract */}
+      {/* Parallax abstract. Uses a real <picture>/<img> pair (not a CSS
+          background) so the browser preload scanner + <link rel="preload">
+          in index.html can start fetching the LCP asset during HTML parse.
+          Explicit width/height keeps CLS at 0 while we wait for the image. */}
       <motion.div style={{ y: yImg, scale: scaleImg }} className="absolute inset-0 z-0">
-        <div
-          className="absolute right-[-10%] top-0 h-full w-[70%] bg-cover bg-center opacity-40"
-          style={{ backgroundImage: `url(${IMAGES.heroAbstract})` }}
-        />
+        <div className="absolute right-[-10%] top-0 h-full w-[70%] overflow-hidden">
+          <picture>
+            <source
+              type="image/webp"
+              srcSet={`${IMAGES.heroAbstract640Webp} 640w, ${IMAGES.heroAbstract940Webp} 940w, ${IMAGES.heroAbstract1280Webp} 1280w`}
+              sizes="(min-width: 1024px) 70vw, 100vw"
+            />
+            <img
+              src={IMAGES.heroAbstract}
+              srcSet={`${IMAGES.heroAbstract640} 640w, ${IMAGES.heroAbstract} 940w, ${IMAGES.heroAbstract1280} 1280w`}
+              sizes="(min-width: 1024px) 70vw, 100vw"
+              width={940}
+              height={650}
+              alt=""
+              aria-hidden="true"
+              fetchpriority="high"
+              loading="eager"
+              decoding="async"
+              className="h-full w-full object-cover opacity-40"
+            />
+          </picture>
+        </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/40" />
       </motion.div>
 

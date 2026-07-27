@@ -21,7 +21,7 @@ export default function Founder() {
               <div className="absolute -inset-3 bg-brand-blue/10 rounded-3xl rotate-3" />
               <div className="relative rounded-3xl overflow-hidden clip-frame bg-brand-gray aspect-[4/5] flex items-center justify-center">
                 {FOUNDER.photo ? (
-                  <img src={FOUNDER.photo} alt={FOUNDER.name} loading="lazy" className="w-full h-full object-cover" />
+                  <img src={FOUNDER.photo} alt={FOUNDER.name} width={480} height={600} loading="lazy" decoding="async" className="w-full h-full object-cover" />
                 ) : (
                   <div className="text-center px-6" data-testid="founder-photo-placeholder">
                     <span className="h-24 w-24 rounded-full bg-navy flex items-center justify-center mx-auto">

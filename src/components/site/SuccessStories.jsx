@@ -80,7 +80,10 @@ export default function SuccessStories() {
                   <img
                     src={avatars[i % avatars.length]}
                     alt={t.name}
+                    width={48}
+                    height={48}
                     loading="lazy"
+                    decoding="async"
                     className="h-12 w-12 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
                   />
                   <div>

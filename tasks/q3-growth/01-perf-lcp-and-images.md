@@ -2,7 +2,7 @@
 
 **Quadrant:** Q3 (Tough & High Impact)
 **Priority within quadrant:** 1
-**Status:** Not started
+**Status:** Done — 2026-07-27
 **Owner (proposed):** Frontend (+ Design Auditor gate on visual output)
 **Impact:** High
 **Effort:** Medium–Large
