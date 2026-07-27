@@ -323,17 +323,17 @@ export const STATS = [
 // Upcoming cohorts. Seats <=5 shows orange urgency badge.
 export const BATCHES = [
   {
-    "start": "27 Jul 2026",
+    "start": "11 August 2026",
     "mode": "Weekday",
     "time": "Morning (9 AM – 11 AM)",
-    "seats": 2,
-    "course": "Salesforce Crash Course"
+    "seats": 8,
+    "course": "Salesforce Complete Course"
   },
   {
-    "start": "11 Aug 2026",
+    "start": "26 August 2026",
     "mode": "Weekday",
     "time": "Afternoon (1 PM – 4 PM)",
-    "seats": 5,
+    "seats": 10,
     "course": "Salesforce Complete Course"
   },
   {
