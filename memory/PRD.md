@@ -32,3 +32,12 @@ Conversion-focused marketing website for Apexoria Learning, a Salesforce trainin
 ## Backlog (P1/P2)
 - P1: Upload real brochure PDF; wire real Google Form values in Vercel; add real founder photo & testimonials; replace preview-CDN asset URLs in `public/index.html`.
 - P2: Blog/SEO content pages; add reCAPTCHA (client-side v3 since there's no backend to verify server-side); analytics events on CTA clicks.
+
+## CMS (added 2026-07-27)
+- Admin panel at `/admin` (React route, lazy-loaded — no impact on marketing site bundle).
+- Auth: Firebase Google SSO + Firestore `/admins/{email}` allowlist (rules in `firestore.rules`).
+- Save flow: client POSTs to `/api/cms/commit` (Vercel Serverless Function, ES module using `jose` to verify Firebase ID tokens), which commits `src/data.js` to GitHub via the Contents API. Vercel auto-redeploys.
+- Uploads: Firebase Storage (rules in `storage.rules`), URLs stored inline in `data.js`.
+- Editable sections: Contact, WhatsApp, Founder (+photo upload), Batches, Pricing (4 tiers + Enrollment Special Offer + course dropdown), Curriculum (2 tracks × 2 courses with per-course brochure PDF upload), Testimonials, FAQ, Downloads (main brochure + Resources study notes), Images (logos + hero/students/team), Stats + Value Props + Placement Steps.
+- Setup instructions: [CMS_SETUP.md](../CMS_SETUP.md). Requires 6 GitHub/Firebase env vars + 7 REACT_APP_FIREBASE_* keys in Vercel.
+- Fonts: reuses site's Google fonts (Outfit + Plus Jakarta Sans) for consistency. Sidebar collapses to a drawer at `<lg` breakpoint.
