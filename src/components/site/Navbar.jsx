@@ -28,12 +28,9 @@ export default function Navbar({ onEnroll }) {
   // Scroll-spy: highlight the nav link whose section is currently in view.
   // rootMargin: -80px top clears the fixed h-20 navbar; -60% bottom makes a
   // section become "active" only once its top passes ~40% down the viewport.
+  // MutationObserver picks up lazy-loaded sections (React.lazy in App.js) as
+  // they mount, so the underline advances past "Home" once they enter the DOM.
   useEffect(() => {
-    const elements = LINKS
-      .map((l) => document.getElementById(l.id))
-      .filter(Boolean);
-    if (elements.length === 0) return;
-
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -46,8 +43,26 @@ export default function Navbar({ onEnroll }) {
       { rootMargin: "-80px 0px -60% 0px", threshold: 0 }
     );
 
-    elements.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    const observed = new Set();
+    const observeAvailable = () => {
+      LINKS.forEach((l) => {
+        if (observed.has(l.id)) return;
+        const el = document.getElementById(l.id);
+        if (el) {
+          observer.observe(el);
+          observed.add(l.id);
+        }
+      });
+    };
+
+    observeAvailable();
+    const mo = new MutationObserver(observeAvailable);
+    mo.observe(document.body, { childList: true, subtree: true });
+
+    return () => {
+      mo.disconnect();
+      observer.disconnect();
+    };
   }, []);
 
   const go = (id) => {
