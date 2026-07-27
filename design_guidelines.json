@@ -106,8 +106,8 @@
   },
   "image_urls": {
     "logo": {
-      "url": "https://customer-assets-39nsmqrw.emergentagent.net/job_db7e5138-b5ed-4681-bdd0-bfef33bc1e2c/artifacts/9brny5z2_apexoria%20image.jpeg",
-      "description": "Apexoria Brand Logo"
+      "url": "/apexoria-logo.jpeg",
+      "description": "Apexoria Brand Logo (self-hosted at public/apexoria-logo.jpeg)."
     },
     "hero_3d_abstract": {
       "url": "https://images.pexels.com/photos/29506610/pexels-photo-29506610.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
