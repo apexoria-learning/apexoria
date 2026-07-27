@@ -1,0 +1,33 @@
+﻿{
+    "description":  "Live online Salesforce Development \u0026 QA training in India with placement support.",
+    "short_name":  "Apexoria",
+    "background_color":  "#0A1F44",
+    "icons":  [
+                  {
+                      "purpose":  "any",
+                      "type":  "image/png",
+                      "sizes":  "32x32",
+                      "src":  "/favicon-32.png"
+                  },
+                  {
+                      "purpose":  "any maskable",
+                      "type":  "image/png",
+                      "sizes":  "192x192",
+                      "src":  "/favicon-192.png"
+                  },
+                  {
+                      "purpose":  "any maskable",
+                      "type":  "image/png",
+                      "sizes":  "512x512",
+                      "src":  "/favicon-512.png"
+                  }
+              ],
+    "lang":  "en-IN",
+    "orientation":  "portrait",
+    "theme_color":  "#0A1F44",
+    "display":  "standalone",
+    "name":  "Apexoria Learning",
+    "scope":  "/",
+    "start_url":  "/",
+    "dir":  "ltr"
+}

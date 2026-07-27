@@ -24,7 +24,7 @@ export default function FinalCTA({ onEnroll }) {
   };
 
   return (
-    <section data-testid="final-cta-section" className="bg-navy grain relative overflow-hidden py-24 lg:py-32">
+    <section id="get-started" data-testid="final-cta-section" className="bg-navy grain relative overflow-hidden py-24 lg:py-32">
       <div className="absolute -left-20 top-10 h-80 w-80 rounded-full bg-brand-blue/20 blur-[120px]" />
       <div className="absolute right-0 bottom-0 h-72 w-72 rounded-full bg-brand-orange/10 blur-[110px]" />
 

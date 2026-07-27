@@ -53,7 +53,7 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-white/70">
               {links.map((l) => (
                 <li key={l.id}>
-                  <button onClick={() => go(l.id)} className="hover:text-brand-gold transition-colors">{l.label}</button>
+                  <a href={`#${l.id}`} onClick={(e) => { e.preventDefault(); go(l.id); }} className="hover:text-brand-gold transition-colors">{l.label}</a>
                 </li>
               ))}
               <li><button className="hover:text-brand-gold transition-colors">Privacy Policy</button></li>

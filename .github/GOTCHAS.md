@@ -43,6 +43,20 @@ Read the whole file at the start of every session. If any entry applies to your 
 
 ## Entries
 
+### 2026-07-27 — `postbuild` npm script stamps `build/sitemap.xml` <lastmod> automatically
+- Category: workaround
+- Fact: [package.json](../package.json) `scripts.postbuild` runs [scripts/update-sitemap-lastmod.js](../scripts/update-sitemap-lastmod.js) automatically after every `npm run build`. The script rewrites **every** `<lastmod>…</lastmod>` occurrence in `build/sitemap.xml` to today's UTC date (`new Date().toISOString().slice(0,10)`). It only touches the built copy — `public/sitemap.xml` (source) is left alone. Zero external deps (pure Node `fs`).
+- Affects: Frontend + Deployment + SEO Auditor
+- Impact: Do NOT delete `scripts/update-sitemap-lastmod.js` or the `postbuild` entry in `package.json` — deleting either silently reintroduces the stale-lastmod SEO issue from Sprint 1 (P15). If you add a new `<url>` block to `public/sitemap.xml`, make sure it includes a literal `<lastmod>…</lastmod>` tag so the regex has something to replace (an empty date is fine — the script overwrites it). The script only fires on `npm run build`, so anything hitting `craco build` directly (unlikely — CI uses `npm run build`) will skip the stamp. Vercel runs `npm run build` by default, so the deploy pipeline is covered.
+- Source: agent action on 2026-07-27 during SEO Sprint 2 (deferred from Sprint 1 per `tasks/q2-polish/01-cleanup-batch.md`).
+
+### 2026-07-27 — Favicon set is generated from `public/apexoria-logo.jpeg` via a one-liner (no design tool required)
+- Category: workaround
+- Fact: The favicon assets — `public/favicon.ico`, `favicon-32.png`, `favicon-192.png`, `favicon-512.png` — plus the PWA `public/manifest.json` were **generated programmatically** by cropping [public/apexoria-logo.jpeg](../public/apexoria-logo.jpeg) to a centre-square, resizing via `System.Drawing.Bitmap` (`HighQualityBicubic`), and wrapping the 32×32 PNG in a PNG-inside-ICO container (6-byte ICONDIR + 16-byte ICONDIRENTRY + PNG payload). No `sharp`, `imagemagick`, or online favicon generator was used — pure PowerShell + .NET.
+- Affects: Frontend + Deployment
+- Impact: If the logo image is replaced (edit `public/apexoria-logo.jpeg` **or** swap `LOGO_URL` in [src/data.js](../src/data.js) if you move to a hosted asset), regenerate the favicon set with the same PowerShell block used in the SEO Sprint 2 chat transcript on 2026-07-27 — otherwise the browser tab icon will drift from the site logo. Do NOT edit the PNGs / ICO directly (they are build artefacts of the JPEG). The `manifest.json` uses `theme_color: #0A1F44` (navy) — keep in sync with the two `<meta name="theme-color">` tags in [public/index.html](../public/index.html) if you ever change the brand primary. `favicon.ico` is a single-resolution 32×32 wrapper (adequate for legacy `/favicon.ico` auto-discovery); modern browsers pick the 192/512 PNGs via the `<link rel="icon" sizes="…">` tags.
+- Source: agent action on 2026-07-27 during SEO Sprint 2 (P7 in the SEO audit backlog).
+
 ### 2026-07-27 — Google Tag Manager installed inline (container `GTM-PR4M68SJ`) — do NOT add a GA4 Config tag inside the container
 - Category: integration
 - Fact: GTM install snippet is hardcoded inline in [public/index.html](../public/index.html) — head loader immediately after the GA4 gtag block, `<noscript>` iframe immediately after `<body>`. Container id `GTM-PR4M68SJ`. Placement matches the GA4 pattern (see 2026-07-21 entry) so both fire before React mounts. A `preconnect` to `https://www.googletagmanager.com` was added to keep the LCP path warm. The runtime GTM injector in [src/lib/analytics.js](../src/lib/analytics.js) (`initAnalytics()` behind `REACT_APP_GTM_ID`) is now redundant for this container — leave the code but do not set `REACT_APP_GTM_ID` to `GTM-PR4M68SJ` in Vercel env, otherwise the container will load twice.

@@ -73,32 +73,34 @@ export default function Navbar({ onEnroll }) {
       }`}
     >
       <nav className="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-20">
-        <button
+        <a
           data-testid="nav-logo"
-          onClick={() => go("home")}
+          href="#home"
+          onClick={(e) => { e.preventDefault(); go("home"); }}
           className="flex items-center gap-2.5 group"
         >
           <img src={LOGO_URL} alt="Apexoria Learning logo" className="h-11 w-11 rounded-lg object-cover" />
           <span className={`font-display font-extrabold text-lg tracking-tight ${scrolled ? "text-navy" : "text-white"}`}>
             Apexoria <span className="text-brand-blue">Learning</span>
           </span>
-        </button>
+        </a>
 
         <div className="hidden lg:flex items-center gap-6">
           {LINKS.map((l) => {
             const isActive = activeId === l.id;
             return (
-              <button
+              <a
                 key={l.id}
+                href={`#${l.id}`}
                 data-testid={`nav-link-${l.id}`}
-                onClick={() => go(l.id)}
+                onClick={(e) => { e.preventDefault(); go(l.id); }}
                 aria-current={isActive ? "true" : undefined}
                 className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
                   isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${scrolled ? "text-navy" : "text-white"}`
                 }`}
               >
                 {l.label}
-              </button>
+              </a>
             );
           })}
         </div>
@@ -146,16 +148,17 @@ export default function Navbar({ onEnroll }) {
           {LINKS.map((l) => {
             const isActive = activeId === l.id;
             return (
-              <button
+              <a
                 key={l.id}
-                onClick={() => go(l.id)}
+                href={`#${l.id}`}
+                onClick={(e) => { e.preventDefault(); go(l.id); }}
                 aria-current={isActive ? "true" : undefined}
                 className={`text-left py-3 font-semibold border-b border-slate-100 transition-colors ${
                   isActive ? "text-brand-blue border-l-2 border-l-brand-blue pl-2" : "text-navy/80"
                 }`}
               >
                 {l.label}
-              </button>
+              </a>
             );
           })}
           <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 py-3 font-bold text-navy">
