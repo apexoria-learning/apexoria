@@ -6,7 +6,7 @@
 
 // Phone / email / social handles used across the site + footer.
 export const CONTACT = {
-  "phone": "+91 7498490680",
+  "phone": "+91 7498490687",
   "phoneRaw": "917498490687",
   "email": "apexorialearning@gmail.com",
   "instagram": "https://instagram.com/apexoria_learning",
