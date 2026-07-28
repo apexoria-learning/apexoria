@@ -120,7 +120,7 @@ function Sidebar({ onNavigate, closeMobile }) {
                 return (
                   <NavLink
                     key={item.route}
-                    to={item.route}
+                    to={`/admin/${item.route}`}
                     onClick={() => {
                       onNavigate?.(item.route);
                       closeMobile?.();
@@ -155,7 +155,7 @@ function Sidebar({ onNavigate, closeMobile }) {
 
 function SectionPage({ route }) {
   const Component = PAGE_COMPONENTS[route];
-  if (!Component) return <Navigate to={DEFAULT_ROUTE} replace />;
+  if (!Component) return <Navigate to={`/admin/${DEFAULT_ROUTE}`} replace />;
   return <Component />;
 }
 
@@ -427,7 +427,7 @@ function Shell() {
           )}
           {!loading && content && (
             <Routes>
-              <Route index element={<Navigate to={DEFAULT_ROUTE} replace />} />
+              <Route index element={<Navigate to={`/admin/${DEFAULT_ROUTE}`} replace />} />
               {NAV.map((n) => (
                 <Route
                   key={n.route}
@@ -435,7 +435,7 @@ function Shell() {
                   element={<SectionPage route={n.route} />}
                 />
               ))}
-              <Route path="*" element={<Navigate to={DEFAULT_ROUTE} replace />} />
+              <Route path="*" element={<Navigate to={`/admin/${DEFAULT_ROUTE}`} replace />} />
             </Routes>
           )}
         </div>
