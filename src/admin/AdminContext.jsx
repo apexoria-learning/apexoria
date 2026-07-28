@@ -88,11 +88,8 @@ export function AdminContentProvider({ children }) {
   const save = useCallback(
     async (commitMessage) => {
       if (!content || !user) return;
-      // Refuse to save if there are validation errors.
-      if (validationErrors.length > 0) {
-        toast.error("Fix validation errors before saving.");
-        throw new Error("validation");
-      }
+      // NOTE: validation errors no longer block save. AdminShell surfaces
+      // them via the popover + CommitDialog warning; the author decides.
       setSaving(true);
       try {
         const source = serializeContent(content);
@@ -133,15 +130,13 @@ export function AdminContentProvider({ children }) {
         }
         return data;
       } catch (e) {
-        if (e.message !== "validation") {
-          toast.error(e.message || "Save failed");
-        }
+        toast.error(e.message || "Save failed");
         throw e;
       } finally {
         setSaving(false);
       }
     },
-    [content, user, validationErrors]
+    [content, user]
   );
 
   const value = useMemo(
