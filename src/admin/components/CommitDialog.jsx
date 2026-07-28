@@ -16,7 +16,7 @@ import { AlertTriangle, Save, Loader2 } from "lucide-react";
  *   open, onOpenChange   Controlled open state.
  *   dirtySections        Array of section labels that have unsaved changes.
  *   defaultMessage       Default commit message text.
- *   validationErrors     Optional array of { section, message } to surface as blockers.
+ *   validationErrors     Optional array of { section, message } shown as warnings.
  *   saving               When true, disables the confirm button and shows a spinner.
  *   onConfirm            (message) => void.
  */
@@ -46,7 +46,7 @@ export default function CommitDialog({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (hasErrors || saving) return;
+    if (saving) return;
     onConfirm(message.trim() || defaultMessage);
   };
 
@@ -59,18 +59,22 @@ export default function CommitDialog({
         </DialogHeader>
 
         {hasErrors && (
-          <div className="rounded-lg border border-rose-200 bg-rose-50 p-3 text-sm text-rose-800 space-y-1.5">
+          <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900 space-y-1.5">
             <div className="flex items-center gap-1.5 font-medium">
               <AlertTriangle className="w-4 h-4" />
-              Fix these problems before saving
+              {validationErrors.length} validation warning
+              {validationErrors.length === 1 ? "" : "s"} — you can still save
             </div>
-            <ul className="list-disc pl-5 space-y-0.5 text-xs text-rose-700">
+            <ul className="list-disc pl-5 space-y-0.5 text-xs text-amber-800">
               {validationErrors.map((err, i) => (
                 <li key={i}>
                   <span className="font-medium">{err.section}:</span> {err.message}
                 </li>
               ))}
             </ul>
+            <div className="text-[11px] text-amber-800/80 pt-1">
+              These fields don’t match the expected format. Saving will commit them as-is; some site sections may render incorrectly until fixed.
+            </div>
           </div>
         )}
 
@@ -85,7 +89,7 @@ export default function CommitDialog({
               onChange={(e) => setMessage(e.target.value)}
               placeholder={defaultMessage}
               autoFocus
-              disabled={hasErrors || saving}
+              disabled={saving}
               className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-slate-900 focus:ring-1 focus:ring-slate-900 outline-none disabled:bg-slate-50 disabled:text-slate-500"
             />
             <div className="text-[11px] text-slate-500 mt-1">
@@ -104,15 +108,23 @@ export default function CommitDialog({
             </button>
             <button
               type="submit"
-              disabled={hasErrors || saving}
-              className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 text-white px-4 py-2 text-sm font-medium hover:bg-slate-800 disabled:opacity-40 disabled:cursor-not-allowed"
+              disabled={saving}
+              className={`inline-flex items-center gap-1.5 rounded-lg px-4 py-2 text-sm font-medium text-white disabled:opacity-40 disabled:cursor-not-allowed ${
+                hasErrors
+                  ? "bg-amber-600 hover:bg-amber-700"
+                  : "bg-slate-900 hover:bg-slate-800"
+              }`}
             >
               {saving ? (
                 <Loader2 className="w-3.5 h-3.5 animate-spin" />
               ) : (
                 <Save className="w-3.5 h-3.5" />
               )}
-              {saving ? "Saving…" : "Save & deploy"}
+              {saving
+                ? "Saving…"
+                : hasErrors
+                ? "Save anyway"
+                : "Save & deploy"}
             </button>
           </DialogFooter>
         </form>

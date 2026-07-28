@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState, useRef } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import {
   Routes,
   Route,
@@ -63,24 +63,6 @@ const PAGE_COMPONENTS = {
 };
 
 const CLUSTER_COLLAPSE_KEY = "apexoria.cms.clusterCollapse";
-
-/**
- * Walk up the DOM looking for the nearest ancestor that actually scrolls.
- * Falls back to the document scrolling element.
- */
-function findScrollableAncestor(el) {
-  let node = el.parentElement;
-  while (node && node !== document.body) {
-    const style = getComputedStyle(node);
-    const overflowY = style.overflowY;
-    const canScroll =
-      (overflowY === "auto" || overflowY === "scroll" || overflowY === "overlay") &&
-      node.scrollHeight > node.clientHeight;
-    if (canScroll) return node;
-    node = node.parentElement;
-  }
-  return document.scrollingElement || document.documentElement;
-}
 
 /* ------------------------------------------------------------- Sidebar */
 
@@ -190,7 +172,6 @@ function Shell() {
   const [commitOpen, setCommitOpen] = useState(false);
   const [reloadConfirmOpen, setReloadConfirmOpen] = useState(false);
   const [errorPopoverOpen, setErrorPopoverOpen] = useState(false);
-  const jumpToErrorRef = useRef(false);
 
   const { user, signOutNow } = useAdminAuth();
   const {
@@ -211,100 +192,30 @@ function Shell() {
   const activeRoute = location.pathname.split("/").filter(Boolean)[1] || DEFAULT_ROUTE;
   const activeNav = NAV.find((n) => n.route === activeRoute) || NAV[0];
 
-  // --- Group validation errors by section (route + label) ---
+  // --- Group validation errors by section (route + label + full list) ---
   const errorsBySection = useMemo(() => {
     const map = new Map();
     for (const e of validationErrors) {
       const nav = navForDataKey(e.key);
-      if (!nav) continue;
-      if (!map.has(nav.route)) {
-        map.set(nav.route, { route: nav.route, label: nav.label, count: 0, first: e });
+      const route = nav?.route || null;
+      const label = nav?.label || e.section || e.key;
+      const groupKey = route || `__${e.key}`;
+      if (!map.has(groupKey)) {
+        map.set(groupKey, { route, label, errors: [] });
       }
-      map.get(nav.route).count += 1;
+      map.get(groupKey).errors.push(e);
     }
     return Array.from(map.values());
   }, [validationErrors]);
 
-  // Jump to a section's first error: navigate + queue a scroll on next render.
+  // Jump to a section (no scroll — the popover lists the exact fields).
   const jumpToSection = useCallback(
     (route) => {
       setErrorPopoverOpen(false);
-      jumpToErrorRef.current = true;
-      if (route === activeRoute) {
-        // Same route: no navigation event will fire, run scroll immediately.
-        scrollToFirstError();
-        jumpToErrorRef.current = false;
-      } else {
-        navigate(route);
-      }
+      if (route !== activeRoute) navigate(route);
     },
     [activeRoute, navigate]
   );
-
-  // Scroll to & focus first `[data-error="true"]` on the current page.
-  // Polls for up to ~600ms because the destination page may not have
-  // committed its Field elements yet when this runs.
-  const scrollToFirstError = () => {
-    const start = performance.now();
-    const DEADLINE_MS = 600;
-
-    const tryOnce = () => {
-      const el = document.querySelector('[data-error="true"]');
-      if (el) {
-        // Explicitly scroll the nearest scrollable ancestor into place —
-        // scrollIntoView on nested overflow containers is flaky in some browsers.
-        const scroller = findScrollableAncestor(el);
-        if (scroller) {
-          const rect = el.getBoundingClientRect();
-          const sRect = scroller.getBoundingClientRect();
-          const targetTop =
-            scroller.scrollTop + (rect.top - sRect.top) - sRect.height / 2 + rect.height / 2;
-          scroller.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
-        } else {
-          el.scrollIntoView({ behavior: "smooth", block: "center" });
-        }
-        // Ring the field so it's obvious where the jump landed.
-        el.classList.add("ring-2", "ring-rose-400", "ring-offset-2", "rounded");
-        setTimeout(() => {
-          el.classList.remove("ring-2", "ring-rose-400", "ring-offset-2", "rounded");
-        }, 1600);
-        // Focus the first interactive descendant (with a tiny delay so Radix
-        // Popover's focus-restore doesn't steal it back).
-        setTimeout(() => {
-          const focusable = el.querySelector(
-            'input:not([type="hidden"]), textarea, select, button, [tabindex]:not([tabindex="-1"])'
-          );
-          if (focusable) {
-            try {
-              focusable.focus({ preventScroll: true });
-            } catch {
-              /* ignore */
-            }
-          }
-        }, 60);
-        return true;
-      }
-      return false;
-    };
-
-    // First try in the next paint frame, then poll ~every 40ms until deadline.
-    requestAnimationFrame(() => {
-      if (tryOnce()) return;
-      const interval = setInterval(() => {
-        if (tryOnce() || performance.now() - start > DEADLINE_MS) {
-          clearInterval(interval);
-        }
-      }, 40);
-    });
-  };
-
-  // After navigation, if a jump was queued, execute it.
-  useEffect(() => {
-    if (!jumpToErrorRef.current) return;
-    if (loading || !content) return;
-    jumpToErrorRef.current = false;
-    scrollToFirstError();
-  }, [location.pathname, loading, content]);
 
   // --- Save handler ---
   const openCommit = useCallback(() => {
@@ -473,48 +384,59 @@ function Shell() {
                   type="button"
                   className="hidden md:inline-flex items-center gap-1.5 rounded-full bg-rose-50 border border-rose-200 hover:bg-rose-100 px-2.5 py-1 text-[11px] font-medium text-rose-700 transition"
                   title="Show validation problems"
-                  aria-label={`${validationErrors.length} validation problem${validationErrors.length === 1 ? "" : "s"} — click to view`}
+                  aria-label={`${validationErrors.length} validation problem${validationErrors.length === 1 ? "" : "s"} — click to view details`}
                 >
                   <AlertTriangle className="w-3 h-3" />
                   {validationErrors.length} problem{validationErrors.length === 1 ? "" : "s"}
                   <ChevronDown className="w-3 h-3 opacity-70" />
                 </button>
               </PopoverTrigger>
-              <PopoverContent align="end" sideOffset={8} className="w-80 p-0">
+              <PopoverContent align="end" sideOffset={8} className="w-[26rem] max-w-[calc(100vw-2rem)] p-0">
                 <div className="px-3 py-2 border-b border-slate-200 flex items-center gap-2">
                   <AlertTriangle className="w-3.5 h-3.5 text-rose-600" />
                   <div className="text-xs font-semibold text-slate-800">
                     {validationErrors.length} validation problem
                     {validationErrors.length === 1 ? "" : "s"}
                   </div>
+                  <div className="ml-auto text-[10px] text-slate-500">
+                    Warnings only — Save is not blocked.
+                  </div>
                 </div>
-                <div className="max-h-80 overflow-y-auto py-1">
+                <div className="max-h-[26rem] overflow-y-auto">
                   {errorsBySection.map((s) => (
-                    <button
-                      key={s.route}
-                      type="button"
-                      onClick={() => jumpToSection(s.route)}
-                      className="w-full flex items-center gap-2 px-3 py-2 text-left hover:bg-slate-50 focus:bg-slate-50 focus:outline-none"
-                    >
-                      <span className="inline-flex items-center justify-center min-w-[1.25rem] h-5 rounded-full bg-rose-100 text-rose-700 text-[10px] font-semibold px-1.5">
-                        {s.count}
-                      </span>
-                      <span className="flex-1 min-w-0">
-                        <span className="block text-xs font-medium text-slate-800 truncate">
+                    <div key={s.route || s.label} className="border-b border-slate-100 last:border-b-0">
+                      <div className="flex items-center gap-2 px-3 py-2 bg-slate-50">
+                        <span className="inline-flex items-center justify-center min-w-[1.25rem] h-5 rounded-full bg-rose-100 text-rose-700 text-[10px] font-semibold px-1.5">
+                          {s.errors.length}
+                        </span>
+                        <span className="text-xs font-semibold text-slate-800 flex-1 truncate">
                           {s.label}
                         </span>
-                        <span className="block text-[10px] text-slate-500 truncate">
-                          {s.first.path.length
-                            ? `first: ${s.first.path.join(".")}`
-                            : "first: (root)"}
-                        </span>
-                      </span>
-                      <ChevronRight className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                    </button>
+                        {s.route && (
+                          <button
+                            type="button"
+                            onClick={() => jumpToSection(s.route)}
+                            className="inline-flex items-center gap-0.5 text-[10px] font-medium text-slate-600 hover:text-slate-900"
+                          >
+                            Go to section
+                            <ChevronRight className="w-3 h-3" />
+                          </button>
+                        )}
+                      </div>
+                      <ul className="divide-y divide-slate-100">
+                        {s.errors.map((err, idx) => (
+                          <li key={idx} className="px-3 py-2 text-xs">
+                            <div className="font-mono text-[10px] text-slate-500 truncate" title={err.path.join(".")}>
+                              {err.path.length ? err.path.join(" › ") : "(root)"}
+                            </div>
+                            <div className="text-rose-700 leading-snug">
+                              {err.message}
+                            </div>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   ))}
-                </div>
-                <div className="px-3 py-2 border-t border-slate-200 text-[10px] text-slate-500">
-                  Click a row to jump to that section’s first error.
                 </div>
               </PopoverContent>
             </Popover>
