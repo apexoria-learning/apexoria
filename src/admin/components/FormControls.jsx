@@ -18,7 +18,7 @@ import {
 
 export function Field({ label, hint, error, children, required }) {
   return (
-    <label className="block">
+    <label className="block" data-error={error ? "true" : undefined}>
       <div className="flex items-center gap-1 text-xs font-medium text-slate-700 mb-1">
         {label}
         {required && <span className="text-rose-600">*</span>}
