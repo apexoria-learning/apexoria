@@ -1,11 +1,21 @@
 import React from "react";
 import { useContent } from "../AdminContext";
-import { Card, Field, TextInput, SectionTitle } from "../components/FormControls";
-import FileUpload from "../components/FileUpload";
+import { Card, Field, SectionTitle } from "../components/FormControls";
+import ImageField from "../components/ImageField";
 
-const IMAGE_KEYS = [
-  { key: "heroAbstract", label: "Hero background", hint: "Wide landscape image shown in the hero." },
-  { key: "team", label: "Team photo", hint: "Used near the hiring partners strip." },
+const SECTION_IMAGES = [
+  {
+    key: "heroAbstract",
+    label: "Hero background",
+    hint: "Wide landscape image shown in the hero. Aspect ~3:2. Also generates 640/1280 responsive variants.",
+    aspect: "aspect-[3/2]",
+  },
+  {
+    key: "team",
+    label: "Team photo",
+    hint: "Used near the hiring partners strip. Aspect ~3:2.",
+    aspect: "aspect-[3/2]",
+  },
 ];
 
 export default function ImagesPage() {
@@ -17,42 +27,46 @@ export default function ImagesPage() {
   return (
     <div className="space-y-4 max-w-4xl">
       <Card>
-        <SectionTitle>Logos</SectionTitle>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <Field label="Apexoria logo URL">
-            <TextInput value={content.LOGO_URL} onChange={(v) => update("LOGO_URL", v)} />
+        <SectionTitle description="Brand marks used in the header, footer, and Salesforce badge.">
+          Logos
+        </SectionTitle>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          <Field label="Apexoria logo" hint="Square-ish. Shown in the header + login page.">
+            <ImageField
+              value={content.LOGO_URL}
+              onChange={(v) => update("LOGO_URL", v)}
+              folder="images/logo"
+              aspect="aspect-square"
+              width="w-24"
+            />
           </Field>
-          <Field label="Salesforce cloud logo URL">
-            <TextInput value={content.SALESFORCE_LOGO} onChange={(v) => update("SALESFORCE_LOGO", v)} />
+          <Field label="Salesforce cloud logo" hint="Optional accent used in course headers.">
+            <ImageField
+              value={content.SALESFORCE_LOGO}
+              onChange={(v) => update("SALESFORCE_LOGO", v)}
+              folder="images/salesforce"
+              aspect="aspect-square"
+              width="w-24"
+            />
           </Field>
         </div>
       </Card>
 
       <Card>
-        <SectionTitle>Section imagery</SectionTitle>
-        <div className="space-y-4">
-          {IMAGE_KEYS.map(({ key, label, hint }) => (
-            <div key={key} className="grid grid-cols-1 sm:grid-cols-[160px_1fr] gap-4 items-start">
-              <div>
-                {images[key] ? (
-                  <img src={images[key]} alt="" className="w-full aspect-[3/2] object-cover rounded-lg ring-1 ring-slate-200" />
-                ) : (
-                  <div className="w-full aspect-[3/2] rounded-lg border border-dashed border-slate-300 flex items-center justify-center text-xs text-slate-400">No image</div>
-                )}
-              </div>
-              <div className="space-y-2">
-                <Field label={label} hint={hint}>
-                  <TextInput value={images[key]} onChange={(v) => setImg(key, v)} />
-                </Field>
-                <FileUpload
-                  folder={`images/${key}`}
-                  accept="image/*"
-                  value={images[key]}
-                  onUploaded={(url) => setImg(key, url)}
-                  label={`Upload ${label.toLowerCase()}`}
-                />
-              </div>
-            </div>
+        <SectionTitle description="Landing-page imagery. Aim for compressed WebP under 200 KB where possible.">
+          Section imagery
+        </SectionTitle>
+        <div className="space-y-6">
+          {SECTION_IMAGES.map(({ key, label, hint, aspect }) => (
+            <Field key={key} label={label} hint={hint}>
+              <ImageField
+                value={images[key]}
+                onChange={(v) => setImg(key, v)}
+                folder={`images/${key}`}
+                aspect={aspect}
+                width="w-40"
+              />
+            </Field>
           ))}
         </div>
       </Card>
