@@ -64,6 +64,24 @@ const PAGE_COMPONENTS = {
 
 const CLUSTER_COLLAPSE_KEY = "apexoria.cms.clusterCollapse";
 
+/**
+ * Walk up the DOM looking for the nearest ancestor that actually scrolls.
+ * Falls back to the document scrolling element.
+ */
+function findScrollableAncestor(el) {
+  let node = el.parentElement;
+  while (node && node !== document.body) {
+    const style = getComputedStyle(node);
+    const overflowY = style.overflowY;
+    const canScroll =
+      (overflowY === "auto" || overflowY === "scroll" || overflowY === "overlay") &&
+      node.scrollHeight > node.clientHeight;
+    if (canScroll) return node;
+    node = node.parentElement;
+  }
+  return document.scrollingElement || document.documentElement;
+}
+
 /* ------------------------------------------------------------- Sidebar */
 
 function Sidebar({ onNavigate, closeMobile }) {
@@ -224,24 +242,59 @@ function Shell() {
   );
 
   // Scroll to & focus first `[data-error="true"]` on the current page.
+  // Polls for up to ~600ms because the destination page may not have
+  // committed its Field elements yet when this runs.
   const scrollToFirstError = () => {
-    // Two rAFs so React commits + layout settles before we measure.
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        const el = document.querySelector('main [data-error="true"]');
-        if (!el) return;
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-        const focusable = el.querySelector(
-          'input, textarea, select, button, [tabindex]:not([tabindex="-1"])'
-        );
-        if (focusable) {
-          try {
-            focusable.focus({ preventScroll: true });
-          } catch {
-            /* ignore */
-          }
+    const start = performance.now();
+    const DEADLINE_MS = 600;
+
+    const tryOnce = () => {
+      const el = document.querySelector('[data-error="true"]');
+      if (el) {
+        // Explicitly scroll the nearest scrollable ancestor into place —
+        // scrollIntoView on nested overflow containers is flaky in some browsers.
+        const scroller = findScrollableAncestor(el);
+        if (scroller) {
+          const rect = el.getBoundingClientRect();
+          const sRect = scroller.getBoundingClientRect();
+          const targetTop =
+            scroller.scrollTop + (rect.top - sRect.top) - sRect.height / 2 + rect.height / 2;
+          scroller.scrollTo({ top: Math.max(0, targetTop), behavior: "smooth" });
+        } else {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
         }
-      });
+        // Ring the field so it's obvious where the jump landed.
+        el.classList.add("ring-2", "ring-rose-400", "ring-offset-2", "rounded");
+        setTimeout(() => {
+          el.classList.remove("ring-2", "ring-rose-400", "ring-offset-2", "rounded");
+        }, 1600);
+        // Focus the first interactive descendant (with a tiny delay so Radix
+        // Popover's focus-restore doesn't steal it back).
+        setTimeout(() => {
+          const focusable = el.querySelector(
+            'input:not([type="hidden"]), textarea, select, button, [tabindex]:not([tabindex="-1"])'
+          );
+          if (focusable) {
+            try {
+              focusable.focus({ preventScroll: true });
+            } catch {
+              /* ignore */
+            }
+          }
+        }, 60);
+        return true;
+      }
+      return false;
+    };
+
+    // First try in the next paint frame, then poll ~every 40ms until deadline.
+    requestAnimationFrame(() => {
+      if (tryOnce()) return;
+      const interval = setInterval(() => {
+        if (tryOnce() || performance.now() - start > DEADLINE_MS) {
+          clearInterval(interval);
+        }
+      }, 40);
     });
   };
 
