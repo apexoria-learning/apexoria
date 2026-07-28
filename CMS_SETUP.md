@@ -6,13 +6,17 @@ A tiny admin panel at **/admin** that lets approved team members edit `src/data.
 
 ```
 apexorialearning.in/admin
-  ├─ Firebase Auth (Google SSO)
+  ├─ Firebase Auth (Google SSO) — login only
   ├─ Firestore /admins/{email} allowlist
-  ├─ Firebase Storage for PDFs/images
-  └─ POST /api/cms/commit → Vercel serverless function
-        └─ Verifies Firebase ID token
-        └─ Commits data.js to GitHub → auto-redeploy
+  └─ POST /api/cms/commit         → commits src/data.js to GitHub
+     POST /api/cms/upload-asset   → commits binary uploads to public/uploads/
+        └─ Both verify Firebase ID token + ADMIN_EMAILS allowlist
+        └─ Both push to GitHub → Vercel auto-redeploy
 ```
+
+Firebase is used for **auth only**. All file storage — PDFs, images, brochures,
+study notes — lives in this GitHub repo under `public/uploads/`. No Firebase
+Storage bucket or Google Cloud Storage is used.
 
 ## First-time setup (~10 minutes)
 
@@ -23,9 +27,11 @@ In your `apexorialearningcms` project:
 - **Authentication → Sign-in method** → Google → **Enable** → set support email → Save
 - **Authentication → Settings → Authorized domains** → Add `apexorialearning.in`, `www.apexorialearning.in` (keep `localhost` for testing)
 - **Firestore Database → Create database** → Production mode → `asia-south1` (Mumbai) region
-- **Storage → Get started** → Production mode → same region
 - **Firestore → Rules** → paste contents of `firestore.rules` from the repo → Publish
-- **Storage → Rules** → paste contents of `storage.rules` from the repo → Publish
+
+> Firebase **Storage** is no longer used. If you previously enabled it for this
+> project you can leave the bucket in place (or delete it) — the CMS never
+> touches it.
 
 ### 2. Seed the first admin (bootstrap)
 
@@ -95,6 +101,29 @@ Vercel picks up the push and deploys. In ~45s, `/admin` is live.
 
 **Every save is a git commit** — full audit trail. Revert via GitHub if anything goes wrong.
 
+## Media uploads (PDFs, images)
+
+All admin uploads — brochure, per-course brochures, study notes, founder photo,
+testimonial headshots, hero/team images — are committed to this repo under
+`public/uploads/{folder}/{ts}-{filename}` and served from your own domain at
+`/uploads/...`.
+
+- **Size limit: 3 MB per file.** This is a hard cap enforced both in the browser
+  and by `/api/cms/upload-asset`. It exists because Vercel's Hobby plan caps
+  serverless-function request bodies at ~4.5 MB and base64 encoding adds ~33%
+  overhead. Files above 3 MB will be rejected client-side before upload.
+- **If your file is too large**, compress it first:
+  - PDFs → [ilovepdf.com/compress_pdf](https://www.ilovepdf.com/compress_pdf)
+    or [smallpdf.com/compress-pdf](https://smallpdf.com/compress-pdf)
+  - Images → [squoosh.app](https://squoosh.app) (WebP at ~75% quality is usually
+    well under 500 KB with no visible loss)
+- **Availability**: uploaded files appear on the live site after the next Vercel
+  redeploy (~45–60 s), same as content edits to `src/data.js`.
+- **Old files stay in the repo.** When you upload a replacement, the previous
+  file remains in `public/uploads/` — nothing is deleted automatically. If
+  history bloat becomes a concern later, we can prune manually or move to Git
+  LFS.
+
 ## Adding more admins later
 
 Currently only Firestore Console works (a self-service admin page is on the roadmap). To add someone:
@@ -110,7 +139,9 @@ Then update the `ADMIN_EMAILS` Vercel env var to include the new email, and rede
 - **GitHub PAT never touches the browser.** It sits only in Vercel env vars.
 - **Firebase Auth** verifies the caller on every save via signed ID tokens.
 - **Firestore rules + serverless function allowlist** = defense in depth. Even if someone bypasses the client-side check, the serverless function will reject them.
-- Storage files are publicly readable (they're linked from the live site) but only admins can upload.
+- Uploaded files land in `public/uploads/` and are publicly readable (they're
+  linked from the live site), but only admins can commit them via
+  `/api/cms/upload-asset`.
 
 ## Troubleshooting
 
