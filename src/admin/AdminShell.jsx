@@ -11,6 +11,7 @@ import { useAdminAuth } from "./AdminAuth";
 import { NAV, CLUSTERS, DEFAULT_ROUTE } from "./sections";
 import CommitDialog from "./components/CommitDialog";
 import ConfirmDialog from "./components/ConfirmDialog";
+import OfflineBanner from "./components/OfflineBanner";
 import { PageSkeleton } from "./components/Skeleton";
 import {
   Menu,
@@ -249,7 +250,9 @@ function Shell() {
     CLUSTERS.find((c) => c.key === activeNav.cluster)?.label || "";
 
   return (
-    <div className="flex min-h-screen bg-slate-50">
+    <div className="flex flex-col min-h-screen bg-slate-50">
+      <OfflineBanner />
+      <div className="flex flex-1 min-h-0">
       {/* Sidebar (desktop) */}
       <aside className="hidden lg:flex w-64 flex-col border-r border-slate-200 bg-white">
         <div className="px-5 py-4 border-b border-slate-200 flex items-center gap-3">
@@ -401,7 +404,7 @@ function Shell() {
           </DropdownMenu>
         </header>
 
-        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
+        <div className={`flex-1 overflow-y-auto p-4 sm:p-6 ${dirty ? "pb-24 sm:pb-6" : ""}`}>
           {loading && <PageSkeleton />}
           {loadError && !loading && (
             <div className="rounded-lg bg-rose-50 border border-rose-200 p-4 text-sm text-rose-700 mb-4 flex flex-wrap items-center gap-3">
@@ -459,6 +462,35 @@ function Shell() {
         destructive
         onConfirm={handleConfirmReload}
       />
+      </div>
+
+      {/* Mobile sticky save bar — fixed bottom on small screens when dirty. */}
+      {dirty && !loading && (
+        <div className="sm:hidden fixed bottom-0 inset-x-0 z-40 border-t border-slate-200 bg-white/95 backdrop-blur px-3 py-2 flex items-center gap-2 shadow-[0_-4px_12px_-4px_rgba(0,0,0,0.08)]">
+          <div className="flex-1 min-w-0">
+            <div className="text-[11px] font-medium text-slate-700 truncate">
+              {dirtySectionLabels.length === 1
+                ? `Unsaved: ${dirtySectionLabels[0]}`
+                : `${dirtySectionLabels.length} sections have unsaved changes`}
+            </div>
+            {validationErrors.length > 0 && (
+              <div className="text-[10px] text-rose-600 flex items-center gap-1">
+                <AlertTriangle className="w-3 h-3" />
+                {validationErrors.length} problem{validationErrors.length === 1 ? "" : "s"} — fix before saving
+              </div>
+            )}
+          </div>
+          <button
+            onClick={openCommit}
+            disabled={saving || validationErrors.length > 0}
+            className="inline-flex items-center gap-1.5 rounded-lg bg-slate-900 text-white px-4 py-2.5 text-sm font-medium min-h-[44px] disabled:opacity-40"
+            aria-keyshortcuts="Control+S"
+          >
+            <Save className="w-4 h-4" />
+            {saving ? "Saving…" : "Save"}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
