@@ -403,7 +403,7 @@ export const LEGAL_PAGES = {
     "title": "Privacy Policy",
     "metaDescription": "How Apexoria Learning collects, uses, and protects your personal data.",
     "lastUpdated": "",
-    "contentMd": ""
+    "contentMd": "-Test "
   },
   "terms": {
     "title": "Terms of Service",
