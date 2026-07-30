@@ -12,4 +12,16 @@
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.apexorialearning.in/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.apexorialearning.in/" />
   </url>
+  <url>
+    <loc>https://www.apexorialearning.in/privacy</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.apexorialearning.in/terms</loc>
+    <lastmod>2026-07-30</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>

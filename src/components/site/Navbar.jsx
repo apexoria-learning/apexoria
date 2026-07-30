@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { CONTACT, LOGO_URL } from "../../data";
 
 const LINKS = [
@@ -18,6 +19,9 @@ export default function Navbar({ onEnroll }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
+  const location = useLocation();
+  const navigate = useNavigate();
+  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -67,6 +71,13 @@ export default function Navbar({ onEnroll }) {
 
   const go = (id) => {
     setOpen(false);
+    // Off-route (e.g. /privacy, /terms) — hop to home with a hash. The
+    // hash-scroll handler in App.js takes over once the target section
+    // mounts (below-fold sections are React.lazy).
+    if (!isHome) {
+      navigate(`/#${id}`);
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
       if (window.__lenis) {

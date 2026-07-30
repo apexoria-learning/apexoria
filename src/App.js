@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback, lazy, Suspense } from "react";
+import { useLocation } from "react-router-dom";
 import "@/App.css";
 import { Toaster } from "@/components/ui/sonner";
 import { Analytics } from "@vercel/analytics/react";
@@ -33,6 +34,7 @@ const WhatsAppWidget = lazy(() => import("@/components/site/WhatsAppWidget"));
 
 function App() {
   const [prefillCourse, setPrefillCourse] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
     initAnalytics();
@@ -73,6 +75,31 @@ function App() {
       delete window.__lenis;
     };
   }, []);
+
+  // Cross-page hash scroll. When a user clicks a Navbar/Footer link from
+  // /privacy or /terms, we navigate to /#some-id. Below-fold sections are
+  // React.lazy so the target element isn't in the DOM at mount time —
+  // poll briefly (max ~3s) until the target appears, then smooth-scroll.
+  useEffect(() => {
+    const hash = location.hash?.replace(/^#/, "");
+    if (!hash) return undefined;
+    let cancelled = false;
+    let attempts = 0;
+    const tick = () => {
+      if (cancelled) return;
+      const el = document.getElementById(hash);
+      if (el) {
+        if (window.__lenis) window.__lenis.scrollTo(el);
+        else el.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (++attempts < 60) setTimeout(tick, 50);
+    };
+    tick();
+    return () => {
+      cancelled = true;
+    };
+  }, [location.hash, location.key]);
 
   const handleEnroll = useCallback((course) => {
     if (course) setPrefillCourse(course);
