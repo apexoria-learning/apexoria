@@ -91,7 +91,7 @@ export default async function handler(req, res) {
     GITHUB_TOKEN,
     GITHUB_OWNER,
     GITHUB_REPO,
-    GITHUB_BRANCH = "main",
+    GITHUB_BRANCH = "feat/cms-integration",
     FIREBASE_PROJECT_ID,
     ADMIN_EMAILS,
   } = process.env;

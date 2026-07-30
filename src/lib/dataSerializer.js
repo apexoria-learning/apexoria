@@ -27,6 +27,7 @@ const SECTION_ORDER = [
   "PLACEMENT_STEPS",
   "COURSE_OPTIONS",
   "RESOURCES",
+  "LEGAL_PAGES",
   "FAQ_ITEMS",
 ];
 
@@ -49,6 +50,8 @@ const SECTION_COMMENTS = {
   PLACEMENT_STEPS: "// Placement support workflow.",
   COURSE_OPTIONS: "// Values shown in the Lead Form 'Interested Course' dropdown.",
   RESOURCES: "// Downloadable notes shown in the Footer Resources section.",
+  LEGAL_PAGES:
+    "// Legal pages — rendered at /privacy and /terms. Content is Markdown\n// authored via the CMS \"Legal Pages\" section. Leave `contentMd` blank\n// to render the empty-state placeholder + noindex signal.",
   FAQ_ITEMS: "// FAQ — order matters (most-common concern first).",
 };
 

@@ -48,6 +48,7 @@ import FaqPage from "./pages/FaqPage";
 import DownloadsPage from "./pages/DownloadsPage";
 import ImagesPage from "./pages/ImagesPage";
 import MiscPage from "./pages/MiscPage";
+import LegalPage from "./pages/LegalPage";
 
 const PAGE_COMPONENTS = {
   contact: ContactPage,
@@ -60,6 +61,7 @@ const PAGE_COMPONENTS = {
   testimonials: TestimonialsPage,
   faq: FaqPage,
   misc: MiscPage,
+  legal: LegalPage,
 };
 
 const CLUSTER_COLLAPSE_KEY = "apexoria.cms.clusterCollapse";
@@ -504,7 +506,7 @@ function Shell() {
                 Retry
               </button>
               <a
-                href={`https://github.com/apexoria-learning/apexoria/blob/main/src/data.js`}
+                href={`https://github.com/apexoria-learning/apexoria/blob/feat/cms-integration/src/data.js`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-xs underline"

@@ -8,6 +8,10 @@ import App from "@/App";
 // Lazy-load the admin bundle so the marketing site stays small.
 const AdminApp = lazy(() => import("@/admin/AdminApp"));
 
+// Lazy-load legal pages — small, not on the critical path.
+const Privacy = lazy(() => import("@/pages/Privacy"));
+const Terms = lazy(() => import("@/pages/Terms"));
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -36,6 +40,22 @@ root.render(
             element={
               <Suspense fallback={<AdminLoader />}>
                 <AdminApp />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/privacy"
+            element={
+              <Suspense fallback={null}>
+                <Privacy />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/terms"
+            element={
+              <Suspense fallback={null}>
+                <Terms />
               </Suspense>
             }
           />

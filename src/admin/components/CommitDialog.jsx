@@ -54,7 +54,7 @@ export default function CommitDialog({
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-xl">
         <DialogHeader>
-          <DialogTitle>Save changes to production</DialogTitle>
+          <DialogTitle>Save changes to feat/cms-integration</DialogTitle>
           <DialogDescription>{summary}</DialogDescription>
         </DialogHeader>
 
@@ -93,8 +93,8 @@ export default function CommitDialog({
               className="w-full rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm focus:border-slate-900 focus:ring-1 focus:ring-slate-900 outline-none disabled:bg-slate-50 disabled:text-slate-500"
             />
             <div className="text-[11px] text-slate-500 mt-1">
-              Committed to <span className="font-mono">apexoria-learning/apexoria@main</span>.
-              Vercel redeploys automatically.
+              Committed to <span className="font-mono">apexoria-learning/apexoria@feat/cms-integration</span>.
+              Vercel builds a preview — open a PR on GitHub to publish to production.
             </div>
           </label>
 
@@ -124,7 +124,7 @@ export default function CommitDialog({
                 ? "Saving…"
                 : hasErrors
                 ? "Save anyway"
-                : "Save & deploy"}
+                : "Save to feat/cms-integration"}
             </button>
           </DialogFooter>
         </form>

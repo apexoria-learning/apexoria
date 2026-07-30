@@ -20,6 +20,7 @@ const KEYS = [
   "PLACEMENT_STEPS",
   "COURSE_OPTIONS",
   "RESOURCES",
+  "LEGAL_PAGES",
   "FAQ_ITEMS",
 ];
 

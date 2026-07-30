@@ -395,6 +395,24 @@ export const RESOURCES = [
   }
 ];
 
+// Legal pages — rendered at /privacy and /terms. Content is Markdown
+// authored via the CMS "Legal Pages" section. Leave `contentMd` blank
+// to render the empty-state placeholder + noindex signal.
+export const LEGAL_PAGES = {
+  "privacy": {
+    "title": "Privacy Policy",
+    "metaDescription": "How Apexoria Learning collects, uses, and protects your personal data.",
+    "lastUpdated": "",
+    "contentMd": ""
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "metaDescription": "Terms of enrolment and use of Apexoria Learning courses and website.",
+    "lastUpdated": "",
+    "contentMd": ""
+  }
+};
+
 // FAQ — order matters (most-common concern first).
 export const FAQ_ITEMS = [
   {
