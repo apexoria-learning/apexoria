@@ -506,7 +506,7 @@ function Shell() {
                 Retry
               </button>
               <a
-                href={`https://github.com/apexoria-learning/apexoria/blob/main/src/data.js`}
+                href={`https://github.com/apexoria-learning/apexoria/blob/feat/cms-integration/src/data.js`}
                 target="_blank"
                 rel="noreferrer"
                 className="text-xs underline"

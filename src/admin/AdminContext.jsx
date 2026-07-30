@@ -17,7 +17,10 @@ import { toast } from "sonner";
 const ContentCtx = createContext(null);
 
 const RAW_URL =
-  "https://raw.githubusercontent.com/apexoria-learning/apexoria/main/src/data.js";
+  "https://raw.githubusercontent.com/apexoria-learning/apexoria/feat/cms-integration/src/data.js";
+
+const COMPARE_URL =
+  "https://github.com/apexoria-learning/apexoria/compare/main...feat/cms-integration?expand=1";
 
 export function AdminContentProvider({ children }) {
   const { user } = useAdminAuth();
@@ -114,20 +117,20 @@ export function AdminContentProvider({ children }) {
         cleanRef.current = JSON.parse(JSON.stringify(content));
         setDirtyKeys(new Set());
 
-        // Rich success toast with commit link if we have one.
+        // Rich success toast: saves land on feat/cms-integration and only
+        // go live after a PR is merged into main on GitHub.
         const shortSha = data.commit?.sha ? data.commit.sha.slice(0, 7) : null;
-        if (shortSha && data.commit?.url) {
-          toast.success("Saved! Vercel will redeploy in ~45s.", {
-            description: `Commit ${shortSha}`,
+        toast.success(
+          "Saved to feat/cms-integration. Open a PR on GitHub to publish.",
+          {
+            description: shortSha ? `Commit ${shortSha}` : undefined,
             action: {
-              label: "View commit ↗",
-              onClick: () => window.open(data.commit.url, "_blank", "noopener"),
+              label: "Open PR \u2197",
+              onClick: () => window.open(COMPARE_URL, "_blank", "noopener"),
             },
-            duration: 10_000,
-          });
-        } else {
-          toast.success("Saved! Vercel will redeploy in ~45s.");
-        }
+            duration: 12_000,
+          }
+        );
         return data;
       } catch (e) {
         toast.error(e.message || "Save failed");
