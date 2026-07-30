@@ -88,6 +88,11 @@ export default function Navbar({ onEnroll }) {
     }
   };
 
+  // Off-route pages (/privacy, /terms) sit on a white background, so the
+  // navbar must always render in its "solid" state there — otherwise the
+  // default white text (used over the dark hero) becomes invisible.
+  const solid = scrolled || !isHome;
+
   return (
     <motion.header
       data-testid="navbar"
@@ -95,7 +100,7 @@ export default function Navbar({ onEnroll }) {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-navy/5" : "bg-transparent"
+        solid ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-navy/5" : "bg-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-20">
@@ -106,7 +111,7 @@ export default function Navbar({ onEnroll }) {
           className="flex items-center gap-2.5 group"
         >
           <img src={LOGO_URL} alt="Apexoria Learning logo" width={44} height={44} loading="eager" decoding="async" className="h-11 w-11 rounded-lg object-cover" />
-          <span className={`font-display font-extrabold text-lg tracking-tight ${scrolled ? "text-navy" : "text-white"}`}>
+          <span className={`font-display font-extrabold text-lg tracking-tight ${solid ? "text-navy" : "text-white"}`}>
             Apexoria <span className="text-brand-blue">Learning</span>
           </span>
         </a>
@@ -122,7 +127,7 @@ export default function Navbar({ onEnroll }) {
                 onClick={(e) => { e.preventDefault(); go(l.id); }}
                 aria-current={isActive ? "true" : undefined}
                 className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
-                  isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${scrolled ? "text-navy" : "text-white"}`
+                  isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${solid ? "text-navy" : "text-white"}`
                 }`}
               >
                 {l.label}
@@ -135,14 +140,14 @@ export default function Navbar({ onEnroll }) {
           <a
             data-testid="nav-phone"
             href={`tel:${CONTACT.phoneRaw}`}
-            className={`flex items-center gap-2 text-sm font-bold ${scrolled ? "text-navy" : "text-white"}`}
+            className={`flex items-center gap-2 text-sm font-bold ${solid ? "text-navy" : "text-white"}`}
           >
             <Phone size={16} className="text-brand-blue" />
             {CONTACT.phone}
           </a>
           <button
             data-testid="nav-enroll-btn"
-            onClick={onEnroll}
+            onClick={onEnroll || (() => go("contact"))}
             className="bg-brand-orange text-white font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30"
           >
             Enroll Now
@@ -152,7 +157,7 @@ export default function Navbar({ onEnroll }) {
         <button
           data-testid="nav-hamburger"
           onClick={() => setOpen((v) => !v)}
-          className={`lg:hidden ${scrolled ? "text-navy" : "text-white"}`}
+          className={`lg:hidden ${solid ? "text-navy" : "text-white"}`}
           aria-label="Toggle menu"
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -191,7 +196,7 @@ export default function Navbar({ onEnroll }) {
             <Phone size={16} className="text-brand-blue" /> {CONTACT.phone}
           </a>
           <button
-            onClick={() => { setOpen(false); onEnroll(); }}
+            onClick={() => { setOpen(false); if (onEnroll) onEnroll(); else go("contact"); }}
             className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2"
           >
             Enroll Now

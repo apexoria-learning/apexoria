@@ -62,7 +62,7 @@ export default function LegalDoc({
       className="min-h-screen bg-white pt-28 sm:pt-32 pb-20"
     >
       <div className="max-w-3xl mx-auto px-5 lg:px-8">
-        <header className="mb-8 border-b border-slate-200 pb-6">
+        <header className="mb-10 border-b border-slate-200 pb-6">
           <h1 className="font-display font-extrabold text-3xl sm:text-4xl text-navy tracking-tight">
             {title}
           </h1>
@@ -81,16 +81,17 @@ export default function LegalDoc({
           </div>
         ) : (
           <article
-            className="prose prose-slate max-w-none
-              prose-headings:font-display prose-headings:text-navy
-              prose-h2:mt-10 prose-h2:mb-3 prose-h2:text-2xl
-              prose-h3:mt-8 prose-h3:mb-2 prose-h3:text-xl
-              prose-p:leading-relaxed prose-p:text-slate-700
+            className="prose prose-slate prose-lg max-w-none
+              prose-headings:font-display prose-headings:text-navy prose-headings:tracking-tight
+              prose-h2:mt-12 prose-h2:mb-4 prose-h2:text-2xl sm:prose-h2:text-[1.75rem] prose-h2:pb-2 prose-h2:border-b prose-h2:border-slate-200
+              prose-h3:mt-10 prose-h3:mb-3 prose-h3:text-xl
+              prose-p:my-5 prose-p:leading-[1.8] prose-p:text-slate-700
               prose-a:text-brand-blue prose-a:no-underline hover:prose-a:underline
-              prose-strong:text-navy
-              prose-li:my-1
-              prose-hr:my-8
-              prose-blockquote:border-l-brand-blue prose-blockquote:text-slate-600"
+              prose-strong:text-navy prose-strong:font-semibold
+              prose-ul:my-5 prose-ol:my-5 prose-ul:pl-6 prose-ol:pl-6
+              prose-li:my-2 prose-li:leading-relaxed prose-li:text-slate-700
+              prose-hr:my-10 prose-hr:border-slate-200
+              prose-blockquote:border-l-brand-blue prose-blockquote:text-slate-600 prose-blockquote:my-6"
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {contentMd}
