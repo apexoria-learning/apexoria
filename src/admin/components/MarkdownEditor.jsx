@@ -235,10 +235,22 @@ export default function MarkdownEditor({
             {md.trim() ? (
               <article
                 className="prose prose-slate prose-sm max-w-none
-                  prose-headings:font-display prose-headings:text-navy
+                  prose-headings:font-display prose-headings:text-navy prose-headings:tracking-tight
+                  prose-h2:mt-8 prose-h2:mb-3 prose-h2:pb-1.5 prose-h2:border-b prose-h2:border-slate-200
+                  prose-h3:mt-6 prose-h3:mb-2
+                  prose-p:my-3 prose-p:leading-relaxed prose-p:text-slate-700
                   prose-a:text-brand-blue prose-a:no-underline hover:prose-a:underline
-                  prose-strong:text-navy
-                  prose-blockquote:border-l-brand-blue"
+                  prose-strong:text-navy prose-strong:font-semibold
+                  prose-ul:my-3 prose-ol:my-3 prose-ul:pl-5 prose-ol:pl-5
+                  prose-li:my-1 prose-li:leading-relaxed
+                  prose-hr:my-6 prose-hr:border-slate-200
+                  prose-blockquote:border-l-brand-blue prose-blockquote:text-slate-600
+                  prose-code:text-navy prose-code:bg-slate-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+                  prose-table:my-5 prose-table:w-full prose-table:border prose-table:border-slate-200 prose-table:rounded-md prose-table:overflow-hidden
+                  prose-thead:bg-slate-50 prose-thead:border-b prose-thead:border-slate-200
+                  prose-th:text-left prose-th:font-semibold prose-th:text-navy prose-th:px-2.5 prose-th:py-2
+                  prose-td:px-2.5 prose-td:py-2 prose-td:text-slate-700 prose-td:align-top prose-td:border-t prose-td:border-slate-100
+                  prose-tr:border-0"
               >
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{md}</ReactMarkdown>
               </article>
