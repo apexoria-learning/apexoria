@@ -83,6 +83,7 @@
     "@babel/plugin-proposal-private-property-in-object": "7.21.11",
     "@craco/craco": "7.1.0",
     "@eslint/js": "9.23.0",
+    "@tailwindcss/typography": "^0.5.20",
     "autoprefixer": "10.4.20",
     "chrome-launcher": "1.1.2",
     "dotenv": "16.4.5",
