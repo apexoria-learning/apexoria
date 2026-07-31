@@ -91,8 +91,8 @@ export default function MarkdownEditor({
   const count = (value ?? "").length;
 
   return (
-    <div className="rounded-xl border border-slate-200 bg-white overflow-hidden">
-      <div ref={containerRef} />
+    <div className="rounded-xl border border-slate-200 bg-white overflow-visible">
+      <div ref={containerRef} className="overflow-hidden rounded-t-xl" />
       <div className="px-3 py-1.5 flex items-center justify-between text-[10px] text-slate-400 border-t border-slate-200">
         <span>Markdown · GFM</span>
         <span>{count.toLocaleString()} chars</span>
