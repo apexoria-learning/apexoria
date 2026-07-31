@@ -243,7 +243,7 @@ export default function MarkdownEditor({
                   prose-strong:text-navy prose-strong:font-semibold
                   prose-ul:my-3 prose-ol:my-3 prose-ul:pl-5 prose-ol:pl-5
                   prose-li:my-1 prose-li:leading-relaxed
-                  prose-hr:my-6 prose-hr:border-slate-200
+                  prose-hr:my-10 prose-hr:border-slate-200
                   prose-blockquote:border-l-brand-blue prose-blockquote:text-slate-600
                   prose-code:text-navy prose-code:bg-slate-100 prose-code:px-1 prose-code:py-0.5 prose-code:rounded prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
                   prose-table:my-5 prose-table:w-full prose-table:border prose-table:border-slate-200 prose-table:rounded-md prose-table:overflow-hidden
