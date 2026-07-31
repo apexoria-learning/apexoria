@@ -90,8 +90,14 @@ export default function LegalDoc({
               prose-strong:text-navy prose-strong:font-semibold
               prose-ul:my-5 prose-ol:my-5 prose-ul:pl-6 prose-ol:pl-6
               prose-li:my-2 prose-li:leading-relaxed prose-li:text-slate-700
-              prose-hr:my-10 prose-hr:border-slate-200
-              prose-blockquote:border-l-brand-blue prose-blockquote:text-slate-600 prose-blockquote:my-6"
+              prose-hr:my-16 prose-hr:border-slate-200
+              prose-blockquote:border-l-brand-blue prose-blockquote:text-slate-600 prose-blockquote:my-6
+              prose-code:text-navy prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+              prose-table:my-8 prose-table:w-full prose-table:text-sm prose-table:border prose-table:border-slate-200 prose-table:rounded-lg prose-table:overflow-hidden
+              prose-thead:bg-slate-50 prose-thead:border-b prose-thead:border-slate-200
+              prose-th:text-left prose-th:font-semibold prose-th:text-navy prose-th:px-4 prose-th:py-3
+              prose-td:px-4 prose-td:py-3 prose-td:text-slate-700 prose-td:align-top prose-td:border-t prose-td:border-slate-100
+              prose-tr:border-0"
           >
             <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {contentMd}
