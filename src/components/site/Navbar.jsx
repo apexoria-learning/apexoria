@@ -19,6 +19,7 @@ export default function Navbar({ onEnroll }) {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
+  const isSolid = scrolled || !isHomePage;
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
 
@@ -90,7 +91,7 @@ export default function Navbar({ onEnroll }) {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        scrolled ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-navy/5" : "bg-transparent"
+        isSolid ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-navy/5" : "bg-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-20">
@@ -101,7 +102,7 @@ export default function Navbar({ onEnroll }) {
           className="flex items-center gap-2.5 group"
         >
           <img src={LOGO_URL} alt="Apexoria Learning logo" width={44} height={44} loading="eager" decoding="async" className="h-11 w-11 rounded-lg object-cover" />
-          <span className={`font-display font-extrabold text-lg tracking-tight ${scrolled ? "text-navy" : "text-white"}`}>
+          <span className={`font-display font-extrabold text-lg tracking-tight ${isSolid ? "text-navy" : "text-white"}`}>
             Apexoria <span className="text-brand-blue">Learning</span>
           </span>
         </a>
@@ -115,7 +116,7 @@ export default function Navbar({ onEnroll }) {
                   key={l.href}
                   to={l.href}
                   data-testid={`nav-link-${l.href.replace(/\//g, '')}`}
-                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${scrolled ? "text-navy" : "text-white"}`}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${isSolid ? "text-navy" : "text-white"}`}
                 >
                   {l.label}
                 </Link>
@@ -132,7 +133,7 @@ export default function Navbar({ onEnroll }) {
                   onClick={(e) => { e.preventDefault(); go(l.id); }}
                   aria-current={isActive ? "true" : undefined}
                   className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
-                    isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${scrolled ? "text-navy" : "text-white"}`
+                    isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${isSolid ? "text-navy" : "text-white"}`
                   }`}
                 >
                   {l.label}
@@ -144,7 +145,7 @@ export default function Navbar({ onEnroll }) {
                   key={l.id}
                   to={`/#${l.id}`}
                   data-testid={`nav-link-${l.id}`}
-                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${scrolled ? "text-navy" : "text-white"}`}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${isSolid ? "text-navy" : "text-white"}`}
                 >
                   {l.label}
                 </Link>
@@ -157,7 +158,7 @@ export default function Navbar({ onEnroll }) {
           <a
             data-testid="nav-phone"
             href={`tel:${CONTACT.phoneRaw}`}
-            className={`flex items-center gap-2 text-sm font-bold ${scrolled ? "text-navy" : "text-white"}`}
+            className={`flex items-center gap-2 text-sm font-bold ${isSolid ? "text-navy" : "text-white"}`}
           >
             <Phone size={16} className="text-brand-blue" />
             {CONTACT.phone}
@@ -184,7 +185,7 @@ export default function Navbar({ onEnroll }) {
         <button
           data-testid="nav-hamburger"
           onClick={() => setOpen((v) => !v)}
-          className={`lg:hidden ${scrolled ? "text-navy" : "text-white"}`}
+          className={`lg:hidden ${isSolid ? "text-navy" : "text-white"}`}
           aria-label="Toggle menu"
           aria-expanded={open}
           aria-controls="mobile-menu"
