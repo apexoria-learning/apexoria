@@ -6,7 +6,7 @@
                             http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://www.apexorialearning.in/</loc>
-    <lastmod>2026-07-27</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en-IN" href="https://www.apexorialearning.in/" />
@@ -22,13 +22,13 @@
   </url>
   <url>
     <loc>https://www.apexorialearning.in/privacy</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
     <loc>https://www.apexorialearning.in/terms</loc>
-    <lastmod>2026-07-30</lastmod>
+    <lastmod>2026-08-01</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
