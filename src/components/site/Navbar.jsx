@@ -7,8 +7,12 @@ import { CONTACT, LOGO_URL } from "../../data";
 const LINKS = [
   { label: "Home", id: "home" },
   { label: "Courses", href: "/courses" },
-  { label: "Pricing", id: "pricing" },
   { label: "About", id: "why" },
+  { label: "Pricing", id: "pricing" },
+  { label: "Batches", id: "batches" },
+  { label: "Placement", id: "placement" },
+  { label: "Success", id: "success-stories" },
+  { label: "FAQ", id: "faq" },
 ];
 
 export default function Navbar({ onEnroll }) {
