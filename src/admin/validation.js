@@ -105,24 +105,6 @@ const SPECIAL_OFFER = z.object({
 
 const COURSE_OPTIONS = z.array(z.string().trim().min(1));
 
-const COURSE = z.object({
-  key: z.string().trim().min(1),
-  title: z.string().trim().min(1),
-  tagline: z.string().trim().optional().or(z.literal("")),
-  chips: z.array(z.string().trim().min(1)).default([]),
-  description: z.string().trim().min(1),
-  highlights: z.array(z.string().trim().min(1)).default([]),
-  brochureUrl: optionalUrl,
-  enrollLabel: z.string().trim().optional().or(z.literal("")),
-});
-const CURRICULUM_TRACK = z.object({
-  key: z.string().trim().min(1),
-  title: z.string().trim().min(1),
-  overline: z.string().trim().optional().or(z.literal("")),
-  courses: z.array(COURSE),
-});
-const CURRICULUM_TRACKS = z.array(CURRICULUM_TRACK);
-
 const TESTIMONIAL = z.object({
   name: z.string().trim().min(1),
   role: z.string().trim().optional().or(z.literal("")),
@@ -182,6 +164,52 @@ const PLACEMENT_STEP = z.object({
 });
 const PLACEMENT_STEPS = z.array(PLACEMENT_STEP);
 
+const INTERVIEW_PREP = z.object({
+  overline: z.string().trim().optional().or(z.literal("")),
+  headlinePrefix: z.string().trim().min(1),
+  headlineHighlight: z.string().trim().min(1),
+  headlineSuffix: z.string().trim().optional().or(z.literal("")),
+  subCopy: z.string().trim().min(1),
+  price: z.string().trim().min(1),
+  tagline: z.string().trim().optional().or(z.literal("")),
+  features: z.array(z.object({
+    icon: z.string().trim().min(1),
+    label: z.string().trim().min(1),
+    description: z.string().trim().min(1),
+  })).default([]),
+  ctaLabel: z.string().trim().min(1),
+  whatsappCta: z.string().trim().min(1),
+  whatsappHref: urlSchema,
+});
+
+const COURSE_DETAIL_TESTIMONIAL = z.object({
+  name: z.string().trim().min(1),
+  role: z.string().trim().optional().or(z.literal("")),
+  quote: z.string().trim().min(1),
+  photo: z.union([z.null(), z.literal(""), optionalUrl]),
+});
+
+const WEEK_BY_WEEK = z.object({
+  week: z.coerce.number().int().min(1),
+  topic: z.string().trim().min(1),
+  points: z.array(z.string().trim().min(1)).default([]),
+});
+
+const COURSE_DETAIL = z.object({
+  title: z.string().trim().min(1),
+  tagline: z.string().trim().optional().or(z.literal("")),
+  chips: z.array(z.string().trim().min(1)).default([]),
+  description: z.string().trim().min(1),
+  weekByWeek: z.array(WEEK_BY_WEEK).default([]),
+  outcomes: z.array(z.string().trim().min(1)).default([]),
+  whoThisIsFor: z.string().trim().optional().or(z.literal("")),
+  testimonial: COURSE_DETAIL_TESTIMONIAL.optional(),
+  faq: z.array(FAQ_ITEM).default([]),
+  enrollLabel: z.string().trim().min(1),
+});
+
+const ALL_COURSES_PAGE = z.record(COURSE_DETAIL);
+
 /* ------------------------------------------------------------ export */
 
 export const SECTION_SCHEMAS = {
@@ -193,7 +221,6 @@ export const SECTION_SCHEMAS = {
   PATHS,
   SPECIAL_OFFER,
   COURSE_OPTIONS,
-  CURRICULUM_TRACKS,
   TESTIMONIALS,
   FAQ_ITEMS,
   BROCHURE_URL,
@@ -205,6 +232,8 @@ export const SECTION_SCHEMAS = {
   STATS,
   VALUE_PROPS,
   PLACEMENT_STEPS,
+  INTERVIEW_PREP,
+  ALL_COURSES_PAGE,
 };
 
 /**

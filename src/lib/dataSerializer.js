@@ -16,7 +16,6 @@ const SECTION_ORDER = [
   "BROCHURE_URL",
   "IMAGES",
   "VALUE_PROPS",
-  "CURRICULUM_TRACKS",
   "PATHS",
   "SPECIAL_OFFER",
   "FOUNDER",
@@ -29,6 +28,8 @@ const SECTION_ORDER = [
   "RESOURCES",
   "LEGAL_PAGES",
   "FAQ_ITEMS",
+  "INTERVIEW_PREP",
+  "ALL_COURSES_PAGE",
 ];
 
 const SECTION_COMMENTS = {
@@ -39,7 +40,6 @@ const SECTION_COMMENTS = {
   BROCHURE_URL: "// Static brochure PDF served from public/ or Firebase Storage.",
   IMAGES: "// Hero + testimonial imagery. Prefer landscape 3:2 assets.",
   VALUE_PROPS: "// Why-Apexoria manifesto tiles.",
-  CURRICULUM_TRACKS: "// Curriculum — two tracks (Development + QA), each with its own courses.",
   PATHS: "// Pricing tiers rendered on the Pricing section.",
   SPECIAL_OFFER: "// Standalone offer card below the pricing grid.",
   FOUNDER: "// Founder profile block.",
@@ -53,6 +53,8 @@ const SECTION_COMMENTS = {
   LEGAL_PAGES:
     "// Legal pages — rendered at /privacy and /terms. Content is Markdown\n// authored via the CMS \"Legal Pages\" section. Leave `contentMd` blank\n// to render the empty-state placeholder + noindex signal.",
   FAQ_ITEMS: "// FAQ — order matters (most-common concern first).",
+  INTERVIEW_PREP: "// Interview Preparation flagship section — 2-week career accelerator.",
+  ALL_COURSES_PAGE: "// /courses route — full per-course detail pages.",
 };
 
 function stringifyValue(value, indent = 0) {

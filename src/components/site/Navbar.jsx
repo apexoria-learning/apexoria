@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CONTACT, LOGO_URL } from "../../data";
 
 const LINKS = [
   { label: "Home", id: "home" },
-  { label: "Courses", id: "featured-course" },
+  { label: "Courses", href: "/courses" },
+  { label: "About", id: "why" },
   { label: "Pricing", id: "pricing" },
   { label: "Batches", id: "batches" },
   { label: "Placement", id: "placement" },
-  { label: "Success Stories", id: "success-stories" },
+  { label: "Success", id: "success-stories" },
   { label: "FAQ", id: "faq" },
-  { label: "Contact", id: "contact" },
 ];
 
 export default function Navbar({ onEnroll }) {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
+  // Off-route pages (/courses, /privacy, /terms) sit on a light background,
+  // so the navbar must always render in its "solid" state there — otherwise
+  // the default white text (used over the dark hero) is invisible.
+  const isSolid = scrolled || !isHomePage;
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
-  const location = useLocation();
-  const navigate = useNavigate();
-  const isHome = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
@@ -34,7 +38,10 @@ export default function Navbar({ onEnroll }) {
   // section become "active" only once its top passes ~40% down the viewport.
   // MutationObserver picks up lazy-loaded sections (React.lazy in App.js) as
   // they mount, so the underline advances past "Home" once they enter the DOM.
+  // Only active on homepage — no-op when sections don't exist (e.g. /courses).
   useEffect(() => {
+    if (!isHomePage) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -50,7 +57,7 @@ export default function Navbar({ onEnroll }) {
     const observed = new Set();
     const observeAvailable = () => {
       LINKS.forEach((l) => {
-        if (observed.has(l.id)) return;
+        if (!l.id || observed.has(l.id)) return;
         const el = document.getElementById(l.id);
         if (el) {
           observer.observe(el);
@@ -67,14 +74,14 @@ export default function Navbar({ onEnroll }) {
       mo.disconnect();
       observer.disconnect();
     };
-  }, []);
+  }, [isHomePage]);
 
   const go = (id) => {
     setOpen(false);
-    // Off-route (e.g. /privacy, /terms) — hop to home with a hash. The
-    // hash-scroll handler in App.js takes over once the target section
-    // mounts (below-fold sections are React.lazy).
-    if (!isHome) {
+    // Off-route (e.g. /courses, /privacy, /terms) — hop to home with a
+    // hash. ScrollToHashHandler in App.js takes over once the target
+    // section mounts (below-fold sections are React.lazy).
+    if (!isHomePage) {
       navigate(`/#${id}`);
       return;
     }
@@ -88,11 +95,6 @@ export default function Navbar({ onEnroll }) {
     }
   };
 
-  // Off-route pages (/privacy, /terms) sit on a white background, so the
-  // navbar must always render in its "solid" state there — otherwise the
-  // default white text (used over the dark hero) becomes invisible.
-  const solid = scrolled || !isHome;
-
   return (
     <motion.header
       data-testid="navbar"
@@ -100,7 +102,7 @@ export default function Navbar({ onEnroll }) {
       animate={{ y: 0 }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
-        solid ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-navy/5" : "bg-transparent"
+        isSolid ? "bg-white/80 backdrop-blur-xl shadow-lg shadow-navy/5" : "bg-transparent"
       }`}
     >
       <nav className="max-w-7xl mx-auto px-5 lg:px-8 flex items-center justify-between h-20">
@@ -111,28 +113,55 @@ export default function Navbar({ onEnroll }) {
           className="flex items-center gap-2.5 group"
         >
           <img src={LOGO_URL} alt="Apexoria Learning logo" width={44} height={44} loading="eager" decoding="async" className="h-11 w-11 rounded-lg object-cover" />
-          <span className={`font-display font-extrabold text-lg tracking-tight ${solid ? "text-navy" : "text-white"}`}>
+          <span className={`font-display font-extrabold text-lg tracking-tight ${isSolid ? "text-navy" : "text-white"}`}>
             Apexoria <span className="text-brand-blue">Learning</span>
           </span>
         </a>
 
         <div className="hidden lg:flex items-center gap-6">
           {LINKS.map((l) => {
-            const isActive = activeId === l.id;
-            return (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                data-testid={`nav-link-${l.id}`}
-                onClick={(e) => { e.preventDefault(); go(l.id); }}
-                aria-current={isActive ? "true" : undefined}
-                className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
-                  isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${solid ? "text-navy" : "text-white"}`
-                }`}
-              >
-                {l.label}
-              </a>
-            );
+            if (l.href) {
+              // Route link (react-router-dom)
+              return (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  data-testid={`nav-link-${l.href.replace(/\//g, '')}`}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${isSolid ? "text-navy" : "text-white"}`}
+                >
+                  {l.label}
+                </Link>
+              );
+            }
+            // Scroll-to-section anchor (homepage) or cross-route link (off-homepage)
+            const isActive = isHomePage && activeId === l.id;
+            if (isHomePage) {
+              return (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  data-testid={`nav-link-${l.id}`}
+                  onClick={(e) => { e.preventDefault(); go(l.id); }}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
+                    isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${isSolid ? "text-navy" : "text-white"}`
+                  }`}
+                >
+                  {l.label}
+                </a>
+              );
+            } else {
+              return (
+                <Link
+                  key={l.id}
+                  to={`/#${l.id}`}
+                  data-testid={`nav-link-${l.id}`}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${isSolid ? "text-navy" : "text-white"}`}
+                >
+                  {l.label}
+                </Link>
+              );
+            }
           })}
         </div>
 
@@ -140,24 +169,34 @@ export default function Navbar({ onEnroll }) {
           <a
             data-testid="nav-phone"
             href={`tel:${CONTACT.phoneRaw}`}
-            className={`flex items-center gap-2 text-sm font-bold ${solid ? "text-navy" : "text-white"}`}
+            className={`flex items-center gap-2 text-sm font-bold ${isSolid ? "text-navy" : "text-white"}`}
           >
             <Phone size={16} className="text-brand-blue" />
             {CONTACT.phone}
           </a>
-          <button
-            data-testid="nav-enroll-btn"
-            onClick={onEnroll || (() => go("contact"))}
-            className="bg-brand-orange text-white font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30"
-          >
-            Enroll Now
-          </button>
+          {isHomePage ? (
+            <button
+              data-testid="nav-enroll-btn"
+              onClick={onEnroll}
+              className="bg-brand-orange text-white font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30"
+            >
+              Enroll Now
+            </button>
+          ) : (
+            <Link
+              to="/#contact"
+              data-testid="nav-enroll-btn"
+              className="bg-brand-orange text-white font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30 inline-block text-center"
+            >
+              Enroll Now
+            </Link>
+          )}
         </div>
 
         <button
           data-testid="nav-hamburger"
           onClick={() => setOpen((v) => !v)}
-          className={`lg:hidden ${solid ? "text-navy" : "text-white"}`}
+          className={`lg:hidden ${isSolid ? "text-navy" : "text-white"}`}
           aria-label="Toggle menu"
           aria-expanded={open}
           aria-controls="mobile-menu"
@@ -177,30 +216,67 @@ export default function Navbar({ onEnroll }) {
       >
         <div className="px-5 py-4 flex flex-col gap-1">
           {LINKS.map((l) => {
-            const isActive = activeId === l.id;
-            return (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                onClick={(e) => { e.preventDefault(); go(l.id); }}
-                aria-current={isActive ? "true" : undefined}
-                className={`text-left py-3 font-semibold border-b border-slate-100 transition-colors ${
-                  isActive ? "text-brand-blue border-l-2 border-l-brand-blue pl-2" : "text-navy/80"
-                }`}
-              >
-                {l.label}
-              </a>
-            );
+            if (l.href) {
+              // Route link (react-router-dom)
+              return (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-left py-3 font-semibold border-b border-slate-100 transition-colors text-navy/80"
+                >
+                  {l.label}
+                </Link>
+              );
+            }
+            // Scroll-to-section anchor (homepage) or cross-route link (off-homepage)
+            const isActive = isHomePage && activeId === l.id;
+            if (isHomePage) {
+              return (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  onClick={(e) => { e.preventDefault(); go(l.id); }}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`text-left py-3 font-semibold border-b border-slate-100 transition-colors ${
+                    isActive ? "text-brand-blue border-l-2 border-l-brand-blue pl-2" : "text-navy/80"
+                  }`}
+                >
+                  {l.label}
+                </a>
+              );
+            } else {
+              return (
+                <Link
+                  key={l.id}
+                  to={`/#${l.id}`}
+                  onClick={() => setOpen(false)}
+                  className="text-left py-3 font-semibold border-b border-slate-100 transition-colors text-navy/80"
+                >
+                  {l.label}
+                </Link>
+              );
+            }
           })}
           <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 py-3 font-bold text-navy">
             <Phone size={16} className="text-brand-blue" /> {CONTACT.phone}
           </a>
-          <button
-            onClick={() => { setOpen(false); if (onEnroll) onEnroll(); else go("contact"); }}
-            className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2"
-          >
-            Enroll Now
-          </button>
+          {isHomePage ? (
+            <button
+              onClick={() => { setOpen(false); onEnroll(); }}
+              className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2"
+            >
+              Enroll Now
+            </button>
+          ) : (
+            <Link
+              to="/#contact"
+              onClick={() => setOpen(false)}
+              className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2 text-center inline-block"
+            >
+              Enroll Now
+            </Link>
+          )}
         </div>
       </motion.div>
     </motion.header>

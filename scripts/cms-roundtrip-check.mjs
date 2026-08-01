@@ -25,9 +25,10 @@ const content = parseDataSource(source);
 
 const expectedKeys = [
   "CONTACT", "WHATSAPP_LINK", "LOGO_URL", "SALESFORCE_LOGO", "BROCHURE_URL",
-  "IMAGES", "VALUE_PROPS", "CURRICULUM_TRACKS", "PATHS", "SPECIAL_OFFER",
+  "IMAGES", "VALUE_PROPS", "PATHS", "SPECIAL_OFFER",
   "FOUNDER", "TESTIMONIALS", "GOOGLE_REVIEWS", "STATS", "BATCHES",
   "PLACEMENT_STEPS", "COURSE_OPTIONS", "RESOURCES", "LEGAL_PAGES", "FAQ_ITEMS",
+  "INTERVIEW_PREP", "ALL_COURSES_PAGE",
 ];
 const missing = expectedKeys.filter((k) => !(k in content));
 if (missing.length) {
@@ -67,4 +68,4 @@ for (const k of expectedKeys) {
   }
 }
 if (!ok) process.exit(1);
-console.log("[roundtrip] ✅ value-identical round-trip on all 19 keys");
+console.log("[roundtrip] ✅ value-identical round-trip on all 20 keys");

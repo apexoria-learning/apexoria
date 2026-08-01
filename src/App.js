@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { initAnalytics } from "@/lib/analytics";
 
 // Above-the-fold / critical path — imported eagerly.
+import ScrollToHashHandler from "@/components/ScrollToHashHandler";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import EditorialMarquee from "@/components/site/EditorialMarquee";
@@ -22,7 +23,7 @@ import LeadForm from "@/components/site/LeadForm";
 // payload only carries the hero experience. Any new section added here
 // must decide whether it belongs above the fold (eager) or below (lazy).
 const Founder = lazy(() => import("@/components/site/Founder"));
-const FeaturedCourse = lazy(() => import("@/components/site/FeaturedCourse"));
+const InterviewPrep = lazy(() => import("@/components/site/InterviewPrep"));
 const Pricing = lazy(() => import("@/components/site/Pricing"));
 const Batches = lazy(() => import("@/components/site/Batches"));
 const PlacementSupport = lazy(() => import("@/components/site/PlacementSupport"));
@@ -126,6 +127,7 @@ function App() {
 
   return (
     <div className="App font-body">
+      <ScrollToHashHandler />
       <Navbar onEnroll={() => handleEnroll()} />
       <Hero onEnroll={() => handleEnroll()} />
       <EditorialMarquee />
@@ -138,7 +140,7 @@ function App() {
           exists at first paint (see comment on the eager import). */}
       <Suspense fallback={null}>
         <Founder />
-        <FeaturedCourse onEnroll={handleEnroll} />
+        <InterviewPrep onEnroll={handleEnroll} />
         <Pricing onEnroll={handleEnroll} />
         <Batches onEnroll={handleEnroll} />
         <PlacementSupport onEnroll={handleEnroll} />

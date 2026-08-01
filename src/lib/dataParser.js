@@ -9,7 +9,6 @@ const KEYS = [
   "BROCHURE_URL",
   "IMAGES",
   "VALUE_PROPS",
-  "CURRICULUM_TRACKS",
   "PATHS",
   "SPECIAL_OFFER",
   "FOUNDER",
@@ -22,6 +21,8 @@ const KEYS = [
   "RESOURCES",
   "LEGAL_PAGES",
   "FAQ_ITEMS",
+  "INTERVIEW_PREP",
+  "ALL_COURSES_PAGE",
 ];
 
 export function parseDataSource(source) {

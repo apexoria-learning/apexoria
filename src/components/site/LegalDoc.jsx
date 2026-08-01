@@ -99,7 +99,16 @@ export default function LegalDoc({
               prose-td:px-4 prose-td:py-3 prose-td:text-slate-700 prose-td:align-top prose-td:border-t prose-td:border-slate-100
               prose-tr:border-0"
           >
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>
+            <ReactMarkdown
+              remarkPlugins={[remarkGfm]}
+              components={{
+                // The page shell already renders the doc title as <h1>.
+                // Demote any CMS-authored h1s to h2 so there is exactly
+                // one h1 per page (SEO) and page-level a11y/tests can
+                // safely assert on that single h1.
+                h1: ({ node, ...props }) => <h2 {...props} />,
+              }}
+            >
               {contentMd}
             </ReactMarkdown>
           </article>

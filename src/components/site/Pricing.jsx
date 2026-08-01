@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
-import { Check, Gift } from "lucide-react";
-import { PATHS, SPECIAL_OFFER } from "../../data";
+import { Check, Gift, ArrowRight } from "lucide-react";
+import { Link } from "react-router-dom";
+import { PATHS, SPECIAL_OFFER, WHATSAPP_LINK } from "../../data";
 import { Reveal } from "./Reveal";
 import { trackEvent } from "@/lib/analytics";
+import { COURSES_PAGE as TEST_IDS } from "@/constants/testIds/home";
 
 export default function Pricing({ onEnroll }) {
+  const featuredPaths = PATHS.filter((p) => p.homepageFeatured);
   return (
     <section id="pricing" data-testid="pricing-section" className="bg-white py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
@@ -18,25 +21,23 @@ export default function Pricing({ onEnroll }) {
         {/* Step tracker */}
         <Reveal>
           <div className="hidden lg:flex items-center gap-2 mt-10 mb-4 text-xs font-bold uppercase tracking-wider text-slate-400">
-            <span>Foundation</span>
-            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="h-0.5 w-12 bg-brand-blue origin-left" />
             <span>Crash Course</span>
-            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="h-0.5 w-12 bg-brand-gold origin-left" />
+            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="h-0.5 w-16 bg-brand-gold origin-left" />
             <span className="text-brand-green">Complete Course</span>
-            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.4 }} className="h-0.5 w-12 bg-[#8E44AD] origin-left" />
+            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="h-0.5 w-16 bg-[#8E44AD] origin-left" />
             <span className="text-[#8E44AD]">QA Testing</span>
           </div>
         </Reveal>
 
-        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
-          {PATHS.map((p, i) => (
+        <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch lg:py-2">
+          {featuredPaths.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08} className="h-full">
               <motion.div
                 whileHover={{ y: -10 }}
                 data-testid={`pricing-card-${p.id}`}
                 className={`relative flex flex-col h-full rounded-2xl border bg-white p-7 transition-shadow ${
                   p.popular
-                    ? "border-brand-green ring-2 ring-brand-green/30 shadow-2xl shadow-brand-green/10 z-10"
+                    ? "border-brand-green ring-2 ring-brand-green/30 shadow-2xl shadow-brand-green/10 z-10 lg:scale-[1.03]"
                     : "border-slate-200 shadow-lg shadow-navy/5"
                 }`}
               >
@@ -109,22 +110,38 @@ export default function Pricing({ onEnroll }) {
                 </ul>
               </div>
               <div className="lg:text-right">
-                <button
+                <a
                   data-testid="special-offer-enroll"
+                  href={WHATSAPP_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   onClick={() => {
-                    trackEvent("pricing_enroll_click", {
+                    trackEvent("pricing_special_offer_whatsapp_click", {
                       tier: SPECIAL_OFFER.tier,
                       price: SPECIAL_OFFER.price,
-                      level: SPECIAL_OFFER.level,
                     });
-                    onEnroll(`Enrollment Special Offer — ${SPECIAL_OFFER.price}`);
                   }}
-                  className="inline-flex items-center justify-center bg-brand-orange text-white font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-xl shadow-brand-orange/30"
+                  className="inline-flex items-center justify-center border-2 border-[#25D366] text-white bg-transparent hover:bg-[#25D366]/10 hover:scale-105 active:scale-95 transition-all font-semibold px-6 py-3 rounded-lg"
                 >
                   Grab This Offer
-                </button>
+                </a>
               </div>
             </div>
+          </div>
+        </Reveal>
+
+        {/* View All Courses link */}
+        <Reveal>
+          <div className="mt-10 text-center">
+            <Link
+              to="/courses"
+              data-testid={TEST_IDS.viewAllBtn}
+              onClick={() => trackEvent("view_all_courses_click", { source: "pricing" })}
+              className="inline-flex items-center gap-2 border-2 border-navy text-navy font-bold px-8 py-3.5 rounded-full hover:bg-navy hover:text-white hover:scale-105 active:scale-95 transition-all"
+            >
+              View All 6 Courses
+              <ArrowRight size={18} />
+            </Link>
           </div>
         </Reveal>
       </div>

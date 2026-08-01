@@ -4,12 +4,12 @@ import { toast } from "sonner";
 import { CONTACT, LOGO_URL, RESOURCES } from "../../data";
 
 export default function Footer() {
-  const year = new Date().getFullYear();
-  const location = useLocation();
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
   const navigate = useNavigate();
+  const year = new Date().getFullYear();
   const links = [
-    { label: "Courses", id: "featured-course" },
-    { label: "Curriculum", id: "curriculum" },
+    { label: "Courses", href: "/courses" },
     { label: "About", id: "why" },
     { label: "Contact", id: "contact" },
   ];
@@ -18,7 +18,7 @@ export default function Footer() {
     // do the scroll on mount. The below-fold sections lazy-load, so the
     // browser's native hash resolution races the lazy chunks — Navbar's
     // MutationObserver-based scroll-spy handles that on the target page.
-    if (location.pathname !== "/") {
+    if (!isHomePage) {
       navigate(`/#${id}`);
       return;
     }
@@ -62,11 +62,26 @@ export default function Footer() {
           <div>
             <h3 className="font-display font-bold mb-4 text-sm uppercase tracking-wider text-brand-bluesoft">Quick Links</h3>
             <ul className="space-y-3 text-sm text-white/70">
-              {links.map((l) => (
-                <li key={l.id}>
-                  <a href={`#${l.id}`} onClick={(e) => { e.preventDefault(); go(l.id); }} className="hover:text-brand-gold transition-colors">{l.label}</a>
-                </li>
-              ))}
+              {links.map((l) => {
+                if (l.href) {
+                  // Route link (react-router-dom)
+                  return (
+                    <li key={l.href}>
+                      <Link to={l.href} className="hover:text-brand-gold transition-colors">{l.label}</Link>
+                    </li>
+                  );
+                }
+                // Anchor link — cross-route if off-homepage
+                return (
+                  <li key={l.id}>
+                    {isHomePage ? (
+                      <a href={`#${l.id}`} onClick={(e) => { e.preventDefault(); go(l.id); }} className="hover:text-brand-gold transition-colors">{l.label}</a>
+                    ) : (
+                      <Link to={`/#${l.id}`} className="hover:text-brand-gold transition-colors">{l.label}</Link>
+                    )}
+                  </li>
+                );
+              })}
               <li><Link to="/privacy" data-testid="footer-privacy-link" className="hover:text-brand-gold transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" data-testid="footer-terms-link" className="hover:text-brand-gold transition-colors">Terms</Link></li>
             </ul>
