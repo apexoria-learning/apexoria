@@ -77,15 +77,22 @@ export default function SuccessStories() {
                 </div>
                 <p className="text-slate-600 leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-6 flex items-center gap-3">
-                  <img
-                    src={t.photo || avatars[i % avatars.length]}
-                    alt={t.name}
-                    width={48}
-                    height={48}
-                    loading="lazy"
-                    decoding="async"
-                    className="h-12 w-12 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
-                  />
+                  <picture>
+                    <source
+                      type="image/webp"
+                      srcSet={i === 1 ? `${IMAGES.student2640Webp} 640w, ${IMAGES.student2Webp} 940w` : (i === 0 ? IMAGES.student1Webp : IMAGES.teamWebp)}
+                    />
+                    <img
+                      src={t.photo || avatars[i % avatars.length]}
+                      srcSet={i === 1 ? `${IMAGES.student2640} 640w, ${IMAGES.student2} 940w` : undefined}
+                      alt={t.name}
+                      width={48}
+                      height={48}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-12 w-12 rounded-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                    />
+                  </picture>
                   <div>
                     <div className="font-bold text-navy text-sm">{t.name}</div>
                     <div className="text-xs text-slate-500">{t.role} {t.company}</div>

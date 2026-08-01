@@ -36,8 +36,13 @@ export const IMAGES = {
   "heroAbstract940Webp": "/images/hero-abstract.webp",
   "heroAbstract1280Webp": "/images/hero-abstract-1280w.webp",
   "student1": "/images/student-1.jpg",
+  "student1Webp": "/images/student-1.webp",
   "student2": "/images/student-2.jpg",
-  "team": "/images/team.jpg"
+  "student2Webp": "/images/student-2.webp",
+  "student2640": "/images/student-2-640w.jpg",
+  "student2640Webp": "/images/student-2-640w.webp",
+  "team": "/images/team.jpg",
+  "teamWebp": "/images/team.webp"
 };
 
 // Why-Apexoria manifesto tiles.

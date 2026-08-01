@@ -148,15 +148,24 @@ export default function LeadForm({ prefillCourse }) {
             Tell us a little about yourself and our team will guide you to the right learning path — no pressure, no jargon.
           </p>
           <div className="mt-8 overflow-hidden rounded-2xl clip-frame max-w-sm">
-            <img
-              src={IMAGES.student2}
-              alt="Student learning Salesforce online"
-              width={940}
-              height={650}
-              loading="lazy"
-              decoding="async"
-              className="w-full h-64 object-cover"
-            />
+            <picture>
+              <source
+                type="image/webp"
+                srcSet={`${IMAGES.student2640Webp} 640w, ${IMAGES.student2Webp} 940w`}
+                sizes="(max-width: 640px) 100vw, 640px"
+              />
+              <img
+                src={IMAGES.student2}
+                srcSet={`${IMAGES.student2640} 640w, ${IMAGES.student2} 940w`}
+                sizes="(max-width: 640px) 100vw, 640px"
+                alt="Student learning Salesforce online"
+                width={940}
+                height={650}
+                loading="lazy"
+                decoding="async"
+                className="w-full h-64 object-cover"
+              />
+            </picture>
           </div>
         </Reveal>
 
