@@ -9,6 +9,7 @@ import {
   FileDown,
   Image as ImageIcon,
   Sparkles,
+  Target,
 } from "lucide-react";
 
 /**
@@ -58,11 +59,18 @@ export const NAV = [
     dataKeys: ["PATHS", "SPECIAL_OFFER", "COURSE_OPTIONS"],
   },
   {
-    route: "curriculum",
-    label: "Curriculum",
+    route: "interview-prep",
+    label: "Interview Preparation",
+    icon: Target,
+    cluster: "programme",
+    dataKeys: ["INTERVIEW_PREP"],
+  },
+  {
+    route: "courses-page",
+    label: "Courses Page",
     icon: BookOpen,
     cluster: "programme",
-    dataKeys: ["CURRICULUM_TRACKS"],
+    dataKeys: ["ALL_COURSES_PAGE"],
   },
   {
     route: "downloads",

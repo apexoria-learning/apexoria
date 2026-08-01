@@ -7,6 +7,7 @@ import App from "@/App";
 
 // Lazy-load the admin bundle so the marketing site stays small.
 const AdminApp = lazy(() => import("@/admin/AdminApp"));
+const CoursesPage = lazy(() => import("@/pages/CoursesPage"));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,6 +26,10 @@ function AdminLoader() {
   );
 }
 
+function PageLoader() {
+  return <div className="min-h-screen w-full bg-white" />;
+}
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -36,6 +41,14 @@ root.render(
             element={
               <Suspense fallback={<AdminLoader />}>
                 <AdminApp />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/courses"
+            element={
+              <Suspense fallback={<PageLoader />}>
+                <CoursesPage />
               </Suspense>
             }
           />

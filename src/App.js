@@ -21,7 +21,7 @@ import LeadForm from "@/components/site/LeadForm";
 // payload only carries the hero experience. Any new section added here
 // must decide whether it belongs above the fold (eager) or below (lazy).
 const Founder = lazy(() => import("@/components/site/Founder"));
-const FeaturedCourse = lazy(() => import("@/components/site/FeaturedCourse"));
+const InterviewPrep = lazy(() => import("@/components/site/InterviewPrep"));
 const Pricing = lazy(() => import("@/components/site/Pricing"));
 const Batches = lazy(() => import("@/components/site/Batches"));
 const PlacementSupport = lazy(() => import("@/components/site/PlacementSupport"));
@@ -111,7 +111,7 @@ function App() {
           exists at first paint (see comment on the eager import). */}
       <Suspense fallback={null}>
         <Founder />
-        <FeaturedCourse onEnroll={handleEnroll} />
+        <InterviewPrep onEnroll={handleEnroll} />
         <Pricing onEnroll={handleEnroll} />
         <Batches onEnroll={handleEnroll} />
         <PlacementSupport onEnroll={handleEnroll} />

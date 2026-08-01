@@ -1,8 +1,12 @@
 import { Phone, Mail, Download, Heart, FileText } from "lucide-react";
 import { toast } from "sonner";
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { CONTACT, LOGO_URL, RESOURCES } from "../../data";
 
 export default function Footer() {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
   const year = new Date().getFullYear();
   const links = [
     { label: "Courses", id: "featured-course" },
@@ -53,7 +57,11 @@ export default function Footer() {
             <ul className="space-y-3 text-sm text-white/70">
               {links.map((l) => (
                 <li key={l.id}>
-                  <a href={`#${l.id}`} onClick={(e) => { e.preventDefault(); go(l.id); }} className="hover:text-brand-gold transition-colors">{l.label}</a>
+                  {isHomePage ? (
+                    <a href={`#${l.id}`} onClick={(e) => { e.preventDefault(); go(l.id); }} className="hover:text-brand-gold transition-colors">{l.label}</a>
+                  ) : (
+                    <Link to={`/#${l.id}`} className="hover:text-brand-gold transition-colors">{l.label}</Link>
+                  )}
                 </li>
               ))}
               <li><button className="hover:text-brand-gold transition-colors">Privacy Policy</button></li>

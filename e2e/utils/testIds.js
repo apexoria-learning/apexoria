@@ -32,13 +32,33 @@ export const NAVBAR = {
 };
 
 // Pricing — src/components/site/Pricing.jsx
-// Card + enroll ids are templated on the PATHS[].id: foundation | crash | complete.
+// Card + enroll ids are templated on the PATHS[].id: foundation | crash-course | complete-course | salesforce-qa | automation-qa | interview-prep.
 export const PRICING = {
   section: 'pricing-section',
   card: (id) => `pricing-card-${id}`,
   enrollBtn: (id) => `pricing-enroll-${id}`,
   specialOfferCard: 'special-offer-card',
   specialOfferEnroll: 'special-offer-enroll',
+  viewAllBtn: 'view-all-courses-btn',
+};
+
+// Interview Prep — src/components/site/InterviewPrep.jsx
+export const INTERVIEW_PREP = {
+  section: 'interview-prep-section',
+  headline: 'interview-prep-headline',
+  price: 'interview-prep-price',
+  enrollBtn: 'interview-prep-enroll-btn',
+  whatsappBtn: 'interview-prep-whatsapp-btn',
+  feature: (idx) => `interview-prep-feature-${idx}`,
+};
+
+// Courses Page — src/pages/CoursesPage.jsx + CourseDetailSection.jsx
+export const COURSES_PAGE = {
+  hero: 'courses-hero',
+  section: (id) => `course-section-${id}`,
+  enrollBtn: (id) => `course-enroll-${id}`,
+  brochureBtn: (id) => `course-brochure-${id}`,
+  inlineLeadForm: 'courses-inline-lead-form',
 };
 
 // FeaturedCourse — src/components/site/FeaturedCourse.jsx

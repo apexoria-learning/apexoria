@@ -16,7 +16,7 @@ test.describe('brochure download', () => {
     });
 
     await page.goto('/', { waitUntil: 'domcontentloaded' });
-    const btn = page.getByTestId(FEATURED_COURSE.brochureBtn);
+    const btn = page.getByTestId(FINAL_CTA.brochureBtn);
     await btn.scrollIntoViewIfNeeded();
     await btn.click();
 

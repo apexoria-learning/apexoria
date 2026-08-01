@@ -42,12 +42,13 @@ import ContactPage from "./pages/ContactPage";
 import FounderPage from "./pages/FounderPage";
 import BatchesPage from "./pages/BatchesPage";
 import PricingPage from "./pages/PricingPage";
-import CurriculumPage from "./pages/CurriculumPage";
 import TestimonialsPage from "./pages/TestimonialsPage";
 import FaqPage from "./pages/FaqPage";
 import DownloadsPage from "./pages/DownloadsPage";
 import ImagesPage from "./pages/ImagesPage";
 import MiscPage from "./pages/MiscPage";
+import InterviewPrepEditor from "./pages/InterviewPrepEditor";
+import CoursesPageEditor from "./pages/CoursesPageEditor";
 
 const PAGE_COMPONENTS = {
   contact: ContactPage,
@@ -55,11 +56,12 @@ const PAGE_COMPONENTS = {
   images: ImagesPage,
   batches: BatchesPage,
   pricing: PricingPage,
-  curriculum: CurriculumPage,
   downloads: DownloadsPage,
   testimonials: TestimonialsPage,
   faq: FaqPage,
   misc: MiscPage,
+  "interview-prep": InterviewPrepEditor,
+  "courses-page": CoursesPageEditor,
 };
 
 const CLUSTER_COLLAPSE_KEY = "apexoria.cms.clusterCollapse";

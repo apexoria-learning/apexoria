@@ -1,17 +1,19 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import { CONTACT, LOGO_URL } from "../../data";
 
 const LINKS = [
   { label: "Home", id: "home" },
-  { label: "Courses", id: "featured-course" },
+  { label: "Interview Prep", id: "interview-prep" },
   { label: "Pricing", id: "pricing" },
   { label: "Batches", id: "batches" },
   { label: "Placement", id: "placement" },
   { label: "Success Stories", id: "success-stories" },
   { label: "FAQ", id: "faq" },
   { label: "Contact", id: "contact" },
+  { label: "All Courses", href: "/courses" },
 ];
 
 export default function Navbar({ onEnroll }) {
@@ -102,6 +104,20 @@ export default function Navbar({ onEnroll }) {
 
         <div className="hidden lg:flex items-center gap-6">
           {LINKS.map((l) => {
+            if (l.href) {
+              // Route link (react-router-dom)
+              return (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  data-testid={`nav-link-${l.href.replace(/\//g, '')}`}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${scrolled ? "text-navy" : "text-white"}`}
+                >
+                  {l.label}
+                </Link>
+              );
+            }
+            // Scroll-to-section anchor
             const isActive = activeId === l.id;
             return (
               <a
@@ -161,6 +177,20 @@ export default function Navbar({ onEnroll }) {
       >
         <div className="px-5 py-4 flex flex-col gap-1">
           {LINKS.map((l) => {
+            if (l.href) {
+              // Route link (react-router-dom)
+              return (
+                <Link
+                  key={l.href}
+                  to={l.href}
+                  onClick={() => setOpen(false)}
+                  className="text-left py-3 font-semibold border-b border-slate-100 transition-colors text-navy/80"
+                >
+                  {l.label}
+                </Link>
+              );
+            }
+            // Scroll-to-section anchor
             const isActive = activeId === l.id;
             return (
               <a
