@@ -1,12 +1,12 @@
 import { Phone, Mail, Download, Heart, FileText } from "lucide-react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "sonner";
-import { useLocation } from "react-router-dom";
-import { Link } from "react-router-dom";
 import { CONTACT, LOGO_URL, RESOURCES } from "../../data";
 
 export default function Footer() {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
+  const navigate = useNavigate();
   const year = new Date().getFullYear();
   const links = [
     { label: "Courses", href: "/courses" },
@@ -14,6 +14,14 @@ export default function Footer() {
     { label: "Contact", id: "contact" },
   ];
   const go = (id) => {
+    // If we're not on the home route, hop back to "/" and let the hash
+    // do the scroll on mount. The below-fold sections lazy-load, so the
+    // browser's native hash resolution races the lazy chunks — Navbar's
+    // MutationObserver-based scroll-spy handles that on the target page.
+    if (!isHomePage) {
+      navigate(`/#${id}`);
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
       if (window.__lenis) {
@@ -74,8 +82,8 @@ export default function Footer() {
                   </li>
                 );
               })}
-              <li><button className="hover:text-brand-gold transition-colors">Privacy Policy</button></li>
-              <li><button className="hover:text-brand-gold transition-colors">Terms</button></li>
+              <li><Link to="/privacy" data-testid="footer-privacy-link" className="hover:text-brand-gold transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" data-testid="footer-terms-link" className="hover:text-brand-gold transition-colors">Terms</Link></li>
             </ul>
           </div>
 

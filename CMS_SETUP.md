@@ -56,7 +56,7 @@ In the Vercel dashboard for the `apexoria` project → **Settings → Environmen
 | `GITHUB_TOKEN` | `github_pat_11CJEC6...` (the fine-grained PAT you generated) | Production + Preview |
 | `GITHUB_OWNER` | `apexoria-learning` | Production + Preview |
 | `GITHUB_REPO` | `apexoria` | Production + Preview |
-| `GITHUB_BRANCH` | `main` | Production + Preview |
+| `GITHUB_BRANCH` | `feat/cms-integration` | Production + Preview |
 | `FIREBASE_PROJECT_ID` | `apexorialearningcms` | Production + Preview |
 | `ADMIN_EMAILS` | `apexorialearning@gmail.com,vikki.apexoria@gmail.com,vishveshu143@gmail.com` | Production + Preview |
 
@@ -85,7 +85,11 @@ Vercel picks up the push and deploys. In ~45s, `/admin` is live.
 1. Visit **https://apexorialearning.in/admin**
 2. Click **Continue with Google** → sign in with an admin email
 3. Edit any section from the sidebar
-4. Click **Save changes** at the top-right — Vercel will redeploy in ~45s
+4. Click **Save to feat/cms-integration** at the top-right — the change is committed to the `feat/cms-integration` branch and Vercel builds a **preview** deploy (not production).
+5. On GitHub, open a PR from `feat/cms-integration` → `main` (the success toast has an **Open PR ↗** button that jumps straight to the compare view). Review the diff, then squash-merge.
+6. Once merged, Vercel redeploys production in ~45 s and the change is live at https://apexorialearning.in.
+
+> **Why the PR step?** It gives every content change a review + one-click revert, keeps `main` shippable at all times, and lets multiple admins stage edits together before publishing.
 
 **Sections available:**
 - Contact & Socials (phone, email, WhatsApp link, Instagram, LinkedIn, Facebook, Google reviews)
@@ -99,7 +103,7 @@ Vercel picks up the push and deploys. In ~45s, `/admin` is live.
 - Images (hero background, student photos, team photo — with uploads)
 - Stats · Value Props · Extras (Why Apexoria manifesto + Placement steps + batch stats)
 
-**Every save is a git commit** — full audit trail. Revert via GitHub if anything goes wrong.
+**Every save is a git commit on `feat/cms-integration`** — full audit trail. Revert a bad commit via GitHub before merging, or revert the merge commit on `main` after the fact.
 
 ## Media uploads (PDFs, images)
 
@@ -117,8 +121,7 @@ testimonial headshots, hero/team images — are committed to this repo under
     or [smallpdf.com/compress-pdf](https://smallpdf.com/compress-pdf)
   - Images → [squoosh.app](https://squoosh.app) (WebP at ~75% quality is usually
     well under 500 KB with no visible loss)
-- **Availability**: uploaded files appear on the live site after the next Vercel
-  redeploy (~45–60 s), same as content edits to `src/data.js`.
+- **Availability**: uploaded files appear on the live site after the `feat/cms-integration` PR is merged to `main` and Vercel finishes the production build (~45–60 s), same as content edits to `src/data.js`. Before the merge they are visible on the Vercel preview deploy that Vercel comments on the PR.
 - **Old files stay in the repo.** When you upload a replacement, the previous
   file remains in `public/uploads/` — nothing is deleted automatically. If
   history bloat becomes a concern later, we can prune manually or move to Git
@@ -147,5 +150,5 @@ Then update the `ADMIN_EMAILS` Vercel env var to include the new email, and rede
 
 - **"is not on the admin allowlist"** on sign-in → email not in Firestore `/admins`. Add it via the console.
 - **"Server misconfigured. Missing..."** on save → Vercel env vars incomplete. Check the table above.
-- **Save succeeded but changes don't show** → Vercel deploy in progress (~45s). Watch the Vercel dashboard for the new build. Hard-refresh once green.
+- **Save succeeded but changes don't show on the live site** → saves land on `feat/cms-integration`, not `main`. Open the PR (`Open PR ↗` in the success toast, or https://github.com/apexoria-learning/apexoria/compare/main...feat/cms-integration) and merge it. Production redeploys in ~45–60 s after the merge.
 - **"Invalid ID token"** → your session expired. Sign out and back in.

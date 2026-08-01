@@ -7,6 +7,7 @@ import {
   MessageSquareQuote,
   HelpCircle,
   FileDown,
+  FileText,
   Image as ImageIcon,
   Sparkles,
   Target,
@@ -99,6 +100,13 @@ export const NAV = [
     icon: Sparkles,
     cluster: "marketing",
     dataKeys: ["STATS", "VALUE_PROPS", "PLACEMENT_STEPS"],
+  },
+  {
+    route: "legal",
+    label: "Legal Pages",
+    icon: FileText,
+    cluster: "marketing",
+    dataKeys: ["LEGAL_PAGES"],
   },
 ];
 

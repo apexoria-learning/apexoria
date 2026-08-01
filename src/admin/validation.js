@@ -128,6 +128,17 @@ const RESOURCE = z.object({
 });
 const RESOURCES = z.array(RESOURCE);
 
+const LEGAL_DOC = z.object({
+  title: z.string().trim().min(1, "Title is required"),
+  metaDescription: z.string().trim().optional().or(z.literal("")),
+  lastUpdated: z.string().trim().optional().or(z.literal("")),
+  contentMd: z.string().optional().or(z.literal("")),
+});
+const LEGAL_PAGES = z.object({
+  privacy: LEGAL_DOC,
+  terms: LEGAL_DOC,
+});
+
 const LOGO_URL = optionalUrl;
 const SALESFORCE_LOGO = optionalUrl;
 const IMAGES = z.record(z.string()); // free-form image map
@@ -214,6 +225,7 @@ export const SECTION_SCHEMAS = {
   FAQ_ITEMS,
   BROCHURE_URL,
   RESOURCES,
+  LEGAL_PAGES,
   LOGO_URL,
   SALESFORCE_LOGO,
   IMAGES,

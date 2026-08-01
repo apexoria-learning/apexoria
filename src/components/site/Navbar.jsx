@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CONTACT, LOGO_URL } from "../../data";
 
 const LINKS = [
@@ -18,7 +18,11 @@ const LINKS = [
 export default function Navbar({ onEnroll }) {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
+  const navigate = useNavigate();
   const [scrolled, setScrolled] = useState(false);
+  // Off-route pages (/courses, /privacy, /terms) sit on a light background,
+  // so the navbar must always render in its "solid" state there — otherwise
+  // the default white text (used over the dark hero) is invisible.
   const isSolid = scrolled || !isHomePage;
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
@@ -74,6 +78,13 @@ export default function Navbar({ onEnroll }) {
 
   const go = (id) => {
     setOpen(false);
+    // Off-route (e.g. /courses, /privacy, /terms) — hop to home with a
+    // hash. ScrollToHashHandler in App.js takes over once the target
+    // section mounts (below-fold sections are React.lazy).
+    if (!isHomePage) {
+      navigate(`/#${id}`);
+      return;
+    }
     const el = document.getElementById(id);
     if (el) {
       if (window.__lenis) {

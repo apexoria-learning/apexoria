@@ -107,6 +107,14 @@ export const PLACEMENT = {
 export const FOOTER = {
   root: 'footer',
   resource: (slug) => `footer-resource-${slug}`,
+  privacyLink: 'footer-privacy-link',
+  termsLink: 'footer-terms-link',
+};
+
+// Legal pages — src/pages/Privacy.jsx + src/pages/Terms.jsx
+export const LEGAL = {
+  privacyPage: 'privacy-page',
+  termsPage: 'terms-page',
 };
 
 // FinalCTA — src/components/site/FinalCTA.jsx
