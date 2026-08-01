@@ -1,22 +1,19 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { CONTACT, LOGO_URL } from "../../data";
 
 const LINKS = [
   { label: "Home", id: "home" },
-  { label: "Interview Prep", id: "interview-prep" },
+  { label: "Courses", href: "/courses" },
   { label: "Pricing", id: "pricing" },
-  { label: "Batches", id: "batches" },
-  { label: "Placement", id: "placement" },
-  { label: "Success Stories", id: "success-stories" },
-  { label: "FAQ", id: "faq" },
-  { label: "Contact", id: "contact" },
-  { label: "All Courses", href: "/courses" },
+  { label: "About", id: "why" },
 ];
 
 export default function Navbar({ onEnroll }) {
+  const { pathname } = useLocation();
+  const isHomePage = pathname === '/';
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState("home");
@@ -32,7 +29,10 @@ export default function Navbar({ onEnroll }) {
   // section become "active" only once its top passes ~40% down the viewport.
   // MutationObserver picks up lazy-loaded sections (React.lazy in App.js) as
   // they mount, so the underline advances past "Home" once they enter the DOM.
+  // Only active on homepage — no-op when sections don't exist (e.g. /courses).
   useEffect(() => {
+    if (!isHomePage) return;
+
     const observer = new IntersectionObserver(
       (entries) => {
         const visible = entries
@@ -48,7 +48,7 @@ export default function Navbar({ onEnroll }) {
     const observed = new Set();
     const observeAvailable = () => {
       LINKS.forEach((l) => {
-        if (observed.has(l.id)) return;
+        if (!l.id || observed.has(l.id)) return;
         const el = document.getElementById(l.id);
         if (el) {
           observer.observe(el);
@@ -65,7 +65,7 @@ export default function Navbar({ onEnroll }) {
       mo.disconnect();
       observer.disconnect();
     };
-  }, []);
+  }, [isHomePage]);
 
   const go = (id) => {
     setOpen(false);
@@ -117,22 +117,35 @@ export default function Navbar({ onEnroll }) {
                 </Link>
               );
             }
-            // Scroll-to-section anchor
-            const isActive = activeId === l.id;
-            return (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                data-testid={`nav-link-${l.id}`}
-                onClick={(e) => { e.preventDefault(); go(l.id); }}
-                aria-current={isActive ? "true" : undefined}
-                className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
-                  isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${scrolled ? "text-navy" : "text-white"}`
-                }`}
-              >
-                {l.label}
-              </a>
-            );
+            // Scroll-to-section anchor (homepage) or cross-route link (off-homepage)
+            const isActive = isHomePage && activeId === l.id;
+            if (isHomePage) {
+              return (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  data-testid={`nav-link-${l.id}`}
+                  onClick={(e) => { e.preventDefault(); go(l.id); }}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue after:absolute after:left-0 after:right-0 after:-bottom-1.5 after:h-0.5 after:rounded-full after:bg-brand-blue after:transition-transform after:origin-left ${
+                    isActive ? "text-brand-blue after:scale-x-100" : `after:scale-x-0 ${scrolled ? "text-navy" : "text-white"}`
+                  }`}
+                >
+                  {l.label}
+                </a>
+              );
+            } else {
+              return (
+                <Link
+                  key={l.id}
+                  to={`/#${l.id}`}
+                  data-testid={`nav-link-${l.id}`}
+                  className={`relative text-sm font-semibold transition-colors hover:text-brand-blue ${scrolled ? "text-navy" : "text-white"}`}
+                >
+                  {l.label}
+                </Link>
+              );
+            }
           })}
         </div>
 
@@ -145,13 +158,23 @@ export default function Navbar({ onEnroll }) {
             <Phone size={16} className="text-brand-blue" />
             {CONTACT.phone}
           </a>
-          <button
-            data-testid="nav-enroll-btn"
-            onClick={onEnroll}
-            className="bg-brand-orange text-white font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30"
-          >
-            Enroll Now
-          </button>
+          {isHomePage ? (
+            <button
+              data-testid="nav-enroll-btn"
+              onClick={onEnroll}
+              className="bg-brand-orange text-white font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30"
+            >
+              Enroll Now
+            </button>
+          ) : (
+            <Link
+              to="/#contact"
+              data-testid="nav-enroll-btn"
+              className="bg-brand-orange text-white font-bold text-sm px-6 py-3 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30 inline-block text-center"
+            >
+              Enroll Now
+            </Link>
+          )}
         </div>
 
         <button
@@ -190,31 +213,54 @@ export default function Navbar({ onEnroll }) {
                 </Link>
               );
             }
-            // Scroll-to-section anchor
-            const isActive = activeId === l.id;
-            return (
-              <a
-                key={l.id}
-                href={`#${l.id}`}
-                onClick={(e) => { e.preventDefault(); go(l.id); }}
-                aria-current={isActive ? "true" : undefined}
-                className={`text-left py-3 font-semibold border-b border-slate-100 transition-colors ${
-                  isActive ? "text-brand-blue border-l-2 border-l-brand-blue pl-2" : "text-navy/80"
-                }`}
-              >
-                {l.label}
-              </a>
-            );
+            // Scroll-to-section anchor (homepage) or cross-route link (off-homepage)
+            const isActive = isHomePage && activeId === l.id;
+            if (isHomePage) {
+              return (
+                <a
+                  key={l.id}
+                  href={`#${l.id}`}
+                  onClick={(e) => { e.preventDefault(); go(l.id); }}
+                  aria-current={isActive ? "true" : undefined}
+                  className={`text-left py-3 font-semibold border-b border-slate-100 transition-colors ${
+                    isActive ? "text-brand-blue border-l-2 border-l-brand-blue pl-2" : "text-navy/80"
+                  }`}
+                >
+                  {l.label}
+                </a>
+              );
+            } else {
+              return (
+                <Link
+                  key={l.id}
+                  to={`/#${l.id}`}
+                  onClick={() => setOpen(false)}
+                  className="text-left py-3 font-semibold border-b border-slate-100 transition-colors text-navy/80"
+                >
+                  {l.label}
+                </Link>
+              );
+            }
           })}
           <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center gap-2 py-3 font-bold text-navy">
             <Phone size={16} className="text-brand-blue" /> {CONTACT.phone}
           </a>
-          <button
-            onClick={() => { setOpen(false); onEnroll(); }}
-            className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2"
-          >
-            Enroll Now
-          </button>
+          {isHomePage ? (
+            <button
+              onClick={() => { setOpen(false); onEnroll(); }}
+              className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2"
+            >
+              Enroll Now
+            </button>
+          ) : (
+            <Link
+              to="/#contact"
+              onClick={() => setOpen(false)}
+              className="bg-brand-orange text-white font-bold py-3.5 rounded-full mt-2 text-center inline-block"
+            >
+              Enroll Now
+            </Link>
+          )}
         </div>
       </motion.div>
     </motion.header>
