@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Phone, Menu, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CONTACT, LOGO_URL } from "../../data";
@@ -96,7 +96,7 @@ export default function Navbar({ onEnroll }) {
   };
 
   return (
-    <motion.header
+    <m.header
       data-testid="navbar"
       initial={{ y: -80 }}
       animate={{ y: 0 }}
@@ -205,7 +205,7 @@ export default function Navbar({ onEnroll }) {
         </button>
       </nav>
 
-      <motion.div
+      <m.div
         id="mobile-menu"
         data-testid="mobile-menu"
         initial={false}
@@ -278,7 +278,7 @@ export default function Navbar({ onEnroll }) {
             </Link>
           )}
         </div>
-      </motion.div>
-    </motion.header>
+      </m.div>
+    </m.header>
   );
 }

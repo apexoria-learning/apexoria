@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import "@/App.css";
-import { Toaster } from "@/components/ui/sonner";
+import { LazyMotion, domAnimation } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { initAnalytics } from "@/lib/analytics";
@@ -22,6 +22,7 @@ import LeadForm from "@/components/site/LeadForm";
 // Below-the-fold — code-split into a secondary chunk so the initial JS
 // payload only carries the hero experience. Any new section added here
 // must decide whether it belongs above the fold (eager) or below (lazy).
+const Toaster = lazy(() => import("@/components/ui/sonner").then(m => ({ default: m.Toaster })));
 const Founder = lazy(() => import("@/components/site/Founder"));
 const InterviewPrep = lazy(() => import("@/components/site/InterviewPrep"));
 const Pricing = lazy(() => import("@/components/site/Pricing"));
@@ -115,6 +116,25 @@ function App() {
     const el = document.getElementById("contact");
     if (el) {
       scrollTo(el);
+      // Wait for the lazy Suspense boundary above #contact to resolve (the
+      // height-reserving fallback gets replaced with real content), then do
+      // a corrective scroll. This catches layout shifts on both fast local
+      // builds (chunks load in <50ms) and slow 3G (200-1000ms).
+      const waitForHydration = () => {
+        const fallback = document.querySelector('[aria-hidden="true"][style*="min-height"]');
+        if (!fallback) {
+          // Suspense resolved — chunks have loaded. Wait 100ms for the initial
+          // scroll animation to settle, then do a corrective scroll in case the
+          // real content height differs from the fallback.
+          setTimeout(() => {
+            const target = document.getElementById("contact");
+            if (target) scrollTo(target);
+          }, 100);
+        } else {
+          requestAnimationFrame(waitForHydration);
+        }
+      };
+      requestAnimationFrame(waitForHydration);
     } else {
       // Belt-and-suspenders: if some future refactor makes LeadForm lazy
       // again, retry once on the next macrotask so the click still resolves.
@@ -128,34 +148,38 @@ function App() {
   return (
     <div className="App font-body">
       <ScrollToHashHandler />
-      <Navbar onEnroll={() => handleEnroll()} />
-      <Hero onEnroll={() => handleEnroll()} />
-      <EditorialMarquee />
-      <WhyApexoria />
-      {/* Suspense boundary for every below-fold section. A null fallback is
-          acceptable because Reveal / whileInView entry animations already
-          animate each section in from the bottom — the split-second before
-          the chunk resolves is indistinguishable from the entry animation.
-          LeadForm is rendered OUTSIDE this boundary so the #contact anchor
-          exists at first paint (see comment on the eager import). */}
-      <Suspense fallback={null}>
-        <Founder />
-        <InterviewPrep onEnroll={handleEnroll} />
-        <Pricing onEnroll={handleEnroll} />
-        <Batches onEnroll={handleEnroll} />
-        <PlacementSupport onEnroll={handleEnroll} />
-        <SuccessStories />
-        <FaqSection onEnroll={handleEnroll} />
-      </Suspense>
-      <LeadForm prefillCourse={prefillCourse} />
-      <Suspense fallback={null}>
-        <FinalCTA onEnroll={handleEnroll} />
-        <Footer />
-        <WhatsAppWidget />
-      </Suspense>
-      <Toaster position="top-center" richColors />
       <Analytics />
       <SpeedInsights />
+      <LazyMotion features={domAnimation} strict>
+        <Navbar onEnroll={() => handleEnroll()} />
+        <Hero onEnroll={() => handleEnroll()} />
+        <EditorialMarquee />
+        <WhyApexoria />
+        {/* Suspense boundary for every below-fold section. Reserve height on
+            the fallback so #contact's Y coordinate is stable at first paint —
+            prevents scroll regression when user clicks Nav Enroll before these
+            7 sections finish lazy-loading (e2e/tests/navigation.spec.js).
+            LeadForm is rendered OUTSIDE this boundary so the #contact anchor
+            exists at first paint (see comment on the eager import). */}
+        <Suspense fallback={<div aria-hidden="true" style={{ minHeight: "5500px" }} />}>
+          <Founder />
+          <InterviewPrep onEnroll={handleEnroll} />
+          <Pricing onEnroll={handleEnroll} />
+          <Batches onEnroll={handleEnroll} />
+          <PlacementSupport onEnroll={handleEnroll} />
+          <SuccessStories />
+          <FaqSection onEnroll={handleEnroll} />
+        </Suspense>
+        <LeadForm prefillCourse={prefillCourse} />
+        <Suspense fallback={null}>
+          <FinalCTA onEnroll={handleEnroll} />
+          <Footer />
+          <WhatsAppWidget />
+        </Suspense>
+      </LazyMotion>
+      <Suspense fallback={null}>
+        <Toaster position="top-center" richColors />
+      </Suspense>
     </div>
   );
 }

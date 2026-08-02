@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Star } from "lucide-react";
 import { TESTIMONIALS, STATS, IMAGES, GOOGLE_REVIEWS } from "../../data";
 import { Reveal } from "./Reveal";
@@ -65,7 +65,7 @@ export default function SuccessStories() {
         <div className="mt-14 grid md:grid-cols-3 gap-6">
           {TESTIMONIALS.map((t, i) => (
             <Reveal key={i} delay={i * 0.1}>
-              <motion.div
+              <m.div
                 whileHover={{ y: -8 }}
                 data-testid={`testimonial-${i}`}
                 className="h-full rounded-2xl border border-slate-200 bg-white p-7 shadow-lg shadow-navy/5"
@@ -98,7 +98,7 @@ export default function SuccessStories() {
                     <div className="text-xs text-slate-500">{t.role} {t.company}</div>
                   </div>
                 </div>
-              </motion.div>
+              </m.div>
             </Reveal>
           ))}
         </div>

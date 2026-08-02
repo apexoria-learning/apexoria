@@ -47,18 +47,33 @@ test.describe('anti-spam trio', () => {
   test('time-trap: submit within 2s silently drops', async ({ page }) => {
     const { requests } = installGoogleFormStub(page);
 
+    // Install fake clock at T=0 to control time precisely.
+    // The 2000ms trap is measured from PAGE MOUNT (pageMountedAt captured
+    // in LeadForm.jsx at mount, NOT when lazy fields hydrate).
+    await page.clock.install({ time: new Date('2026-08-02T12:00:00Z') });
+
     await page.goto('/', { waitUntil: 'domcontentloaded' });
+    // pageMountedAt is frozen at T=0 under the fake clock
 
-    // The 2s trap is measured from LeadForm mount (page load).
-    // Any interaction — navbar scroll, Playwright's auto-scroll +
-    // field fills — easily eats 2s, so submit IMMEDIATELY via a direct
-    // DOM `.click()` before doing anything else. The trap check runs
-    // BEFORE `validate()`, so an empty submit still triggers the trap.
-    await page.evaluate(() => {
-      const btn = document.querySelector('[data-testid="lead-submit-btn"]');
-      if (btn) btn.click();
-    });
+    // Scroll to bottom to bring lead-form-section into viewport.
+    // This doesn't depend on timers, so it works under fake clock.
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight));
 
+    // Advance clock by 500ms to trigger requestIdleCallback / setTimeout
+    // that loads the lazy LeadFormFields chunk. 500ms < 2000ms.
+    await page.clock.fastForward(500);
+
+    // Wait for fields to hydrate
+    await expect(page.getByTestId(LEAD_FORM.form)).toBeVisible();
+
+    // Submit immediately via testid click (elapsed: ~500ms < 2000ms).
+    // The trap check runs BEFORE validate(), so empty fields are OK.
+    await page.getByTestId(LEAD_FORM.submitBtn).click();
+
+    // Advance clock to let React flush the state update (setSuccess)
+    await page.clock.fastForward(100);
+
+    // Trap fires → fake success view renders, but no POST left the browser
     await expect(page.getByTestId(LEAD_FORM.success)).toBeVisible();
     expect(requests).toHaveLength(0);
   });

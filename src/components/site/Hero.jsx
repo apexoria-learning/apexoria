@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { IMAGES, WHATSAPP_LINK } from "../../data";
 import { trackEvent } from "@/lib/analytics";
@@ -9,14 +9,14 @@ const ease = [0.16, 1, 0.3, 1];
 function Line({ children, delay }) {
   return (
     <span className="reveal-mask">
-      <motion.span
+      <m.span
         className="block"
         initial={{ y: "110%" }}
         animate={{ y: 0 }}
         transition={{ duration: 0.9, delay, ease }}
       >
         {children}
-      </motion.span>
+      </m.span>
     </span>
   );
 }
@@ -38,7 +38,7 @@ export default function Hero({ onEnroll }) {
           background) so the browser preload scanner + <link rel="preload">
           in index.html can start fetching the LCP asset during HTML parse.
           Explicit width/height keeps CLS at 0 while we wait for the image. */}
-      <motion.div style={{ y: yImg, scale: scaleImg }} className="absolute inset-0 z-0">
+      <m.div style={{ y: yImg, scale: scaleImg }} className="absolute inset-0 z-0">
         <div className="absolute right-[-10%] top-0 h-full w-[70%] overflow-hidden">
           <picture>
             <source
@@ -62,21 +62,21 @@ export default function Hero({ onEnroll }) {
           </picture>
         </div>
         <div className="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/40" />
-      </motion.div>
+      </m.div>
 
       {/* Glow blobs */}
       <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-brand-blue/20 blur-[120px] z-0" />
       <div className="absolute right-10 bottom-10 h-72 w-72 rounded-full bg-brand-orange/10 blur-[110px] z-0" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-5 lg:px-8 pt-28 pb-40 w-full">
-        <motion.span
+        <m.span
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
           className="inline-flex items-center gap-2 text-brand-bluesoft text-xs font-bold uppercase tracking-[0.25em] mb-6"
         >
           <span className="h-px w-8 bg-brand-gold" /> Salesforce Training Academy · India
-        </motion.span>
+        </m.span>
 
         <h1 className="font-display font-black uppercase tracking-tighter leading-[0.92] text-white text-5xl md:text-6xl lg:text-7xl max-w-4xl">
           <Line delay={0.35}>Master</Line>
@@ -89,7 +89,7 @@ export default function Hero({ onEnroll }) {
           </Line>
         </h1>
 
-        <motion.p
+        <m.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95, duration: 0.7 }}
@@ -97,9 +97,9 @@ export default function Hero({ onEnroll }) {
         >
           Live online cohorts in Apex, LWC, Integrations &amp; Admin — plus dedicated Salesforce QA batches.
           <span className="text-white font-semibold"> Guaranteed placement support.</span>
-        </motion.p>
+        </m.p>
 
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.7 }}
@@ -129,11 +129,11 @@ export default function Hero({ onEnroll }) {
             </svg>
             Talk to Us on WhatsApp
           </a>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Trust strip */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.3 }}
@@ -146,7 +146,7 @@ export default function Hero({ onEnroll }) {
             </span>
           ))}
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }

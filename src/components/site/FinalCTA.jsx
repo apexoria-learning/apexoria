@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Phone, Instagram, Linkedin, Facebook, ArrowRight, Download } from "lucide-react";
 import { toast } from "sonner";
 import { CONTACT, BROCHURE_URL } from "../../data";

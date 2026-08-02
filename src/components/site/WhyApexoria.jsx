@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Radio, FolderGit2, GraduationCap, Briefcase } from "lucide-react";
 import { VALUE_PROPS, IMAGES } from "../../data";
 import { Reveal } from "./Reveal";
@@ -26,7 +26,7 @@ export default function WhyApexoria() {
             const Icon = ICONS[v.icon];
             return (
               <Reveal key={v.n} delay={i * 0.08}>
-                <motion.div
+                <m.div
                   whileHover={{ y: -8 }}
                   data-testid={`value-card-${v.n}`}
                   className={`relative overflow-hidden rounded-2xl border border-slate-200 p-8 lg:p-10 bg-white shadow-xl shadow-navy/5 h-full ${
@@ -43,7 +43,7 @@ export default function WhyApexoria() {
                     <h3 className="font-display text-2xl font-bold text-navy mb-3">{v.title}</h3>
                     <p className="text-slate-600 leading-relaxed">{v.body}</p>
                   </div>
-                </motion.div>
+                </m.div>
               </Reveal>
             );
           })}
