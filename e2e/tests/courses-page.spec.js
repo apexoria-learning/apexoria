@@ -10,6 +10,21 @@ import { installGoogleFormStub } from '../utils/gfStub.js';
 const COURSE_IDS = ['foundation', 'crash-course', 'complete-course', 'salesforce-qa', 'automation-qa', 'interview-prep'];
 
 test.describe('courses page', () => {
+  test('page renders with actual content (regression: LazyMotion strict mode)', async ({ page }) => {
+    // Regression test for Phase 2A LazyMotion bug: when LazyMotion wrapper only
+    // existed in App.js (homepage), other routes threw in strict mode, rendering
+    // only outer section wrappers (navy <section> with no children). This test
+    // asserts actual TEXT content is present, not just the section element.
+    await page.goto('/courses', { waitUntil: 'domcontentloaded' });
+
+    // Hero heading must render with actual text
+    await expect(page.getByRole('heading', { name: /Explore All 6 Courses/i })).toBeVisible();
+
+    // At least one course section should have visible text content
+    const crashCourseSection = page.getByTestId(COURSES_PAGE.section('crash-course'));
+    await expect(crashCourseSection.getByRole('heading', { name: /Crash Course/i })).toBeVisible();
+  });
+
   test('navigation: click "View All 6 Courses" on homepage → lands on /courses with 6 sections', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
 

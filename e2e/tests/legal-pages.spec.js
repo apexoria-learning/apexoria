@@ -28,14 +28,20 @@ test.describe('legal pages', () => {
   test('/privacy renders h1 and sets document title', async ({ page }) => {
     await page.goto('/privacy', { waitUntil: 'domcontentloaded' });
     await expect(page.getByTestId(LEGAL.privacyPage)).toBeVisible();
-    await expect(page.locator('h1')).toHaveText(/Privacy/i);
+    // Regression: LazyMotion strict mode bug caused Navbar to be invisible.
+    // Assert on actual heading text to catch render failures, not just element presence.
+    const heading = page.locator('h1');
+    await expect(heading).toBeVisible();
+    await expect(heading).toHaveText(/Privacy/i);
     await expect(page).toHaveTitle(/Privacy/i);
   });
 
   test('/terms renders h1 and sets document title', async ({ page }) => {
     await page.goto('/terms', { waitUntil: 'domcontentloaded' });
     await expect(page.getByTestId(LEGAL.termsPage)).toBeVisible();
-    await expect(page.locator('h1')).toHaveText(/Terms/i);
+    const heading = page.locator('h1');
+    await expect(heading).toBeVisible();
+    await expect(heading).toHaveText(/Terms/i);
     await expect(page).toHaveTitle(/Terms/i);
   });
 

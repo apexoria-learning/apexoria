@@ -1,7 +1,6 @@
 import { useEffect, useState, useCallback, lazy, Suspense } from "react";
 import { useLocation } from "react-router-dom";
 import "@/App.css";
-import { LazyMotion, domAnimation } from "framer-motion";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import { initAnalytics } from "@/lib/analytics";
@@ -150,33 +149,31 @@ function App() {
       <ScrollToHashHandler />
       <Analytics />
       <SpeedInsights />
-      <LazyMotion features={domAnimation} strict>
-        <Navbar onEnroll={() => handleEnroll()} />
-        <Hero onEnroll={() => handleEnroll()} />
-        <EditorialMarquee />
-        <WhyApexoria />
-        {/* Suspense boundary for every below-fold section. Reserve height on
-            the fallback so #contact's Y coordinate is stable at first paint —
-            prevents scroll regression when user clicks Nav Enroll before these
-            7 sections finish lazy-loading (e2e/tests/navigation.spec.js).
-            LeadForm is rendered OUTSIDE this boundary so the #contact anchor
-            exists at first paint (see comment on the eager import). */}
-        <Suspense fallback={<div aria-hidden="true" style={{ minHeight: "5500px" }} />}>
-          <Founder />
-          <InterviewPrep onEnroll={handleEnroll} />
-          <Pricing onEnroll={handleEnroll} />
-          <Batches onEnroll={handleEnroll} />
-          <PlacementSupport onEnroll={handleEnroll} />
-          <SuccessStories />
-          <FaqSection onEnroll={handleEnroll} />
-        </Suspense>
-        <LeadForm prefillCourse={prefillCourse} />
-        <Suspense fallback={null}>
-          <FinalCTA onEnroll={handleEnroll} />
-          <Footer />
-          <WhatsAppWidget />
-        </Suspense>
-      </LazyMotion>
+      <Navbar onEnroll={() => handleEnroll()} />
+      <Hero onEnroll={() => handleEnroll()} />
+      <EditorialMarquee />
+      <WhyApexoria />
+      {/* Suspense boundary for every below-fold section. Reserve height on
+          the fallback so #contact's Y coordinate is stable at first paint —
+          prevents scroll regression when user clicks Nav Enroll before these
+          7 sections finish lazy-loading (e2e/tests/navigation.spec.js).
+          LeadForm is rendered OUTSIDE this boundary so the #contact anchor
+          exists at first paint (see comment on the eager import). */}
+      <Suspense fallback={<div aria-hidden="true" style={{ minHeight: "5500px" }} />}>
+        <Founder />
+        <InterviewPrep onEnroll={handleEnroll} />
+        <Pricing onEnroll={handleEnroll} />
+        <Batches onEnroll={handleEnroll} />
+        <PlacementSupport onEnroll={handleEnroll} />
+        <SuccessStories />
+        <FaqSection onEnroll={handleEnroll} />
+      </Suspense>
+      <LeadForm prefillCourse={prefillCourse} />
+      <Suspense fallback={null}>
+        <FinalCTA onEnroll={handleEnroll} />
+        <Footer />
+        <WhatsAppWidget />
+      </Suspense>
       <Suspense fallback={null}>
         <Toaster position="top-center" richColors />
       </Suspense>
