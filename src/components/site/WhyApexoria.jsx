@@ -1,6 +1,6 @@
 import { m } from "framer-motion";
 import { Radio, FolderGit2, GraduationCap, Briefcase } from "lucide-react";
-import { VALUE_PROPS, IMAGES } from "../../data";
+import { VALUE_PROPS } from "../../data";
 import { Reveal } from "./Reveal";
 
 const ICONS = { Radio, FolderGit2, GraduationCap, Briefcase };

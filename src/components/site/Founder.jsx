@@ -1,4 +1,3 @@
-import { m } from "framer-motion";
 import { Award, BadgeCheck, UserRound } from "lucide-react";
 import { FOUNDER } from "../../data";
 import { Reveal } from "./Reveal";

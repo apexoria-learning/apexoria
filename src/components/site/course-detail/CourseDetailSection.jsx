@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function CourseDetailSection({ courseId, onEnroll, index }) {
+export default function CourseDetailSection({ courseId, onEnroll, index = 0 }) {
   const course = ALL_COURSES_PAGE[courseId];
   const pathData = PATHS.find((p) => p.id === courseId);
 
@@ -34,22 +34,31 @@ export default function CourseDetailSection({ courseId, onEnroll, index }) {
 
   // Alternate bg-white / bg-slate-50 for visual rhythm
   const bgClass = index % 2 === 0 ? "bg-white" : "bg-slate-50";
+  // Course number watermark (01, 02, … 06) — mirrors WhyApexoria pattern
+  const courseNumber = String(index + 1).padStart(2, "0");
+  const watermarkColor = index % 2 === 0 ? "text-slate-100" : "text-slate-200";
 
   return (
     <section
       id={`course-${courseId}`}
       data-testid={TEST_IDS.section(courseId)}
-      className={`${bgClass} py-24 lg:py-32 scroll-mt-24`}
+      className={`${bgClass} py-24 lg:py-32 scroll-mt-24 relative overflow-hidden`}
     >
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-start">
           {/* Left column — editorial content */}
-          <div>
+          <div className="relative">
+            <span
+              aria-hidden="true"
+              className={`pointer-events-none select-none absolute -top-8 -left-2 font-display font-black text-[8rem] md:text-[10rem] leading-none ${watermarkColor}`}
+            >
+              {courseNumber}
+            </span>
             <Reveal>
-              <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-navy">
+              <h2 className="relative z-10 font-display text-4xl md:text-5xl font-extrabold tracking-tight text-navy">
                 {course.title}
               </h2>
-              <p className="mt-2 text-lg font-semibold text-brand-blue">{course.tagline}</p>
+              <p className="relative z-10 mt-2 text-lg font-semibold text-brand-blue">{course.tagline}</p>
             </Reveal>
 
             {/* Chips */}
