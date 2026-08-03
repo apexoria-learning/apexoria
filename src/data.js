@@ -6,7 +6,7 @@
 
 // Phone / email / social handles used across the site + footer.
 export const CONTACT = {
-  "phone": "+91 7498490687",
+  "phone": "+91 7498490680",
   "phoneRaw": "917498490687",
   "email": "apexorialearning@gmail.com",
   "instagram": "https://instagram.com/apexoria_learning",
@@ -396,7 +396,7 @@ export const FAQ_ITEMS = [
   }
 ];
 
-// Interview Preparation flagship section — homepage only.
+// Interview Preparation flagship section — 2-week career accelerator.
 export const INTERVIEW_PREP = {
   "overline": "CAREER SERVICES",
   "headlinePrefix": "Turn your Salesforce skills into a ",
@@ -429,21 +429,57 @@ export const INTERVIEW_PREP = {
   ],
   "ctaLabel": "Enroll Now",
   "whatsappCta": "Ask About This Program",
-  "whatsappHref": WHATSAPP_LINK
+  "whatsappHref": "https://wa.me/917498490687?text=Hi%20Apexoria%20Learning%2C%20I%27m%20interested%20in%20your%20Salesforce%20courses"
 };
 
-// All Courses Page — rich per-course content for /courses route.
+// /courses route — full per-course detail pages.
 export const ALL_COURSES_PAGE = {
   "foundation": {
     "title": "Salesforce Foundation",
     "tagline": "Start your Salesforce journey with the fundamentals",
-    "chips": ["5 hrs/week", "Beginner", "Live Classes"],
+    "chips": [
+      "5 hrs/week",
+      "Beginner",
+      "Live Classes"
+    ],
     "description": "Perfect for absolute beginners. Learn Salesforce navigation, data model, security, automation basics, and reporting — the building blocks every Admin and Developer needs before diving into code.",
     "weekByWeek": [
-      { "week": 1, "topic": "Salesforce Basics & Navigation", "points": ["Platform overview", "Objects, fields & relationships", "Data import/export"] },
-      { "week": 2, "topic": "Reports & Dashboards", "points": ["Building custom reports", "Dashboard components", "Filtering & grouping"] },
-      { "week": 3, "topic": "Automation with Flows", "points": ["Flow Builder intro", "Screen flows vs. autolaunched", "Simple approval workflows"] },
-      { "week": 4, "topic": "Security Fundamentals", "points": ["Profiles & permission sets", "Sharing rules", "Field-level security"] }
+      {
+        "week": 1,
+        "topic": "Salesforce Basics & Navigation",
+        "points": [
+          "Platform overview",
+          "Objects, fields & relationships",
+          "Data import/export"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Reports & Dashboards",
+        "points": [
+          "Building custom reports",
+          "Dashboard components",
+          "Filtering & grouping"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Automation with Flows",
+        "points": [
+          "Flow Builder intro",
+          "Screen flows vs. autolaunched",
+          "Simple approval workflows"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Security Fundamentals",
+        "points": [
+          "Profiles & permission sets",
+          "Sharing rules",
+          "Field-level security"
+        ]
+      }
     ],
     "outcomes": [
       "Confidently navigate Salesforce UI and understand the data model",
@@ -459,21 +495,62 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need any technical background?", "a": "No. This is designed for absolute beginners with no prior Salesforce or IT experience." },
-      { "q": "Can I skip this if I want to become a developer?", "a": "You can, but we recommend Foundation for anyone unfamiliar with Salesforce. It makes the Development track much easier." }
+      {
+        "q": "Do I need any technical background?",
+        "a": "No. This is designed for absolute beginners with no prior Salesforce or IT experience."
+      },
+      {
+        "q": "Can I skip this if I want to become a developer?",
+        "a": "You can, but we recommend Foundation for anyone unfamiliar with Salesforce. It makes the Development track much easier."
+      }
     ],
     "enrollLabel": "Salesforce Foundation — ₹1,999"
   },
   "crash-course": {
     "title": "Salesforce Crash Course",
     "tagline": "Interview-ready in one month",
-    "chips": ["22 hrs/month", "Intermediate", "1 Month"],
+    "chips": [
+      "22 hrs/month",
+      "Intermediate",
+      "1 Month"
+    ],
     "description": "Fast-paced primer for career-switchers who want to hit the ground running. Covers everything in Foundation plus Apex fundamentals, SOQL, and an intro to Lightning Web Components. Live classes, guided assignments, just enough theory to make the code stick.",
     "weekByWeek": [
-      { "week": 1, "topic": "Foundation Speedrun", "points": ["Objects, fields, security recap", "Reports & automation essentials"] },
-      { "week": 2, "topic": "Apex Fundamentals", "points": ["Triggers & classes", "SOQL queries", "DML operations"] },
-      { "week": 3, "topic": "Advanced Apex", "points": ["Bulkification patterns", "Error handling", "Test classes"] },
-      { "week": 4, "topic": "Lightning Web Components Intro", "points": ["LWC basics", "Component wiring", "Guided assignment walkthrough"] }
+      {
+        "week": 1,
+        "topic": "Foundation Speedrun",
+        "points": [
+          "Objects, fields, security recap",
+          "Reports & automation essentials"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Apex Fundamentals",
+        "points": [
+          "Triggers & classes",
+          "SOQL queries",
+          "DML operations"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Advanced Apex",
+        "points": [
+          "Bulkification patterns",
+          "Error handling",
+          "Test classes"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Lightning Web Components Intro",
+        "points": [
+          "LWC basics",
+          "Component wiring",
+          "Guided assignment walkthrough"
+        ]
+      }
     ],
     "outcomes": [
       "Write Apex triggers and classes for real business logic",
@@ -489,27 +566,107 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Is one month really enough?", "a": "For someone with basic programming logic, yes. You'll be interview-ready for junior roles. For deeper mastery, consider Complete Course." },
-      { "q": "What if I have no coding experience?", "a": "Start with Foundation first to build confidence, then jump into Crash Course." }
+      {
+        "q": "Is one month really enough?",
+        "a": "For someone with basic programming logic, yes. You'll be interview-ready for junior roles. For deeper mastery, consider Complete Course."
+      },
+      {
+        "q": "What if I have no coding experience?",
+        "a": "Start with Foundation first to build confidence, then jump into Crash Course."
+      }
     ],
     "enrollLabel": "Salesforce Crash Course — ₹9,999"
   },
   "complete-course": {
     "title": "Salesforce Complete Course",
     "tagline": "End-to-end Admin + Dev mastery",
-    "chips": ["70 hrs", "Advanced", "3 Months", "Capstone Project"],
+    "chips": [
+      "70 hrs",
+      "Advanced",
+      "3 Months",
+      "Capstone Project"
+    ],
     "description": "The full deep dive — Admin foundations, advanced Apex, LWC in depth, REST/SOAP integrations, and a deployable Loan/Case Management capstone project. This is the track for anyone serious about becoming a production-ready Salesforce Developer.",
     "weekByWeek": [
-      { "week": 1, "topic": "Admin Foundations", "points": ["Objects, security, automation", "Reports, dashboards, data lifecycle"] },
-      { "week": 2, "topic": "Apex Fundamentals", "points": ["Triggers, classes, SOQL, DML"] },
-      { "week": 3, "topic": "Advanced Apex", "points": ["Bulkification, async Apex, test classes"] },
-      { "week": 4, "topic": "Lightning Web Components", "points": ["LWC architecture, data binding, wire service"] },
-      { "week": 5, "topic": "LWC Deep Dive", "points": ["Parent-child communication", "Apex imperative calls", "Error handling"] },
-      { "week": 6, "topic": "REST & SOAP Integrations", "points": ["HTTP callouts, OAuth flows", "Named credentials"] },
-      { "week": 7, "topic": "Capstone Project Kickoff", "points": ["Loan/Case Management system design", "User stories & data model"] },
-      { "week": 8, "topic": "Capstone Build", "points": ["Apex logic implementation", "LWC UI development"] },
-      { "week": 9, "topic": "Capstone Integration", "points": ["REST API integration", "Deployment & testing"] },
-      { "week": 10, "topic": "Mock Interviews & Placement Prep", "points": ["Resume reviews", "Technical mock interviews", "Job referrals"] }
+      {
+        "week": 1,
+        "topic": "Admin Foundations",
+        "points": [
+          "Objects, security, automation",
+          "Reports, dashboards, data lifecycle"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Apex Fundamentals",
+        "points": [
+          "Triggers, classes, SOQL, DML"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Advanced Apex",
+        "points": [
+          "Bulkification, async Apex, test classes"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Lightning Web Components",
+        "points": [
+          "LWC architecture, data binding, wire service"
+        ]
+      },
+      {
+        "week": 5,
+        "topic": "LWC Deep Dive",
+        "points": [
+          "Parent-child communication",
+          "Apex imperative calls",
+          "Error handling"
+        ]
+      },
+      {
+        "week": 6,
+        "topic": "REST & SOAP Integrations",
+        "points": [
+          "HTTP callouts, OAuth flows",
+          "Named credentials"
+        ]
+      },
+      {
+        "week": 7,
+        "topic": "Capstone Project Kickoff",
+        "points": [
+          "Loan/Case Management system design",
+          "User stories & data model"
+        ]
+      },
+      {
+        "week": 8,
+        "topic": "Capstone Build",
+        "points": [
+          "Apex logic implementation",
+          "LWC UI development"
+        ]
+      },
+      {
+        "week": 9,
+        "topic": "Capstone Integration",
+        "points": [
+          "REST API integration",
+          "Deployment & testing"
+        ]
+      },
+      {
+        "week": 10,
+        "topic": "Mock Interviews & Placement Prep",
+        "points": [
+          "Resume reviews",
+          "Technical mock interviews",
+          "Job referrals"
+        ]
+      }
     ],
     "outcomes": [
       "Build production-grade Salesforce apps with Apex + LWC",
@@ -525,24 +682,84 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Is this overkill if I just want a junior role?", "a": "If budget and time allow, Complete Course gives you an edge even for junior roles. But Crash Course is sufficient for entry-level." },
-      { "q": "Do I get lifetime access to recordings?", "a": "Yes, all class recordings and materials remain accessible after course completion." },
-      { "q": "What's the Capstone project?", "a": "A deployable Loan/Case Management system built with Apex, LWC, and REST integrations — real complexity that interviewers respect." }
+      {
+        "q": "Is this overkill if I just want a junior role?",
+        "a": "If budget and time allow, Complete Course gives you an edge even for junior roles. But Crash Course is sufficient for entry-level."
+      },
+      {
+        "q": "Do I get lifetime access to recordings?",
+        "a": "Yes, all class recordings and materials remain accessible after course completion."
+      },
+      {
+        "q": "What's the Capstone project?",
+        "a": "A deployable Loan/Case Management system built with Apex, LWC, and REST integrations — real complexity that interviewers respect."
+      }
     ],
     "enrollLabel": "Salesforce Complete Course — ₹21,999"
   },
   "salesforce-qa": {
     "title": "Salesforce QA Testing",
     "tagline": "Land a no-code Salesforce testing role",
-    "chips": ["60 hrs", "No-Code", "2.5 Months"],
+    "chips": [
+      "60 hrs",
+      "No-Code",
+      "2.5 Months"
+    ],
     "description": "Manual + API testing built specifically around Salesforce apps. Learn UI testing, data validation, Postman-based API testing, JIRA workflows, and Salesforce-specific QA scenarios you'll actually be asked about in interviews.",
     "weekByWeek": [
-      { "week": 1, "topic": "QA Fundamentals & STLC", "points": ["Software testing lifecycle", "Test case design", "Bug reporting"] },
-      { "week": 2, "topic": "Salesforce UI Testing", "points": ["Manual testing on standard/custom objects", "Data validation scenarios"] },
-      { "week": 3, "topic": "API Testing with Postman", "points": ["REST API basics", "Salesforce REST API testing", "Collections & environments"] },
-      { "week": 4, "topic": "Agile & JIRA", "points": ["Agile workflows", "User stories & acceptance criteria", "JIRA ticket management"] },
-      { "week": 5, "topic": "Salesforce-Specific Scenarios", "points": ["Testing integrations", "Validation rules & flows", "Security & permissions testing"] },
-      { "week": 6, "topic": "Mock Interviews & Placement Prep", "points": ["QA interview questions", "Resume reviews", "Job referrals"] }
+      {
+        "week": 1,
+        "topic": "QA Fundamentals & STLC",
+        "points": [
+          "Software testing lifecycle",
+          "Test case design",
+          "Bug reporting"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Salesforce UI Testing",
+        "points": [
+          "Manual testing on standard/custom objects",
+          "Data validation scenarios"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "API Testing with Postman",
+        "points": [
+          "REST API basics",
+          "Salesforce REST API testing",
+          "Collections & environments"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Agile & JIRA",
+        "points": [
+          "Agile workflows",
+          "User stories & acceptance criteria",
+          "JIRA ticket management"
+        ]
+      },
+      {
+        "week": 5,
+        "topic": "Salesforce-Specific Scenarios",
+        "points": [
+          "Testing integrations",
+          "Validation rules & flows",
+          "Security & permissions testing"
+        ]
+      },
+      {
+        "week": 6,
+        "topic": "Mock Interviews & Placement Prep",
+        "points": [
+          "QA interview questions",
+          "Resume reviews",
+          "Job referrals"
+        ]
+      }
     ],
     "outcomes": [
       "Write comprehensive test cases for Salesforce apps",
@@ -558,23 +775,81 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need coding skills?", "a": "No. This track is 100% no-code. You'll learn Postman and JIRA, but no programming." },
-      { "q": "Can I switch to automation later?", "a": "Yes! After completing this, you can enroll in our Automation QA track to learn Playwright and Provar." }
+      {
+        "q": "Do I need coding skills?",
+        "a": "No. This track is 100% no-code. You'll learn Postman and JIRA, but no programming."
+      },
+      {
+        "q": "Can I switch to automation later?",
+        "a": "Yes! After completing this, you can enroll in our Automation QA track to learn Playwright and Provar."
+      }
     ],
     "enrollLabel": "Salesforce QA Testing Course — ₹17,999"
   },
   "automation-qa": {
     "title": "Salesforce Automation QA",
     "tagline": "Level up into high-end automation testing",
-    "chips": ["Advanced", "Automation Track", "~30% Coding"],
+    "chips": [
+      "Advanced",
+      "Automation Track",
+      "~30% Coding"
+    ],
     "description": "For QA engineers who want to automate at scale. Playwright, Provar, Selenium fundamentals, CI/CD patterns, and real-world Salesforce automation scenarios used in production teams.",
     "weekByWeek": [
-      { "week": 1, "topic": "Automation Fundamentals", "points": ["Why automate?", "Test automation pyramid", "Tooling landscape"] },
-      { "week": 2, "topic": "Playwright for Web", "points": ["Setup & first test", "Locators & assertions", "Page Object Model"] },
-      { "week": 3, "topic": "Provar for Salesforce", "points": ["Provar architecture", "Test case creation", "Data-driven testing"] },
-      { "week": 4, "topic": "Selenium Basics", "points": ["WebDriver fundamentals", "Cross-browser testing", "Waits & synchronization"] },
-      { "week": 5, "topic": "CI/CD Integration", "points": ["Jenkins/GitHub Actions", "Automated test pipelines", "Reporting & notifications"] },
-      { "week": 6, "topic": "Real-World Scenarios", "points": ["Salesforce Lightning automation", "API + UI hybrid tests", "Mock interviews"] }
+      {
+        "week": 1,
+        "topic": "Automation Fundamentals",
+        "points": [
+          "Why automate?",
+          "Test automation pyramid",
+          "Tooling landscape"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Playwright for Web",
+        "points": [
+          "Setup & first test",
+          "Locators & assertions",
+          "Page Object Model"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Provar for Salesforce",
+        "points": [
+          "Provar architecture",
+          "Test case creation",
+          "Data-driven testing"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Selenium Basics",
+        "points": [
+          "WebDriver fundamentals",
+          "Cross-browser testing",
+          "Waits & synchronization"
+        ]
+      },
+      {
+        "week": 5,
+        "topic": "CI/CD Integration",
+        "points": [
+          "Jenkins/GitHub Actions",
+          "Automated test pipelines",
+          "Reporting & notifications"
+        ]
+      },
+      {
+        "week": 6,
+        "topic": "Real-World Scenarios",
+        "points": [
+          "Salesforce Lightning automation",
+          "API + UI hybrid tests",
+          "Mock interviews"
+        ]
+      }
     ],
     "outcomes": [
       "Build end-to-end test suites with Playwright and Provar",
@@ -590,19 +865,45 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need programming experience?", "a": "Basic coding logic helps (~30% of the course involves JavaScript/Java). If you're completely non-technical, start with Salesforce QA first." },
-      { "q": "Is this only for Salesforce?", "a": "Playwright and Selenium skills transfer to any web app. Provar is Salesforce-specific." }
+      {
+        "q": "Do I need programming experience?",
+        "a": "Basic coding logic helps (~30% of the course involves JavaScript/Java). If you're completely non-technical, start with Salesforce QA first."
+      },
+      {
+        "q": "Is this only for Salesforce?",
+        "a": "Playwright and Selenium skills transfer to any web app. Provar is Salesforce-specific."
+      }
     ],
     "enrollLabel": "Salesforce Automation QA — ₹22,000"
   },
   "interview-prep": {
     "title": "Salesforce Interview Preparation",
     "tagline": "Turn your skills into signed offers",
-    "chips": ["2 Weeks", "Career Accelerator", "Post-Job Support"],
+    "chips": [
+      "2 Weeks",
+      "Career Accelerator",
+      "Post-Job Support"
+    ],
     "description": "Short-form program for anyone with basic Salesforce knowledge who needs the interview edge. 10 personalized mock interviews (Dev + QA), resume optimization, LinkedIn + Naukri profile setup, and 2 months of post-job support.",
     "weekByWeek": [
-      { "week": 1, "topic": "Resume & Profile Optimization", "points": ["ATS-friendly resume rewrite", "LinkedIn keyword optimization", "Naukri profile setup"] },
-      { "week": 2, "topic": "Mock Interviews & Feedback", "points": ["10 personalized mock interviews", "Dev + QA scenario coverage", "Post-job onboarding guidance"] }
+      {
+        "week": 1,
+        "topic": "Resume & Profile Optimization",
+        "points": [
+          "ATS-friendly resume rewrite",
+          "LinkedIn keyword optimization",
+          "Naukri profile setup"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Mock Interviews & Feedback",
+        "points": [
+          "10 personalized mock interviews",
+          "Dev + QA scenario coverage",
+          "Post-job onboarding guidance"
+        ]
+      }
     ],
     "outcomes": [
       "ATS-optimized resume that gets past automated screens",
@@ -618,8 +919,14 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need to complete a course first?", "a": "No, but you should already know Salesforce basics (Admin, Apex, or QA fundamentals). This is interview prep, not a learning track." },
-      { "q": "What if I don't get a job?", "a": "We provide referrals and support, but job outcomes depend on your skill level and market conditions. This program maximizes your chances." }
+      {
+        "q": "Do I need to complete a course first?",
+        "a": "No, but you should already know Salesforce basics (Admin, Apex, or QA fundamentals). This is interview prep, not a learning track."
+      },
+      {
+        "q": "What if I don't get a job?",
+        "a": "We provide referrals and support, but job outcomes depend on your skill level and market conditions. This program maximizes your chances."
+      }
     ],
     "enrollLabel": "Salesforce Interview Preparation — ₹2,999"
   }
