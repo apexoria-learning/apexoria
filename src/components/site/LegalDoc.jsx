@@ -26,7 +26,7 @@ export default function LegalDoc({
 
   useEffect(() => {
     const prevTitle = document.title;
-    if (title) document.title = `${title} — Apexoria Learning`;
+    if (title) document.title = `${title} | Apexoria`;
 
     const upsertMeta = (name, content) => {
       let tag = document.querySelector(`meta[name="${name}"]`);

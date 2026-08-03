@@ -52,8 +52,7 @@ export default function Hero({ onEnroll }) {
               sizes="(min-width: 1024px) 70vw, 100vw"
               width={940}
               height={650}
-              alt=""
-              aria-hidden="true"
+              alt="Salesforce development and QA training illustration — Apexoria Learning"
               fetchpriority="high"
               loading="eager"
               decoding="async"

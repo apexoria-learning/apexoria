@@ -27,14 +27,14 @@ export default function CoursesPage() {
     };
 
     const prevTitle = document.title;
-    document.title = 'All Salesforce Courses — Apexoria Learning';
+    document.title = 'All Salesforce Courses | Apexoria';
 
     const restorers = [
       setMeta('meta[name="description"]', 'content', 'Browse all 6 Salesforce training tracks at Apexoria Learning — Foundation, Crash Course, Complete Course, QA Testing, Automation QA, and Interview Preparation. Live cohorts, placement support, transparent pricing.'),
-      setMeta('meta[property="og:title"]', 'content', 'All Salesforce Courses — Apexoria Learning'),
+      setMeta('meta[property="og:title"]', 'content', 'All Salesforce Courses | Apexoria'),
       setMeta('meta[property="og:description"]', 'content', 'Browse all 6 Salesforce tracks — Foundation, Crash Course, Complete Course, QA, Automation QA, Interview Prep. Live cohorts + placement support.'),
       setMeta('meta[property="og:url"]', 'content', 'https://www.apexorialearning.in/courses'),
-      setMeta('meta[name="twitter:title"]', 'content', 'All Salesforce Courses — Apexoria Learning'),
+      setMeta('meta[name="twitter:title"]', 'content', 'All Salesforce Courses | Apexoria'),
       setMeta('meta[name="twitter:description"]', 'content', 'Browse all 6 Salesforce tracks — Foundation, Crash Course, Complete Course, QA, Automation QA, Interview Prep.'),
     ].filter(Boolean);
 
