@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 import { trackEvent } from "@/lib/analytics";
 import { COURSES_PAGE as TEST_IDS } from "@/constants/testIds/home";
 
-export default function Pricing({ onEnroll }) {
+export default function Pricing() {
   const featuredPaths = PATHS.filter((p) => p.homepageFeatured);
   return (
     <section id="pricing" data-testid="pricing-section" className="bg-white py-24 lg:py-32">
@@ -64,22 +64,24 @@ export default function Pricing({ onEnroll }) {
                   ))}
                 </ul>
 
-                <button
-                  data-testid={`pricing-enroll-${p.id}`}
+                <Link
+                  to={`/courses#course-${p.id}`}
+                  data-testid={`pricing-learn-more-${p.id}`}
+                  aria-label={`Learn more about ${p.tier}`}
                   onClick={() => {
-                    trackEvent("pricing_enroll_click", {
+                    trackEvent("pricing_learn_more_click", {
                       tier: p.tier,
                       price: p.price,
                       level: p.level,
                     });
-                    onEnroll(`${p.tier} — ${p.price}`);
                   }}
-                  className={`mt-6 w-full font-bold py-3.5 rounded-full transition-transform hover:scale-105 active:scale-95 ${
+                  className={`mt-6 w-full inline-flex items-center justify-center gap-2 font-bold py-3.5 rounded-full transition-transform hover:scale-105 active:scale-95 ${
                     p.popular ? "bg-brand-orange text-white shadow-lg shadow-brand-orange/30" : "bg-navy text-white"
                   }`}
                 >
-                  Click to Enroll Now
-                </button>
+                  Learn More
+                  <ArrowRight size={18} />
+                </Link>
               </m.div>
             </Reveal>
           ))}
