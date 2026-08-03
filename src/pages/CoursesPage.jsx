@@ -36,6 +36,7 @@ export default function CoursesPage() {
       setMeta('meta[property="og:url"]', 'content', 'https://www.apexorialearning.in/courses'),
       setMeta('meta[name="twitter:title"]', 'content', 'All Salesforce Courses | Apexoria'),
       setMeta('meta[name="twitter:description"]', 'content', 'Browse all 6 Salesforce tracks — Foundation, Crash Course, Complete Course, QA, Automation QA, Interview Prep.'),
+      setMeta('link[rel="canonical"]', 'href', 'https://www.apexorialearning.in/courses'),
     ].filter(Boolean);
 
     return () => {

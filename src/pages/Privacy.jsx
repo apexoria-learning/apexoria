@@ -16,6 +16,7 @@ export default function Privacy() {
         metaDescription={doc.metaDescription}
         lastUpdated={doc.lastUpdated}
         contentMd={doc.contentMd}
+        canonicalPath="/privacy"
       />
       <Suspense fallback={null}>
         <Footer />

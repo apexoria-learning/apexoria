@@ -16,6 +16,7 @@ export default function Terms() {
         metaDescription={doc.metaDescription}
         lastUpdated={doc.lastUpdated}
         contentMd={doc.contentMd}
+        canonicalPath="/terms"
       />
       <Suspense fallback={null}>
         <Footer />
