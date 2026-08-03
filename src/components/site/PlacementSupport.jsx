@@ -1,4 +1,3 @@
-import { m } from "framer-motion";
 import { FileText, MessageSquare, Users, LifeBuoy, ArrowRight } from "lucide-react";
 import { PLACEMENT_STEPS } from "../../data";
 import { Reveal } from "./Reveal";

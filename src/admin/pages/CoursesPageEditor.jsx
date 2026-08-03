@@ -13,7 +13,7 @@ import {
 import SortableList from "../components/SortableList";
 import EmptyState from "../components/EmptyState";
 import ConfirmDialog from "../components/ConfirmDialog";
-import { Trash2, BookOpen, HelpCircle, MessageSquareQuote } from "lucide-react";
+import { Trash2, BookOpen, HelpCircle } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const COURSE_KEYS = [

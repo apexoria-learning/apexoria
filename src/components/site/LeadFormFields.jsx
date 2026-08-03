@@ -121,7 +121,7 @@ export default function LeadFormFields({ pageMountedAt, prefillCourse, onSuccess
       setCooldown(true);
       clearTimeout(cooldownTimer.current);
       cooldownTimer.current = setTimeout(() => setCooldown(false), 15000);
-    } catch (err) {
+    } catch {
       toast.error("Something went wrong. Please try again or reach us on WhatsApp.");
     } finally {
       setLoading(false);

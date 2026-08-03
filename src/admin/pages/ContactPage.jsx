@@ -11,7 +11,6 @@ import {
   SectionTitle,
   StarRating,
 } from "../components/FormControls";
-import { validateContent } from "../validation";
 
 /**
  * Look up validation errors for a specific data-key + JSON-path segment.
