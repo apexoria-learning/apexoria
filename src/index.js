@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { LazyMotion, domAnimation } from "framer-motion";
 import "@/index.css";
 import App from "@/App";
+import ScrollToHashHandler from "@/components/ScrollToHashHandler";
 
 // Lazy-load the admin bundle so the marketing site stays small.
 const AdminApp = lazy(() => import("@/admin/AdminApp"));
@@ -41,6 +42,12 @@ root.render(
     <QueryClientProvider client={queryClient}>
       <LazyMotion features={domAnimation} strict>
         <BrowserRouter>
+          {/* Global cross-route hash scroll — must live above <Routes> so it
+              survives route changes (e.g. Pricing 'Learn More' navigating
+              from / to /courses#course-crash-course). If nested inside a
+              single route's component tree it unmounts on route change and
+              the hash-scroll never fires on the destination route. */}
+          <ScrollToHashHandler />
           <Routes>
           <Route
             path="/admin/*"

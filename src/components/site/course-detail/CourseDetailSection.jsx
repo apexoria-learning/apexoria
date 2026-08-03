@@ -39,7 +39,7 @@ export default function CourseDetailSection({ courseId, onEnroll, index }) {
     <section
       id={`course-${courseId}`}
       data-testid={TEST_IDS.section(courseId)}
-      className={`${bgClass} py-24 lg:py-32`}
+      className={`${bgClass} py-24 lg:py-32 scroll-mt-24`}
     >
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-12 lg:gap-16 items-start">

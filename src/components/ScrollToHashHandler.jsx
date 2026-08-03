@@ -20,20 +20,47 @@ export default function ScrollToHashHandler() {
     if (!location.hash) return;
 
     const id = location.hash.slice(1);
-    let retryHandle = null;
+    let cancelled = false;
+    let attempts = 0;
+    // Poll for up to ~3s (60 * 50ms). Lazy-loaded routes (e.g. /courses)
+    // may not have their target section in the DOM when the effect first
+    // fires — we need to keep looking until the chunk mounts.
+    const MAX_ATTEMPTS = 60;
+    const POLL_MS = 50;
+
+    const NAV_HEIGHT_PX = 96;
+
+    const scrollToTarget = () => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const targetY = Math.max(
+        0,
+        el.getBoundingClientRect().top + window.scrollY - NAV_HEIGHT_PX,
+      );
+      if (window.__lenis) {
+        window.__lenis.scrollTo(targetY);
+      } else {
+        window.scrollTo({ top: targetY, behavior: "smooth" });
+      }
+    };
 
     const tryScroll = () => {
+      if (cancelled) return;
       const el = document.getElementById(id);
       if (el) {
-        // Prefer Lenis for momentum scroll; fallback to native smooth scroll
-        if (window.__lenis) {
-          window.__lenis.scrollTo(el);
-        } else {
-          el.scrollIntoView({ behavior: "smooth" });
-        }
-      } else if (retryHandle === null) {
-        // Element not found — retry once (belt-and-suspenders for lazy sections)
-        retryHandle = setTimeout(tryScroll, 250);
+        // First pass — scroll to where the element currently is.
+        scrollToTarget();
+        // Corrective pass — content above the target (lazy images, chunks
+        // loading into Suspense boundaries) can push the target further
+        // down after the first scroll. Re-measure and re-scroll after a
+        // brief settle window so we land accurately.
+        setTimeout(() => {
+          if (!cancelled) scrollToTarget();
+        }, 500);
+        return;
+      }
+      if (++attempts < MAX_ATTEMPTS) {
+        setTimeout(tryScroll, POLL_MS);
       }
     };
 
@@ -41,9 +68,9 @@ export default function ScrollToHashHandler() {
     requestAnimationFrame(tryScroll);
 
     return () => {
-      if (retryHandle !== null) clearTimeout(retryHandle);
+      cancelled = true;
     };
-  }, [location.pathname, location.hash]);
+  }, [location.pathname, location.hash, location.key]);
 
   return null;
 }
