@@ -162,7 +162,7 @@ function App() {
       <Suspense fallback={<div aria-hidden="true" style={{ minHeight: "5500px" }} />}>
         <Founder />
         <InterviewPrep onEnroll={handleEnroll} />
-        <Pricing onEnroll={handleEnroll} />
+        <Pricing />
         <Batches onEnroll={handleEnroll} />
         <PlacementSupport onEnroll={handleEnroll} />
         <SuccessStories />

@@ -21,12 +21,13 @@ export default function LegalDoc({
   metaDescription,
   lastUpdated,
   contentMd,
+  canonicalPath,
 }) {
   const isEmpty = !contentMd || !contentMd.trim();
 
   useEffect(() => {
     const prevTitle = document.title;
-    if (title) document.title = `${title} — Apexoria Learning`;
+    if (title) document.title = `${title} | Apexoria`;
 
     const upsertMeta = (name, content) => {
       let tag = document.querySelector(`meta[name="${name}"]`);
@@ -50,11 +51,24 @@ export default function LegalDoc({
       upsertMeta("robots", isEmpty ? "noindex,follow" : "index,follow"),
     );
 
+    // Update <link rel="canonical"> so each legal page has its own canonical
+    // URL rather than inheriting the homepage canonical from index.html.
+    if (canonicalPath) {
+      const canonicalTag = document.querySelector('link[rel="canonical"]');
+      if (canonicalTag) {
+        const prevHref = canonicalTag.getAttribute("href");
+        canonicalTag.setAttribute("href", `https://www.apexorialearning.in${canonicalPath}`);
+        cleanups.push(() => {
+          if (prevHref !== null) canonicalTag.setAttribute("href", prevHref);
+        });
+      }
+    }
+
     return () => {
       document.title = prevTitle;
       cleanups.forEach((fn) => fn());
     };
-  }, [title, metaDescription, isEmpty]);
+  }, [title, metaDescription, isEmpty, canonicalPath]);
 
   return (
     <main

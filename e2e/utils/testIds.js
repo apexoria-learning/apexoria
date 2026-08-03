@@ -32,11 +32,11 @@ export const NAVBAR = {
 };
 
 // Pricing — src/components/site/Pricing.jsx
-// Card + enroll ids are templated on the PATHS[].id: foundation | crash-course | complete-course | salesforce-qa | automation-qa | interview-prep.
+// Card + Learn More ids are templated on the PATHS[].id: foundation | crash-course | complete-course | salesforce-qa | automation-qa | interview-prep.
 export const PRICING = {
   section: 'pricing-section',
   card: (id) => `pricing-card-${id}`,
-  enrollBtn: (id) => `pricing-enroll-${id}`,
+  learnMoreBtn: (id) => `pricing-learn-more-${id}`,
   specialOfferCard: 'special-offer-card',
   specialOfferEnroll: 'special-offer-enroll',
   viewAllBtn: 'view-all-courses-btn',

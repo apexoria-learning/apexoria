@@ -2,15 +2,35 @@
 <html lang="en-IN">
     <head>
         <!-- Google tag (gtag.js) — GA4 property G-2GWDGQ115Q.
-             Must sit immediately after <head> per Google's install
-             instructions. Named events fan out via trackEvent() in
-             src/lib/analytics.js (checks window.gtag). -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-2GWDGQ115Q"></script>
+             Loader is deferred to requestIdleCallback (or ~2.5s fallback)
+             so it stays off the critical path. The dataLayer + gtag stubs
+             are inline so any pageload-time gtag() calls buffer into
+             dataLayer and get processed once the library lands.
+             Named events fan out via trackEvent() in src/lib/analytics.js. -->
         <script>
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-2GWDGQ115Q');
+            (function(){
+                var loaded = false;
+                function loadGA(){
+                    if (loaded) return; loaded = true;
+                    var s = document.createElement('script');
+                    s.async = true;
+                    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-2GWDGQ115Q';
+                    document.head.appendChild(s);
+                }
+                if ('requestIdleCallback' in window) {
+                    requestIdleCallback(loadGA, { timeout: 3000 });
+                } else {
+                    setTimeout(loadGA, 2500);
+                }
+                // Safety net: load on first user interaction if idle never fires
+                ['scroll','click','keydown','touchstart'].forEach(function(evt){
+                    window.addEventListener(evt, loadGA, { once: true, passive: true });
+                });
+            })();
         </script>
         <!-- GTM (GTM-PR4M68SJ) removed 2026-08-02 (GTmetrix Phase 2) — see .github/GOTCHAS.md 2026-08-02 entry for rationale + restore path. -->
         <meta charset="utf-8" />
@@ -22,7 +42,7 @@
         <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
         <link rel="apple-touch-icon" href="/favicon-192.png" />
         <link rel="manifest" href="/manifest.json" />
-        <meta name="description" content="Live online Salesforce Development & QA training in India — job-ready cohorts in Apex, LWC, Integrations & Admin with placement support." />
+        <meta name="description" content="Salesforce Training & Placement in India — job-ready live cohorts in Apex, LWC, Integrations & QA. Guaranteed placement support." />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Apexoria Learning" />
         <link rel="canonical" href="https://www.apexorialearning.in/" />
@@ -41,9 +61,21 @@
         />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-        <meta property="og:title" content="Apexoria Learning — Master Salesforce Development" />
-        <meta property="og:description" content="Live online Salesforce Development & QA cohorts. Apex, LWC, Integrations & Admin. Job-ready in 3 months with guaranteed placement support." />
+        <!-- Non-blocking Google Fonts: browser starts the stylesheet fetch as
+             a preload (doesn't block render), then swaps rel="stylesheet"
+             once loaded. font-display=swap already prevents FOIT — this
+             cuts the render-blocking CSS request from the critical path. -->
+        <link
+            rel="preload"
+            as="style"
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+            onload="this.onload=null;this.rel='stylesheet'"
+        />
+        <noscript>
+            <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+        </noscript>
+        <meta property="og:title" content="Salesforce Training & Placement India | Apexoria" />
+        <meta property="og:description" content="Job-ready Salesforce Development & QA cohorts — Apex, LWC, Integrations. Live online classes with guaranteed placement support in India." />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Apexoria Learning" />
         <meta property="og:locale" content="en_IN" />
@@ -54,8 +86,8 @@
         <meta property="og:image:height" content="630" />
         <meta property="og:image:alt" content="Apexoria Learning — Salesforce Development & QA training in India" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Apexoria Learning — Master Salesforce Development" />
-        <meta name="twitter:description" content="Live online Salesforce Development & QA cohorts with guaranteed placement support." />
+        <meta name="twitter:title" content="Salesforce Training & Placement India | Apexoria" />
+        <meta name="twitter:description" content="Job-ready Salesforce Development & QA cohorts — live online, guaranteed placement support in India." />
         <meta name="twitter:image" content="https://www.apexorialearning.in/og-cover.png" />
         <meta name="twitter:image:alt" content="Apexoria Learning — Salesforce Development & QA training in India" />
         <!--
@@ -71,7 +103,7 @@
         work correctly both with client-side routing and a non-root public URL.
         Learn how to configure a non-root public URL by running `npm run build`.
         -->
-        <title>Apexoria Learning | Salesforce Development & QA Training in India</title>
+        <title>Salesforce Training & Placement India | Apexoria</title>
         <script type="application/ld+json">
         {
           "@context": "https://schema.org",
@@ -361,7 +393,25 @@
     </head>
     <body>
         <noscript>You need to enable JavaScript to run this app.</noscript>
-        <div id="root"></div>
+        <div id="root">
+            <!-- SEO fallback content: rendered before React mounts. Gives crawlers,
+                 no-JS clients, and users on slow connections indexable H1, subhead,
+                 primary CTAs, and the course list without needing to execute JS.
+                 React's createRoot() (not hydrateRoot) cleanly replaces these
+                 children on mount — no hydration mismatch. Navy background matches
+                 the real Hero so there is no visible flash when React swaps in. -->
+            <div style="background:#0A1F44;color:#fff;min-height:100vh;font-family:system-ui,-apple-system,sans-serif;padding:4rem 1.25rem;display:flex;align-items:center;justify-content:center;text-align:center">
+                <div style="max-width:70ch">
+                    <h1 style="font-size:2.25rem;font-weight:900;line-height:1.05;margin:0 0 1rem">Salesforce Training &amp; Placement in India</h1>
+                    <p style="font-size:1.05rem;line-height:1.55;margin:0 0 1.5rem;opacity:0.9">Apexoria Learning runs job-ready live online cohorts in Salesforce Development, Apex, LWC, Integrations, and QA — with guaranteed placement support for beginners and career switchers across India. Master Admin, Developer, and QA tracks with hands-on projects and direct hiring-partner referrals.</p>
+                    <p style="margin:0 0 1rem"><a href="#contact" style="color:#F59E0B;text-decoration:underline">Enrol in a live cohort</a> · <a href="/courses" style="color:#F59E0B;text-decoration:underline">Browse all 6 courses</a></p>
+                    <ul style="list-style:none;padding:0;margin:1rem 0 0;font-size:0.95rem;opacity:0.85;line-height:1.6">
+                        <li>Salesforce Foundation · Salesforce Crash Course · Salesforce Complete Course</li>
+                        <li>Salesforce QA · Automation QA · Salesforce Interview Prep</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
