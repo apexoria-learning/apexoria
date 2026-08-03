@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { CalendarDays, ArrowRight } from "lucide-react";
 import { BATCHES } from "../../data";
 import { Reveal } from "./Reveal";
@@ -17,7 +17,7 @@ export default function Batches({ onEnroll }) {
         <div className="mt-12 space-y-4">
           {BATCHES.map((b, i) => (
             <Reveal key={i} delay={i * 0.08}>
-              <motion.div
+              <m.div
                 whileHover={{ x: 6 }}
                 data-testid={`batch-row-${i}`}
                 className="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-8 rounded-2xl bg-white border border-slate-200 p-6 shadow-lg shadow-navy/5"
@@ -59,7 +59,7 @@ export default function Batches({ onEnroll }) {
                   Reserve Your Seat
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </button>
-              </motion.div>
+              </m.div>
             </Reveal>
           ))}
         </div>

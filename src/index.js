@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { LazyMotion, domAnimation } from "framer-motion";
 import "@/index.css";
 import App from "@/App";
 
@@ -38,8 +39,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <Routes>
+      <LazyMotion features={domAnimation} strict>
+        <BrowserRouter>
+          <Routes>
           <Route
             path="/admin/*"
             element={
@@ -73,8 +75,9 @@ root.render(
             }
           />
           <Route path="*" element={<App />} />
-        </Routes>
-      </BrowserRouter>
+          </Routes>
+        </BrowserRouter>
+      </LazyMotion>
     </QueryClientProvider>
   </React.StrictMode>,
 );

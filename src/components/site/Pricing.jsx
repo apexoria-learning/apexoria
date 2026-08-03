@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Check, Gift, ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
 import { PATHS, SPECIAL_OFFER, WHATSAPP_LINK } from "../../data";
@@ -22,9 +22,9 @@ export default function Pricing({ onEnroll }) {
         <Reveal>
           <div className="hidden lg:flex items-center gap-2 mt-10 mb-4 text-xs font-bold uppercase tracking-wider text-slate-400">
             <span>Crash Course</span>
-            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="h-0.5 w-16 bg-brand-gold origin-left" />
+            <m.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="h-0.5 w-16 bg-brand-gold origin-left" />
             <span className="text-brand-green">Complete Course</span>
-            <motion.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="h-0.5 w-16 bg-[#8E44AD] origin-left" />
+            <m.span initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 0.8, delay: 0.2 }} className="h-0.5 w-16 bg-[#8E44AD] origin-left" />
             <span className="text-[#8E44AD]">QA Testing</span>
           </div>
         </Reveal>
@@ -32,7 +32,7 @@ export default function Pricing({ onEnroll }) {
         <div className="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch lg:py-2">
           {featuredPaths.map((p, i) => (
             <Reveal key={p.id} delay={i * 0.08} className="h-full">
-              <motion.div
+              <m.div
                 whileHover={{ y: -10 }}
                 data-testid={`pricing-card-${p.id}`}
                 className={`relative flex flex-col h-full rounded-2xl border bg-white p-7 transition-shadow ${
@@ -80,7 +80,7 @@ export default function Pricing({ onEnroll }) {
                 >
                   Click to Enroll Now
                 </button>
-              </motion.div>
+              </m.div>
             </Reveal>
           ))}
         </div>
