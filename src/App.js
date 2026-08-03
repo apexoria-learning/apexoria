@@ -6,7 +6,6 @@ import { SpeedInsights } from "@vercel/speed-insights/react";
 import { initAnalytics } from "@/lib/analytics";
 
 // Above-the-fold / critical path — imported eagerly.
-import ScrollToHashHandler from "@/components/ScrollToHashHandler";
 import Navbar from "@/components/site/Navbar";
 import Hero from "@/components/site/Hero";
 import EditorialMarquee from "@/components/site/EditorialMarquee";
@@ -146,7 +145,6 @@ function App() {
 
   return (
     <div className="App font-body">
-      <ScrollToHashHandler />
       <Analytics />
       <SpeedInsights />
       <Navbar onEnroll={() => handleEnroll()} />
