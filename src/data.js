@@ -6,7 +6,7 @@
 
 // Phone / email / social handles used across the site + footer.
 export const CONTACT = {
-  "phone": "+91 7498490687",
+  "phone": "+91 7498490680",
   "phoneRaw": "917498490687",
   "email": "apexorialearning@gmail.com",
   "instagram": "https://instagram.com/apexoria_learning",
@@ -355,7 +355,7 @@ export const LEGAL_PAGES = {
     "title": "Privacy Policy",
     "metaDescription": "How Apexoria Learning collects, uses, and protects your personal data.",
     "lastUpdated": "",
-    "contentMd": "# Apexoria Learning — Privacy Policy\n\n**Effective Date**: 30 July 2026\n**Version**: 1.0\n**Applies to**: apexorialearning.in, and all personal data collected by Apexoria Learning through the website, WhatsApp, email, phone, and its live-online training programs.\n\n***\n\n## 1\\. Who We Are\n\napexorialearning.in and the Apexoria Learning training programs are operated by:\n\n* **Kajal Kohale**, sole proprietor, trading as **Apexoria Learning**\n* **Location**: Nagpur, Maharashtra, India\n* **GSTIN**: {{GSTIN}}\n* **Email**: apexorialearning@gmail.com\n* **Phone / WhatsApp**: +91 7498490687\n\nFor the purposes of the Digital Personal Data Protection Act, 2023 (\"DPDP Act\") and the Information Technology Act, 2000 (with the Reasonable Security Practices and Procedures and Sensitive Personal Data or Information Rules, 2011), **Kajal Kohale, sole proprietor trading as Apexoria Learning, is the Data Fiduciary** responsible for the personal data described in this Privacy Policy.\n\nThis Privacy Policy explains what personal data we collect, why we collect it, how we use it, who we share it with, how long we keep it, and what rights you have as a Data Principal.\n\n***\n\n## 2\\. Who This Policy Applies To\n\nThis Privacy Policy applies to:\n\n* **Visitors** to apexorialearning.in.\n* **Prospective students** who submit our enquiry form, or who contact us on WhatsApp, phone, or email.\n* **Enrolled students** in any Apexoria Learning batch — Salesforce Admin, Salesforce Developer, Salesforce Complete Course, Salesforce QA (Manual + API), Salesforce QA Automation, and any specialist track.\n* **Alumni** who continue to receive placement support or community access after completing a batch.\n* Anyone who consents to feature in a testimonial, case study, or student-success story.\n\n***\n\n## 3\\. Personal Data We Collect\n\nWe only collect personal data that is necessary for the purposes described in Section 4.\n\n### 3.1 From the Enquiry Form on the Website\n\n* Full name\n* Email address\n* Phone number (with country code)\n* Track / course of interest\n* Current professional background (job title, years of experience, or \"student / fresh graduate\" — a short free-text field)\n* Any additional message you choose to send us\n\n### 3.2 From WhatsApp, Phone, and Email\n\n* The contents of the messages, calls, and emails you send us.\n* Discovery-call notes recorded by our enrolment team during voice calls (topic discussed, track of interest, expected batch, follow-up date).\n\n### 3.3 At Enrolment\n\n* Payment reference — UPI transaction ID or bank transfer reference number.\n* Billing name and postal address, **only if** you request a GST invoice.\n* Batch and cohort you are enrolled in.\n\n### 3.4 During the Training Program\n\n* Session attendance records (dates and durations of the sessions you joined).\n* The name and email address you use to join Zoom or Google Meet sessions.\n* Submissions and code you share for labs and the capstone project. You submit these using your **own personal Salesforce Developer Org** — we do not create or hold Salesforce accounts on your behalf.\n\n### 3.5 Website Analytics\n\n* We use **Vercel Web Analytics**, which is a cookieless, privacy-friendly analytics service. It measures aggregate metrics such as page views, referrers, and approximate country of visit. It does not use persistent identifiers, does not track you across other websites, and does not store your IP address.\n\n### 3.6 For Testimonials and Success Stories\n\nOnly if you give us your explicit, informed, and withdrawable consent, we may additionally collect:\n\n* Your written testimonial or interview responses.\n* Your photo, video clip, or LinkedIn profile URL.\n* The name of your new employer and your new job title, if you choose to share them.\n\nTestimonial consent is captured separately in writing (email or WhatsApp) and can be withdrawn at any time (see Section 10).\n\n### 3.7 What We Do NOT Collect\n\n* **We do not record live sessions.** Apexoria Learning's teaching model is live-only. Sessions are not recorded, archived, or shared as playback. See our recordings decision at [`08-key-activities/decisions/2026-07-25-no-recordings-policy.md`](../08-key-activities/decisions/2026-07-25-no-recordings-policy.md) for the reasoning.\n* **We do not collect a government-issued ID at any stage.** The name printed on your certificate of completion is the name you provided at enrolment.\n* **We do not ask for or store your Salesforce, Trailhead, or Trailblazer.me passwords.**\n* **We do not store payment-card details.** We currently accept payments only via UPI and direct bank transfer; no card data ever touches our systems.\n* We do not collect biometric data, health data, or other special-category personal data.\n* We do not knowingly collect personal data from children under 18 (see Section 12).\n\n***\n\n## 4\\. Why We Collect It \\(Purposes of Processing\\)\n\nWe use your personal data only for the following purposes:\n\n1. **Responding to your enquiry** — contacting you by phone, WhatsApp, or email to discuss your goals and the right track for you.\n2. **Delivering the course you enrolled in** — sending session links, sharing course notes and lab briefs, tracking attendance, and grading your capstone.\n3. **Issuing your certificate of completion** — the certificate carries the name you provided at enrolment.\n4. **Placement support** — sharing your resume with hiring partners with your explicit prior consent, arranging mock interviews, and issuing referral introductions.\n5. **Billing, GST, and tax compliance** — issuing invoices and maintaining records required under Indian tax law.\n6. **Communicating important service notices** — batch schedule changes, cohort re-scheduling, batch-transfer confirmations, refund confirmations under Sections 4 and 5 of the [Refund Policy](06-refund-policy.md).\n7. **Non-promotional community updates** — for alumni who opt in.\n8. **Aggregate service improvement** — using Vercel Web Analytics to understand which pages help visitors most.\n9. **Testimonials, case studies, and student-success stories** — only with your explicit written consent, which you can withdraw at any time.\n\nWe do not use your personal data for any purpose that is not listed above.\n\n***\n\n## 5\\. Legal Basis for Processing \\(DPDP Act\\, 2023\\)\n\nWe process your personal data on the following legal bases under the DPDP Act:\n\n* **Consent** (Section 6, DPDP Act) — for testimonials, case studies, photos, videos, and any promotional communication that is not directly tied to a service you already have with us.\n* **Legitimate use** (Section 7, DPDP Act) — for responding to enquiries you have initiated with us, for delivering the course you have paid for, for issuing certificates, for placement support to enrolled students and alumni, and for meeting our legal obligations under Indian tax and consumer-protection laws.\n\nWhere processing depends on your consent, you can withdraw that consent at any time using the process described in Section 10. Withdrawal of consent does not affect the lawfulness of processing carried out before the withdrawal.\n\n***\n\n## 6\\. Who We Share Your Personal Data With\n\nWe do not sell your personal data. We do not share your personal data with third parties for their own advertising or marketing.\n\nWe share your personal data only with the following categories of recipients, and only to the extent necessary for the purposes described in Section 4.\n\n### 6.1 Third-Party Service Providers (Data Processors)\n\nThe following service providers process your personal data on our behalf under standard commercial terms. Several of them are located outside India, so processing your data through these services involves a **cross-border transfer** of personal data.\n\n| Service Provider | Purpose | Location of Processing |\n| ---------------- | ------- | ---------------------- |\n| Vercel Inc. | Website hosting and cookieless web analytics | United States |\n| Salesforce.com, inc. | Customer Relationship Management — stores enquiry-form leads and enrolment records | United States |\n| Google LLC (Google Workspace, Google Drive, Google Meet) | Email, document storage for course notes and lab briefs, and live-class delivery | United States |\n| Zoom Video Communications, Inc. | Live-class delivery for some batches | United States |\n| Meta Platforms Ireland Ltd. / WhatsApp LLC | WhatsApp messaging for enquiries, discovery calls, batch communication | Ireland / United States |\n| Our banking partner and UPI infrastructure | Processing your fee payment | India |\n\nBy using the website, submitting the enquiry form, or enrolling in a program, you acknowledge that your personal data may be processed in the countries listed above, which may have data-protection laws different from those of India. We select service providers with published privacy and security commitments appropriate to the type of data involved.\n\n### 6.2 Legal and Regulatory Recipients\n\nWe may disclose your personal data:\n\n* To the Chartered Accountant and the tax authorities of India, to comply with GST, income tax, and other statutory requirements.\n* To a court, tribunal, law-enforcement authority, or regulator, where we are required to do so under Indian law.\n* To our legal advisors, in confidence, when it is necessary to protect our rights or defend a claim.\n\n### 6.3 Hiring Partners (Only With Consent)\n\nFor enrolled students and alumni who have opted in to placement support, we share your resume, capstone project, and (with your prior express consent) your contact details with our hiring partners.\n\n***\n\n## 7\\. How Long We Keep Your Personal Data \\(Retention\\)\n\nWe keep your personal data only for as long as is necessary for the purposes for which it was collected, plus any period required by law.\n\n| Category | Retention Period |\n| -------- | ---------------- |\n| Enquiry-form leads that do not convert | Up to 24 months from your last contact with us, then deleted. |\n| Enrolled-student records (name, contact, enrolment, payments, attendance) | 7 years from batch completion — required for Indian tax and consumer-record retention. |\n| Session attendance and class-participation logs | 3 years from batch completion. |\n| Testimonials, photos, videos, and success-story content | Until you withdraw consent, after which the content is removed from our public materials within 30 days. |\n| Placement-support records (resume, interview outcomes) | 3 years from your placement, or until you request deletion, whichever is earlier. |\n| Website analytics (aggregate) | 12 months. Does not identify individuals. |\n\nAfter the retention period, we either securely delete the personal data or anonymise it so that it can no longer be linked to you.\n\n***\n\n## 8\\. Cookies and Tracking Technologies\n\napexorialearning.in currently uses **Vercel Web Analytics**, which is cookieless. It does not place tracking cookies on your device, does not use persistent identifiers, and does not track you across other websites.\n\nWe do **not** currently use:\n\n* Google Analytics (GA4)\n* Meta Pixel / Facebook Pixel\n* LinkedIn Insight Tag\n* Any other advertising, remarketing, or cross-site tracking cookie.\n\nIf we add any tracking that uses cookies or similar technologies in future, we will update this Privacy Policy, publish a cookie consent banner on the website, and ask for your consent before setting any non-essential cookie.\n\n***\n\n## 9\\. How We Protect Your Personal Data \\(Security\\)\n\nWe take reasonable technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction, appropriate to the nature of the data. These measures include:\n\n* Two-factor authentication on the Google Workspace accounts we use to receive and store enquiries and course materials.\n* Role-based access controls in our Salesforce CRM, so that lead and enrolment data is accessible only to team members who need it.\n* Password-protected access to shared course notes and lab briefs on Google Drive.\n* HTTPS (TLS) encryption for all traffic to and from the website.\n* A limited-access banking channel for payment receipts, held only by Kajal Kohale as sole proprietor.\n\nNo system connected to the internet is perfectly secure. If a personal data breach affects your rights, we will notify you and the Data Protection Board of India in accordance with the DPDP Act.\n\n***\n\n## 10\\. Your Rights as a Data Principal\n\nUnder the DPDP Act, 2023, you have the following rights in respect of your personal data:\n\n1. **Right to access** — you can ask us for a summary of the personal data we hold about you and the purposes for which it is processed.\n2. **Right to correction and erasure** — you can ask us to correct inaccurate data or to erase data that is no longer needed for the purpose it was collected for (subject to our legal record-keeping obligations described in Section 7).\n3. **Right to withdraw consent** — where processing is based on your consent (for example, testimonials, photos, or promotional communications), you can withdraw that consent at any time.\n4. **Right to nominate** — you can nominate another individual to exercise your rights on your behalf in the event of your death or incapacity.\n5. **Right to grievance redressal** — you can raise a concern with our Grievance Officer, who will respond within the timeline set out in Section 11.\n6. **Right to lodge a complaint** — if you are not satisfied with our response, you have the right to complain to the Data Protection Board of India constituted under the DPDP Act.\n\n### How to Exercise Your Rights\n\n* Email us at **apexorialearning@gmail.com** with the subject line **\"Data Principal Request\"**, describing the right you wish to exercise.\n* Include enough information for us to verify your identity (the email address / phone number under which we hold your data, and the approximate date of the last interaction).\n* We will respond within **30 days**. If your request is complex, we will tell you why we need more time.\n\n***\n\n## 11\\. Grievance Officer\n\nIf you have a concern about how your personal data has been handled, you may contact our Grievance Officer:\n\n* **Name**: Kajal Kohale\n* **Designation**: Grievance Officer, Apexoria Learning\n* **Email**: apexorialearning@gmail.com\n* **Postal address**: Nagpur, Maharashtra, India\n* **Response commitment**: We will acknowledge your grievance within 3 business days and provide a substantive response within 30 days of receipt, in accordance with the DPDP Act.\n\n***\n\n## 12\\. Children\n\nOur services are intended for adults aged 18 or above. We do not knowingly market to, or knowingly collect personal data from, any individual below the age of 18.\n\nIf we become aware that we have inadvertently collected personal data from a person below 18, we will delete that data promptly. If you believe we hold data about a child, please contact the Grievance Officer at the address above so we can act quickly.\n\n***\n\n## 13\\. Payment Data\n\nWe do not collect or store payment-card details. Fees are paid to Apexoria Learning via:\n\n* **UPI** (QR code or VPA) into the business bank account of Kajal Kohale, sole proprietor, or\n* **Direct bank transfer** into the same business bank account.\n\nYour UPI ID or bank account number is visible to us only to the extent it is disclosed by the UPI or banking network on the receipt of your payment. This information is used to identify your payment and issue a receipt / GST invoice, and to process a refund back to the same account if one becomes due under the [Refund Policy](06-refund-policy.md).\n\nIf we introduce a payment gateway in future (for example, Razorpay or PayU), we will update this Privacy Policy to describe the additional processor and the additional data it will handle, before switching it on.\n\n***\n\n## 14\\. Communications From Us\n\nIf you are an enrolled student, we will send you course-related communications (batch schedules, session links, schedule changes) throughout your batch. These are essential for delivering the service you have paid for and are not marketing communications.\n\nFor promotional communications — for example, batch launches, webinars, blog posts, or referral offers — we rely on your consent. You can opt out of promotional communications at any time by:\n\n* Replying **STOP** on WhatsApp, or\n* Emailing **apexorialearning@gmail.com** with the subject line \"Unsubscribe\".\n\nOpting out of promotional communications does not stop essential service communications while you are enrolled in a batch.\n\n***\n\n## 15\\. Changes to This Privacy Policy\n\nWe may update this Privacy Policy from time to time to reflect changes in law, in the services we use, or in our own practices. When we do, we will change the \"Effective Date\" at the top of this page. If the change is material and affects the rights of existing enrolled students, we will notify them by email or WhatsApp at least 14 days before the updated version takes effect.\n\nWe recommend checking this page occasionally to stay informed about how we protect your personal data.\n\n***\n\n## 16\\. Governing Law and Jurisdiction\n\nThis Privacy Policy is governed by, and construed in accordance with, the laws of India, including the Digital Personal Data Protection Act, 2023 and the Information Technology Act, 2000. Any dispute arising out of or in connection with this Privacy Policy shall be subject to the exclusive jurisdiction of the courts at **Nagpur, Maharashtra, India**, without prejudice to your statutory right to complain to the Data Protection Board of India.\n\n***\n\n## 17\\. Contact\n\n* **Email**: apexorialearning@gmail.com\n* **WhatsApp / Phone**: +91 7498490687\n* **Grievance Officer**: Kajal Kohale (see Section 11)\n* **Response time**: Within 24 hours on business days for general questions; within the timelines in Sections 10 and 11 for Data Principal requests and grievances.\n\n***\n\n*By using apexorialearning.in, submitting the enquiry form, contacting us on WhatsApp / phone / email, or enrolling in an Apexoria Learning program, you confirm that you have read and understood this Privacy Policy.*"
+    "contentMd": "# Apexoria Learning — Privacy Policy\n\n**Effective Date**: 30 July 2026\n**Version**: 1.0\n**Applies to**: apexorialearning.in, and all personal data collected by Apexoria Learning through the website, WhatsApp, email, phone, and its live-online training programs.\n\n***\n\n## 1\\. Who We Are\n\napexorialearning.in and the Apexoria Learning training programs are operated by:\n\n* **Kajal Gharjale**, sole proprietor, trading as **Apexoria Learning**\n* **Location**: Nagpur, Maharashtra, India\n* **GSTIN**: {{AA}}\n* **Email**: apexorialearning@gmail.com\n* **Phone / WhatsApp**: +91 7498490687\n\nFor the purposes of the Digital Personal Data Protection Act, 2023 (\"DPDP Act\") and the Information Technology Act, 2000 (with the Reasonable Security Practices and Procedures and Sensitive Personal Data or Information Rules, 2011), **Kajal Gharjale, sole proprietor trading as Apexoria Learning, is the Data Fiduciary** responsible for the personal data described in this Privacy Policy.\n\nThis Privacy Policy explains what personal data we collect, why we collect it, how we use it, who we share it with, how long we keep it, and what rights you have as a Data Principal.\n\n***\n\n## 2\\. Who This Policy Applies To\n\nThis Privacy Policy applies to:\n\n* **Visitors** to apexorialearning.in.\n* **Prospective students** who submit our enquiry form, or who contact us on WhatsApp, phone, or email.\n* **Enrolled students** in any Apexoria Learning batch — Salesforce Admin, Salesforce Developer, Salesforce Complete Course, Salesforce QA (Manual + API), Salesforce QA Automation, and any specialist track.\n* **Alumni** who continue to receive placement support or community access after completing a batch.\n* Anyone who consents to feature in a testimonial, case study, or student-success story.\n\n***\n\n## 3\\. Personal Data We Collect\n\nWe only collect personal data that is necessary for the purposes described in Section 4.\n\n### 3.1 From the Enquiry Form on the Website\n\n* Full name\n* Email address\n* Phone number (with country code)\n* Track / course of interest\n* Current professional background (job title, years of experience, or \"student / fresh graduate\" — a short free-text field)\n* Any additional message you choose to send us\n\n### 3.2 From WhatsApp, Phone, and Email\n\n* The contents of the messages, calls, and emails you send us.\n* Discovery-call notes recorded by our enrolment team during voice calls (topic discussed, track of interest, expected batch, follow-up date).\n\n### 3.3 At Enrolment\n\n* Payment reference — UPI transaction ID or bank transfer reference number.\n* Billing name and postal address, **only if** you request a GST invoice.\n* Batch and cohort you are enrolled in.\n\n### 3.4 During the Training Program\n\n* Session attendance records (dates and durations of the sessions you joined).\n* The name and email address you use to join Zoom or Google Meet sessions.\n* Submissions and code you share for labs and the capstone project. You submit these using your **own personal Salesforce Developer Org** — we do not create or hold Salesforce accounts on your behalf.\n\n### 3.5 Website Analytics\n\n* We use **Vercel Web Analytics**, which is a cookieless, privacy-friendly analytics service. It measures aggregate metrics such as page views, referrers, and approximate country of visit. It does not use persistent identifiers, does not track you across other websites, and does not store your IP address.\n\n### 3.6 For Testimonials and Success Stories\n\nOnly if you give us your explicit, informed, and withdrawable consent, we may additionally collect:\n\n* Your written testimonial or interview responses.\n* Your photo, video clip, or LinkedIn profile URL.\n* The name of your new employer and your new job title, if you choose to share them.\n\nTestimonial consent is captured separately in writing (email or WhatsApp) and can be withdrawn at any time (see Section 10).\n\n### 3.7 What We Do NOT Collect\n\n* **We do not record live sessions.** Apexoria Learning's teaching model is live-only. Sessions are not recorded, archived, or shared as playback. See our recordings decision at [`08-key-activities/decisions/2026-07-25-no-recordings-policy.md`](../08-key-activities/decisions/2026-07-25-no-recordings-policy.md) for the reasoning.\n* **We do not collect a government-issued ID at any stage.** The name printed on your certificate of completion is the name you provided at enrolment.\n* **We do not ask for or store your Salesforce, Trailhead, or Trailblazer.me passwords.**\n* **We do not store payment-card details.** We currently accept payments only via UPI and direct bank transfer; no card data ever touches our systems.\n* We do not collect biometric data, health data, or other special-category personal data.\n* We do not knowingly collect personal data from children under 18 (see Section 12).\n\n***\n\n## 4\\. Why We Collect It \\(Purposes of Processing\\)\n\nWe use your personal data only for the following purposes:\n\n1. **Responding to your enquiry** — contacting you by phone, WhatsApp, or email to discuss your goals and the right track for you.\n2. **Delivering the course you enrolled in** — sending session links, sharing course notes and lab briefs, tracking attendance, and grading your capstone.\n3. **Issuing your certificate of completion** — the certificate carries the name you provided at enrolment.\n4. **Placement support** — sharing your resume with hiring partners with your explicit prior consent, arranging mock interviews, and issuing referral introductions.\n5. **Billing, GST, and tax compliance** — issuing invoices and maintaining records required under Indian tax law.\n6. **Communicating important service notices** — batch schedule changes, cohort re-scheduling, batch-transfer confirmations, refund confirmations under Sections 4 and 5 of the [Refund Policy](06-refund-policy.md).\n7. **Non-promotional community updates** — for alumni who opt in.\n8. **Aggregate service improvement** — using Vercel Web Analytics to understand which pages help visitors most.\n9. **Testimonials, case studies, and student-success stories** — only with your explicit written consent, which you can withdraw at any time.\n\nWe do not use your personal data for any purpose that is not listed above.\n\n***\n\n## 5\\. Legal Basis for Processing \\(DPDP Act\\, 2023\\)\n\nWe process your personal data on the following legal bases under the DPDP Act:\n\n* **Consent** (Section 6, DPDP Act) — for testimonials, case studies, photos, videos, and any promotional communication that is not directly tied to a service you already have with us.\n* **Legitimate use** (Section 7, DPDP Act) — for responding to enquiries you have initiated with us, for delivering the course you have paid for, for issuing certificates, for placement support to enrolled students and alumni, and for meeting our legal obligations under Indian tax and consumer-protection laws.\n\nWhere processing depends on your consent, you can withdraw that consent at any time using the process described in Section 10. Withdrawal of consent does not affect the lawfulness of processing carried out before the withdrawal.\n\n***\n\n## 6\\. Who We Share Your Personal Data With\n\nWe do not sell your personal data. We do not share your personal data with third parties for their own advertising or marketing.\n\nWe share your personal data only with the following categories of recipients, and only to the extent necessary for the purposes described in Section 4.\n\n### 6.1 Third-Party Service Providers (Data Processors)\n\nThe following service providers process your personal data on our behalf under standard commercial terms. Several of them are located outside India, so processing your data through these services involves a **cross-border transfer** of personal data.\n\n| Service Provider | Purpose | Location of Processing |\n| ---------------- | ------- | ---------------------- |\n| Vercel Inc. | Website hosting and cookieless web analytics | United States |\n| Salesforce.com, inc. | Customer Relationship Management — stores enquiry-form leads and enrolment records | United States |\n| Google LLC (Google Workspace, Google Drive, Google Meet) | Email, document storage for course notes and lab briefs, and live-class delivery | United States |\n| Zoom Video Communications, Inc. | Live-class delivery for some batches | United States |\n| Meta Platforms Ireland Ltd. / WhatsApp LLC | WhatsApp messaging for enquiries, discovery calls, batch communication | Ireland / United States |\n| Our banking partner and UPI infrastructure | Processing your fee payment | India |\n\nBy using the website, submitting the enquiry form, or enrolling in a program, you acknowledge that your personal data may be processed in the countries listed above, which may have data-protection laws different from those of India. We select service providers with published privacy and security commitments appropriate to the type of data involved.\n\n### 6.2 Legal and Regulatory Recipients\n\nWe may disclose your personal data:\n\n* To the Chartered Accountant and the tax authorities of India, to comply with GST, income tax, and other statutory requirements.\n* To a court, tribunal, law-enforcement authority, or regulator, where we are required to do so under Indian law.\n* To our legal advisors, in confidence, when it is necessary to protect our rights or defend a claim.\n\n### 6.3 Hiring Partners (Only With Consent)\n\nFor enrolled students and alumni who have opted in to placement support, we share your resume, capstone project, and (with your prior express consent) your contact details with our hiring partners.\n\n***\n\n## 7\\. How Long We Keep Your Personal Data \\(Retention\\)\n\nWe keep your personal data only for as long as is necessary for the purposes for which it was collected, plus any period required by law.\n\n| Category | Retention Period |\n| -------- | ---------------- |\n| Enquiry-form leads that do not convert | Up to 24 months from your last contact with us, then deleted. |\n| Enrolled-student records (name, contact, enrolment, payments, attendance) | 7 years from batch completion — required for Indian tax and consumer-record retention. |\n| Session attendance and class-participation logs | 3 years from batch completion. |\n| Testimonials, photos, videos, and success-story content | Until you withdraw consent, after which the content is removed from our public materials within 30 days. |\n| Placement-support records (resume, interview outcomes) | 3 years from your placement, or until you request deletion, whichever is earlier. |\n| Website analytics (aggregate) | 12 months. Does not identify individuals. |\n\nAfter the retention period, we either securely delete the personal data or anonymise it so that it can no longer be linked to you.\n\n***\n\n## 8\\. Cookies and Tracking Technologies\n\napexorialearning.in currently uses **Vercel Web Analytics**, which is cookieless. It does not place tracking cookies on your device, does not use persistent identifiers, and does not track you across other websites.\n\nWe do **not** currently use:\n\n* Google Analytics (GA4)\n* Meta Pixel / Facebook Pixel\n* LinkedIn Insight Tag\n* Any other advertising, remarketing, or cross-site tracking cookie.\n\nIf we add any tracking that uses cookies or similar technologies in future, we will update this Privacy Policy, publish a cookie consent banner on the website, and ask for your consent before setting any non-essential cookie.\n\n***\n\n## 9\\. How We Protect Your Personal Data \\(Security\\)\n\nWe take reasonable technical and organisational measures to protect your personal data against unauthorised access, alteration, disclosure, or destruction, appropriate to the nature of the data. These measures include:\n\n* Two-factor authentication on the Google Workspace accounts we use to receive and store enquiries and course materials.\n* Role-based access controls in our Salesforce CRM, so that lead and enrolment data is accessible only to team members who need it.\n* Password-protected access to shared course notes and lab briefs on Google Drive.\n* HTTPS (TLS) encryption for all traffic to and from the website.\n* A limited-access banking channel for payment receipts, held only by Kajal Gharjale as sole proprietor.\n\nNo system connected to the internet is perfectly secure. If a personal data breach affects your rights, we will notify you and the Data Protection Board of India in accordance with the DPDP Act.\n\n***\n\n## 10\\. Your Rights as a Data Principal\n\nUnder the DPDP Act, 2023, you have the following rights in respect of your personal data:\n\n1. **Right to access** — you can ask us for a summary of the personal data we hold about you and the purposes for which it is processed.\n2. **Right to correction and erasure** — you can ask us to correct inaccurate data or to erase data that is no longer needed for the purpose it was collected for (subject to our legal record-keeping obligations described in Section 7).\n3. **Right to withdraw consent** — where processing is based on your consent (for example, testimonials, photos, or promotional communications), you can withdraw that consent at any time.\n4. **Right to nominate** — you can nominate another individual to exercise your rights on your behalf in the event of your death or incapacity.\n5. **Right to grievance redressal** — you can raise a concern with our Grievance Officer, who will respond within the timeline set out in Section 11.\n6. **Right to lodge a complaint** — if you are not satisfied with our response, you have the right to complain to the Data Protection Board of India constituted under the DPDP Act.\n\n### How to Exercise Your Rights\n\n* Email us at **apexorialearning@gmail.com** with the subject line **\"Data Principal Request\"**, describing the right you wish to exercise.\n* Include enough information for us to verify your identity (the email address / phone number under which we hold your data, and the approximate date of the last interaction).\n* We will respond within **30 days**. If your request is complex, we will tell you why we need more time.\n\n***\n\n## 11\\. Grievance Officer\n\nIf you have a concern about how your personal data has been handled, you may contact our Grievance Officer:\n\n* **Name**: Kajal Gharjale\n* **Designation**: Grievance Officer, Apexoria Learning\n* **Email**: apexorialearning@gmail.com\n* **Postal address**: Nagpur, Maharashtra, India\n* **Response commitment**: We will acknowledge your grievance within 3 business days and provide a substantive response within 30 days of receipt, in accordance with the DPDP Act.\n\n***\n\n## 12\\. Children\n\nOur services are intended for adults aged 18 or above. We do not knowingly market to, or knowingly collect personal data from, any individual below the age of 18.\n\nIf we become aware that we have inadvertently collected personal data from a person below 18, we will delete that data promptly. If you believe we hold data about a child, please contact the Grievance Officer at the address above so we can act quickly.\n\n***\n\n## 13\\. Payment Data\n\nWe do not collect or store payment-card details. Fees are paid to Apexoria Learning via:\n\n* **UPI** (QR code or VPA) into the business bank account of Kajal Gharjale, sole proprietor, or\n* **Direct bank transfer** into the same business bank account.\n\nYour UPI ID or bank account number is visible to us only to the extent it is disclosed by the UPI or banking network on the receipt of your payment. This information is used to identify your payment and issue a receipt / GST invoice, and to process a refund back to the same account if one becomes due under the [Refund Policy](06-refund-policy.md).\n\nIf we introduce a payment gateway in future (for example, Razorpay or PayU), we will update this Privacy Policy to describe the additional processor and the additional data it will handle, before switching it on.\n\n***\n\n## 14\\. Communications From Us\n\nIf you are an enrolled student, we will send you course-related communications (batch schedules, session links, schedule changes) throughout your batch. These are essential for delivering the service you have paid for and are not marketing communications.\n\nFor promotional communications — for example, batch launches, webinars, blog posts, or referral offers — we rely on your consent. You can opt out of promotional communications at any time by:\n\n* Replying **STOP** on WhatsApp, or\n* Emailing **apexorialearning@gmail.com** with the subject line \"Unsubscribe\".\n\nOpting out of promotional communications does not stop essential service communications while you are enrolled in a batch.\n\n***\n\n## 15\\. Changes to This Privacy Policy\n\nWe may update this Privacy Policy from time to time to reflect changes in law, in the services we use, or in our own practices. When we do, we will change the \"Effective Date\" at the top of this page. If the change is material and affects the rights of existing enrolled students, we will notify them by email or WhatsApp at least 14 days before the updated version takes effect.\n\nWe recommend checking this page occasionally to stay informed about how we protect your personal data.\n\n***\n\n## 16\\. Governing Law and Jurisdiction\n\nThis Privacy Policy is governed by, and construed in accordance with, the laws of India, including the Digital Personal Data Protection Act, 2023 and the Information Technology Act, 2000. Any dispute arising out of or in connection with this Privacy Policy shall be subject to the exclusive jurisdiction of the courts at **Nagpur, Maharashtra, India**, without prejudice to your statutory right to complain to the Data Protection Board of India.\n\n***\n\n## 17\\. Contact\n\n* **Email**: apexorialearning@gmail.com\n* **WhatsApp / Phone**: +91 7498490687\n* **Grievance Officer**: Kajal Gharjale (see Section 11)\n* **Response time**: Within 24 hours on business days for general questions; within the timelines in Sections 10 and 11 for Data Principal requests and grievances.\n\n***\n\n*By using apexorialearning.in, submitting the enquiry form, contacting us on WhatsApp / phone / email, or enrolling in an Apexoria Learning program, you confirm that you have read and understood this Privacy Policy.*"
   },
   "terms": {
     "title": "Terms of Service",
@@ -401,7 +401,7 @@ export const FAQ_ITEMS = [
   }
 ];
 
-// Interview Preparation flagship section — homepage only.
+// Interview Preparation flagship section — 2-week career accelerator.
 export const INTERVIEW_PREP = {
   "overline": "CAREER SERVICES",
   "headlinePrefix": "Turn your Salesforce skills into a ",
@@ -434,21 +434,57 @@ export const INTERVIEW_PREP = {
   ],
   "ctaLabel": "Enroll Now",
   "whatsappCta": "Ask About This Program",
-  "whatsappHref": WHATSAPP_LINK
+  "whatsappHref": "https://wa.me/917498490687?text=Hi%20Apexoria%20Learning%2C%20I%27m%20interested%20in%20your%20Salesforce%20courses"
 };
 
-// All Courses Page — rich per-course content for /courses route.
+// /courses route — full per-course detail pages.
 export const ALL_COURSES_PAGE = {
   "foundation": {
     "title": "Salesforce Foundation",
     "tagline": "Start your Salesforce journey with the fundamentals",
-    "chips": ["5 hrs/week", "Beginner", "Live Classes"],
+    "chips": [
+      "5 hrs/week",
+      "Beginner",
+      "Live Classes"
+    ],
     "description": "Perfect for absolute beginners. Learn Salesforce navigation, data model, security, automation basics, and reporting — the building blocks every Admin and Developer needs before diving into code.",
     "weekByWeek": [
-      { "week": 1, "topic": "Salesforce Basics & Navigation", "points": ["Platform overview", "Objects, fields & relationships", "Data import/export"] },
-      { "week": 2, "topic": "Reports & Dashboards", "points": ["Building custom reports", "Dashboard components", "Filtering & grouping"] },
-      { "week": 3, "topic": "Automation with Flows", "points": ["Flow Builder intro", "Screen flows vs. autolaunched", "Simple approval workflows"] },
-      { "week": 4, "topic": "Security Fundamentals", "points": ["Profiles & permission sets", "Sharing rules", "Field-level security"] }
+      {
+        "week": 1,
+        "topic": "Salesforce Basics & Navigation",
+        "points": [
+          "Platform overview",
+          "Objects, fields & relationships",
+          "Data import/export"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Reports & Dashboards",
+        "points": [
+          "Building custom reports",
+          "Dashboard components",
+          "Filtering & grouping"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Automation with Flows",
+        "points": [
+          "Flow Builder intro",
+          "Screen flows vs. autolaunched",
+          "Simple approval workflows"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Security Fundamentals",
+        "points": [
+          "Profiles & permission sets",
+          "Sharing rules",
+          "Field-level security"
+        ]
+      }
     ],
     "outcomes": [
       "Confidently navigate Salesforce UI and understand the data model",
@@ -464,21 +500,62 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need any technical background?", "a": "No. This is designed for absolute beginners with no prior Salesforce or IT experience." },
-      { "q": "Can I skip this if I want to become a developer?", "a": "You can, but we recommend Foundation for anyone unfamiliar with Salesforce. It makes the Development track much easier." }
+      {
+        "q": "Do I need any technical background?",
+        "a": "No. This is designed for absolute beginners with no prior Salesforce or IT experience."
+      },
+      {
+        "q": "Can I skip this if I want to become a developer?",
+        "a": "You can, but we recommend Foundation for anyone unfamiliar with Salesforce. It makes the Development track much easier."
+      }
     ],
     "enrollLabel": "Salesforce Foundation — ₹1,999"
   },
   "crash-course": {
     "title": "Salesforce Crash Course",
     "tagline": "Interview-ready in one month",
-    "chips": ["22 hrs/month", "Intermediate", "1 Month"],
+    "chips": [
+      "22 hrs/month",
+      "Intermediate",
+      "1 Month"
+    ],
     "description": "Fast-paced primer for career-switchers who want to hit the ground running. Covers everything in Foundation plus Apex fundamentals, SOQL, and an intro to Lightning Web Components. Live classes, guided assignments, just enough theory to make the code stick.",
     "weekByWeek": [
-      { "week": 1, "topic": "Foundation Speedrun", "points": ["Objects, fields, security recap", "Reports & automation essentials"] },
-      { "week": 2, "topic": "Apex Fundamentals", "points": ["Triggers & classes", "SOQL queries", "DML operations"] },
-      { "week": 3, "topic": "Advanced Apex", "points": ["Bulkification patterns", "Error handling", "Test classes"] },
-      { "week": 4, "topic": "Lightning Web Components Intro", "points": ["LWC basics", "Component wiring", "Guided assignment walkthrough"] }
+      {
+        "week": 1,
+        "topic": "Foundation Speedrun",
+        "points": [
+          "Objects, fields, security recap",
+          "Reports & automation essentials"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Apex Fundamentals",
+        "points": [
+          "Triggers & classes",
+          "SOQL queries",
+          "DML operations"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Advanced Apex",
+        "points": [
+          "Bulkification patterns",
+          "Error handling",
+          "Test classes"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Lightning Web Components Intro",
+        "points": [
+          "LWC basics",
+          "Component wiring",
+          "Guided assignment walkthrough"
+        ]
+      }
     ],
     "outcomes": [
       "Write Apex triggers and classes for real business logic",
@@ -494,27 +571,107 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Is one month really enough?", "a": "For someone with basic programming logic, yes. You'll be interview-ready for junior roles. For deeper mastery, consider Complete Course." },
-      { "q": "What if I have no coding experience?", "a": "Start with Foundation first to build confidence, then jump into Crash Course." }
+      {
+        "q": "Is one month really enough?",
+        "a": "For someone with basic programming logic, yes. You'll be interview-ready for junior roles. For deeper mastery, consider Complete Course."
+      },
+      {
+        "q": "What if I have no coding experience?",
+        "a": "Start with Foundation first to build confidence, then jump into Crash Course."
+      }
     ],
     "enrollLabel": "Salesforce Crash Course — ₹9,999"
   },
   "complete-course": {
     "title": "Salesforce Complete Course",
     "tagline": "End-to-end Admin + Dev mastery",
-    "chips": ["70 hrs", "Advanced", "3 Months", "Capstone Project"],
+    "chips": [
+      "70 hrs",
+      "Advanced",
+      "3 Months",
+      "Capstone Project"
+    ],
     "description": "The full deep dive — Admin foundations, advanced Apex, LWC in depth, REST/SOAP integrations, and a deployable Loan/Case Management capstone project. This is the track for anyone serious about becoming a production-ready Salesforce Developer.",
     "weekByWeek": [
-      { "week": 1, "topic": "Admin Foundations", "points": ["Objects, security, automation", "Reports, dashboards, data lifecycle"] },
-      { "week": 2, "topic": "Apex Fundamentals", "points": ["Triggers, classes, SOQL, DML"] },
-      { "week": 3, "topic": "Advanced Apex", "points": ["Bulkification, async Apex, test classes"] },
-      { "week": 4, "topic": "Lightning Web Components", "points": ["LWC architecture, data binding, wire service"] },
-      { "week": 5, "topic": "LWC Deep Dive", "points": ["Parent-child communication", "Apex imperative calls", "Error handling"] },
-      { "week": 6, "topic": "REST & SOAP Integrations", "points": ["HTTP callouts, OAuth flows", "Named credentials"] },
-      { "week": 7, "topic": "Capstone Project Kickoff", "points": ["Loan/Case Management system design", "User stories & data model"] },
-      { "week": 8, "topic": "Capstone Build", "points": ["Apex logic implementation", "LWC UI development"] },
-      { "week": 9, "topic": "Capstone Integration", "points": ["REST API integration", "Deployment & testing"] },
-      { "week": 10, "topic": "Mock Interviews & Placement Prep", "points": ["Resume reviews", "Technical mock interviews", "Job referrals"] }
+      {
+        "week": 1,
+        "topic": "Admin Foundations",
+        "points": [
+          "Objects, security, automation",
+          "Reports, dashboards, data lifecycle"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Apex Fundamentals",
+        "points": [
+          "Triggers, classes, SOQL, DML"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Advanced Apex",
+        "points": [
+          "Bulkification, async Apex, test classes"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Lightning Web Components",
+        "points": [
+          "LWC architecture, data binding, wire service"
+        ]
+      },
+      {
+        "week": 5,
+        "topic": "LWC Deep Dive",
+        "points": [
+          "Parent-child communication",
+          "Apex imperative calls",
+          "Error handling"
+        ]
+      },
+      {
+        "week": 6,
+        "topic": "REST & SOAP Integrations",
+        "points": [
+          "HTTP callouts, OAuth flows",
+          "Named credentials"
+        ]
+      },
+      {
+        "week": 7,
+        "topic": "Capstone Project Kickoff",
+        "points": [
+          "Loan/Case Management system design",
+          "User stories & data model"
+        ]
+      },
+      {
+        "week": 8,
+        "topic": "Capstone Build",
+        "points": [
+          "Apex logic implementation",
+          "LWC UI development"
+        ]
+      },
+      {
+        "week": 9,
+        "topic": "Capstone Integration",
+        "points": [
+          "REST API integration",
+          "Deployment & testing"
+        ]
+      },
+      {
+        "week": 10,
+        "topic": "Mock Interviews & Placement Prep",
+        "points": [
+          "Resume reviews",
+          "Technical mock interviews",
+          "Job referrals"
+        ]
+      }
     ],
     "outcomes": [
       "Build production-grade Salesforce apps with Apex + LWC",
@@ -530,24 +687,84 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Is this overkill if I just want a junior role?", "a": "If budget and time allow, Complete Course gives you an edge even for junior roles. But Crash Course is sufficient for entry-level." },
-      { "q": "Do I get lifetime access to recordings?", "a": "Yes, all class recordings and materials remain accessible after course completion." },
-      { "q": "What's the Capstone project?", "a": "A deployable Loan/Case Management system built with Apex, LWC, and REST integrations — real complexity that interviewers respect." }
+      {
+        "q": "Is this overkill if I just want a junior role?",
+        "a": "If budget and time allow, Complete Course gives you an edge even for junior roles. But Crash Course is sufficient for entry-level."
+      },
+      {
+        "q": "Do I get lifetime access to recordings?",
+        "a": "Yes, all class recordings and materials remain accessible after course completion."
+      },
+      {
+        "q": "What's the Capstone project?",
+        "a": "A deployable Loan/Case Management system built with Apex, LWC, and REST integrations — real complexity that interviewers respect."
+      }
     ],
     "enrollLabel": "Salesforce Complete Course — ₹21,999"
   },
   "salesforce-qa": {
     "title": "Salesforce QA Testing",
     "tagline": "Land a no-code Salesforce testing role",
-    "chips": ["60 hrs", "No-Code", "2.5 Months"],
+    "chips": [
+      "60 hrs",
+      "No-Code",
+      "2.5 Months"
+    ],
     "description": "Manual + API testing built specifically around Salesforce apps. Learn UI testing, data validation, Postman-based API testing, JIRA workflows, and Salesforce-specific QA scenarios you'll actually be asked about in interviews.",
     "weekByWeek": [
-      { "week": 1, "topic": "QA Fundamentals & STLC", "points": ["Software testing lifecycle", "Test case design", "Bug reporting"] },
-      { "week": 2, "topic": "Salesforce UI Testing", "points": ["Manual testing on standard/custom objects", "Data validation scenarios"] },
-      { "week": 3, "topic": "API Testing with Postman", "points": ["REST API basics", "Salesforce REST API testing", "Collections & environments"] },
-      { "week": 4, "topic": "Agile & JIRA", "points": ["Agile workflows", "User stories & acceptance criteria", "JIRA ticket management"] },
-      { "week": 5, "topic": "Salesforce-Specific Scenarios", "points": ["Testing integrations", "Validation rules & flows", "Security & permissions testing"] },
-      { "week": 6, "topic": "Mock Interviews & Placement Prep", "points": ["QA interview questions", "Resume reviews", "Job referrals"] }
+      {
+        "week": 1,
+        "topic": "QA Fundamentals & STLC",
+        "points": [
+          "Software testing lifecycle",
+          "Test case design",
+          "Bug reporting"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Salesforce UI Testing",
+        "points": [
+          "Manual testing on standard/custom objects",
+          "Data validation scenarios"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "API Testing with Postman",
+        "points": [
+          "REST API basics",
+          "Salesforce REST API testing",
+          "Collections & environments"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Agile & JIRA",
+        "points": [
+          "Agile workflows",
+          "User stories & acceptance criteria",
+          "JIRA ticket management"
+        ]
+      },
+      {
+        "week": 5,
+        "topic": "Salesforce-Specific Scenarios",
+        "points": [
+          "Testing integrations",
+          "Validation rules & flows",
+          "Security & permissions testing"
+        ]
+      },
+      {
+        "week": 6,
+        "topic": "Mock Interviews & Placement Prep",
+        "points": [
+          "QA interview questions",
+          "Resume reviews",
+          "Job referrals"
+        ]
+      }
     ],
     "outcomes": [
       "Write comprehensive test cases for Salesforce apps",
@@ -563,23 +780,81 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need coding skills?", "a": "No. This track is 100% no-code. You'll learn Postman and JIRA, but no programming." },
-      { "q": "Can I switch to automation later?", "a": "Yes! After completing this, you can enroll in our Automation QA track to learn Playwright and Provar." }
+      {
+        "q": "Do I need coding skills?",
+        "a": "No. This track is 100% no-code. You'll learn Postman and JIRA, but no programming."
+      },
+      {
+        "q": "Can I switch to automation later?",
+        "a": "Yes! After completing this, you can enroll in our Automation QA track to learn Playwright and Provar."
+      }
     ],
     "enrollLabel": "Salesforce QA Testing Course — ₹17,999"
   },
   "automation-qa": {
     "title": "Salesforce Automation QA",
     "tagline": "Level up into high-end automation testing",
-    "chips": ["Advanced", "Automation Track", "~30% Coding"],
+    "chips": [
+      "Advanced",
+      "Automation Track",
+      "~30% Coding"
+    ],
     "description": "For QA engineers who want to automate at scale. Playwright, Provar, Selenium fundamentals, CI/CD patterns, and real-world Salesforce automation scenarios used in production teams.",
     "weekByWeek": [
-      { "week": 1, "topic": "Automation Fundamentals", "points": ["Why automate?", "Test automation pyramid", "Tooling landscape"] },
-      { "week": 2, "topic": "Playwright for Web", "points": ["Setup & first test", "Locators & assertions", "Page Object Model"] },
-      { "week": 3, "topic": "Provar for Salesforce", "points": ["Provar architecture", "Test case creation", "Data-driven testing"] },
-      { "week": 4, "topic": "Selenium Basics", "points": ["WebDriver fundamentals", "Cross-browser testing", "Waits & synchronization"] },
-      { "week": 5, "topic": "CI/CD Integration", "points": ["Jenkins/GitHub Actions", "Automated test pipelines", "Reporting & notifications"] },
-      { "week": 6, "topic": "Real-World Scenarios", "points": ["Salesforce Lightning automation", "API + UI hybrid tests", "Mock interviews"] }
+      {
+        "week": 1,
+        "topic": "Automation Fundamentals",
+        "points": [
+          "Why automate?",
+          "Test automation pyramid",
+          "Tooling landscape"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Playwright for Web",
+        "points": [
+          "Setup & first test",
+          "Locators & assertions",
+          "Page Object Model"
+        ]
+      },
+      {
+        "week": 3,
+        "topic": "Provar for Salesforce",
+        "points": [
+          "Provar architecture",
+          "Test case creation",
+          "Data-driven testing"
+        ]
+      },
+      {
+        "week": 4,
+        "topic": "Selenium Basics",
+        "points": [
+          "WebDriver fundamentals",
+          "Cross-browser testing",
+          "Waits & synchronization"
+        ]
+      },
+      {
+        "week": 5,
+        "topic": "CI/CD Integration",
+        "points": [
+          "Jenkins/GitHub Actions",
+          "Automated test pipelines",
+          "Reporting & notifications"
+        ]
+      },
+      {
+        "week": 6,
+        "topic": "Real-World Scenarios",
+        "points": [
+          "Salesforce Lightning automation",
+          "API + UI hybrid tests",
+          "Mock interviews"
+        ]
+      }
     ],
     "outcomes": [
       "Build end-to-end test suites with Playwright and Provar",
@@ -595,19 +870,45 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need programming experience?", "a": "Basic coding logic helps (~30% of the course involves JavaScript/Java). If you're completely non-technical, start with Salesforce QA first." },
-      { "q": "Is this only for Salesforce?", "a": "Playwright and Selenium skills transfer to any web app. Provar is Salesforce-specific." }
+      {
+        "q": "Do I need programming experience?",
+        "a": "Basic coding logic helps (~30% of the course involves JavaScript/Java). If you're completely non-technical, start with Salesforce QA first."
+      },
+      {
+        "q": "Is this only for Salesforce?",
+        "a": "Playwright and Selenium skills transfer to any web app. Provar is Salesforce-specific."
+      }
     ],
     "enrollLabel": "Salesforce Automation QA — ₹22,000"
   },
   "interview-prep": {
     "title": "Salesforce Interview Preparation",
     "tagline": "Turn your skills into signed offers",
-    "chips": ["2 Weeks", "Career Accelerator", "Post-Job Support"],
+    "chips": [
+      "2 Weeks",
+      "Career Accelerator",
+      "Post-Job Support"
+    ],
     "description": "Short-form program for anyone with basic Salesforce knowledge who needs the interview edge. 10 personalized mock interviews (Dev + QA), resume optimization, LinkedIn + Naukri profile setup, and 2 months of post-job support.",
     "weekByWeek": [
-      { "week": 1, "topic": "Resume & Profile Optimization", "points": ["ATS-friendly resume rewrite", "LinkedIn keyword optimization", "Naukri profile setup"] },
-      { "week": 2, "topic": "Mock Interviews & Feedback", "points": ["10 personalized mock interviews", "Dev + QA scenario coverage", "Post-job onboarding guidance"] }
+      {
+        "week": 1,
+        "topic": "Resume & Profile Optimization",
+        "points": [
+          "ATS-friendly resume rewrite",
+          "LinkedIn keyword optimization",
+          "Naukri profile setup"
+        ]
+      },
+      {
+        "week": 2,
+        "topic": "Mock Interviews & Feedback",
+        "points": [
+          "10 personalized mock interviews",
+          "Dev + QA scenario coverage",
+          "Post-job onboarding guidance"
+        ]
+      }
     ],
     "outcomes": [
       "ATS-optimized resume that gets past automated screens",
@@ -623,8 +924,14 @@ export const ALL_COURSES_PAGE = {
       "photo": null
     },
     "faq": [
-      { "q": "Do I need to complete a course first?", "a": "No, but you should already know Salesforce basics (Admin, Apex, or QA fundamentals). This is interview prep, not a learning track." },
-      { "q": "What if I don't get a job?", "a": "We provide referrals and support, but job outcomes depend on your skill level and market conditions. This program maximizes your chances." }
+      {
+        "q": "Do I need to complete a course first?",
+        "a": "No, but you should already know Salesforce basics (Admin, Apex, or QA fundamentals). This is interview prep, not a learning track."
+      },
+      {
+        "q": "What if I don't get a job?",
+        "a": "We provide referrals and support, but job outcomes depend on your skill level and market conditions. This program maximizes your chances."
+      }
     ],
     "enrollLabel": "Salesforce Interview Preparation — ₹2,999"
   }
