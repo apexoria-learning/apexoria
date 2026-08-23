@@ -6,7 +6,7 @@ import { Reveal } from "./Reveal";
 import { trackEvent } from "@/lib/analytics";
 import { COURSES_PAGE as TEST_IDS } from "@/constants/testIds/home";
 
-export default function Pricing() {
+export default function Pricing({ onEnroll }) {
   const featuredPaths = PATHS.filter((p) => p.homepageFeatured);
   return (
     <section id="pricing" data-testid="pricing-section" className="bg-white py-24 lg:py-32">
@@ -82,6 +82,22 @@ export default function Pricing() {
                   Learn More
                   <ArrowRight size={18} />
                 </Link>
+                {/* Secondary low-commitment path: users who aren't ready to
+                    read the full course page can still request a free demo
+                    class in one tap. Same handler as every other demo CTA. */}
+                {onEnroll && (
+                  <button
+                    type="button"
+                    data-testid={`pricing-demo-${p.id}`}
+                    onClick={() => {
+                      trackEvent("pricing_demo_click", { tier: p.tier, level: p.level });
+                      onEnroll(p.tier);
+                    }}
+                    className="mt-2.5 w-full text-sm font-semibold text-brand-blue hover:text-brand-orange transition-colors"
+                  >
+                    Not sure? Book a free demo &rarr;
+                  </button>
+                )}
               </m.div>
             </Reveal>
           ))}

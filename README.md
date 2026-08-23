@@ -111,6 +111,7 @@ All variables are read at build time by CRA (must be prefixed `REACT_APP_`). **N
 | `REACT_APP_GF_ENTRY_COURSE`    | Google Form `entry.*` id for course                                     |
 | `REACT_APP_GF_ENTRY_BATCH`     | Google Form `entry.*` id for batch                                      |
 | `REACT_APP_GF_ENTRY_MESSAGE`   | Google Form `entry.*` id for message                                    |
+| `REACT_APP_GF_ENTRY_INTENT`    | Google Form `entry.*` id for demo-vs-enrol intent radio *(optional — leave unset to skip)* |
 | `REACT_APP_GTM_ID` *(optional)*| Google Tag Manager container id (e.g. `GTM-XXXXXX`). Leave unset to skip GTM. |
 
 Grab the `entry.*` ids by opening your Google Form's live URL, viewing source, and searching for `entry.` — each field has one.

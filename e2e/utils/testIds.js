@@ -125,6 +125,16 @@ export const FINAL_CTA = {
   brochureBtn: 'final-brochure-btn',
 };
 
+// BrochureGateDialog — src/components/site/BrochureGateDialog.jsx
+// Reused by FinalCTA brochure download and Footer study-note downloads.
+export const BROCHURE_GATE = {
+  dialog: 'brochure-gate-dialog',
+  form: 'brochure-gate-form',
+  name: 'brochure-gate-name',
+  phone: 'brochure-gate-phone',
+  submit: 'brochure-gate-submit',
+};
+
 // WhatsAppWidget — src/components/site/WhatsAppWidget.jsx
 export const WHATSAPP = {
   widget: 'whatsapp-widget',

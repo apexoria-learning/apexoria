@@ -79,10 +79,10 @@ export default function LeadForm({ prefillCourse }) {
         <Reveal>
           <span className="text-xs font-bold uppercase tracking-[0.25em] text-brand-blue">Get Started</span>
           <h2 className="font-display text-4xl md:text-5xl font-extrabold tracking-tight text-navy mt-4">
-            Book your <span className="text-brand-orange">free counselling call.</span>
+            Book your <span className="text-brand-orange">free demo class.</span>
           </h2>
           <p className="mt-5 text-slate-600 leading-relaxed max-w-md">
-            Tell us a little about yourself and our team will guide you to the right learning path — no pressure, no jargon.
+            Attend a couple of live sessions before you decide. No card, no pressure &mdash; just tell us where you are today and we&apos;ll guide you to the right learning path.
           </p>
           <div className="mt-8 overflow-hidden rounded-2xl clip-frame max-w-sm">
             <picture>
@@ -117,7 +117,7 @@ export default function LeadForm({ prefillCourse }) {
               >
                 <CheckCircle2 size={56} className="text-brand-green mx-auto" />
                 <h3 className="font-display text-2xl font-bold text-navy mt-5">You&apos;re all set!</h3>
-                <p className="text-slate-600 mt-2">Our counsellor will reach out to you shortly.</p>
+                <p className="text-slate-600 mt-2">Our counsellor will reach out shortly to schedule your free demo class.</p>
                 <a
                   href={WHATSAPP_LINK}
                   target="_blank"

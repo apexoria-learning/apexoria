@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { m, useScroll, useTransform } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { IMAGES, WHATSAPP_LINK } from "../../data";
+import { IMAGES, WHATSAPP_LINK, CONTACT } from "../../data";
 import { trackEvent } from "@/lib/analytics";
 
 const ease = [0.16, 1, 0.3, 1];
@@ -92,10 +92,9 @@ export default function Hero({ onEnroll }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.95, duration: 0.7 }}
-          className="mt-8 text-white/75 text-base md:text-lg max-w-xl leading-relaxed"
+          className="mt-8 text-white/75 text-base md:text-lg max-w-2xl leading-relaxed"
         >
-          Live online cohorts in Apex, LWC, Integrations &amp; Admin — plus dedicated Salesforce QA batches.
-          <span className="text-white font-semibold"> Guaranteed placement support.</span>
+          Live, interactive cohorts led by <span className="text-white font-semibold">Salesforce Certified Professionals</span> with <span className="text-white font-semibold">10+ years of hands-on development experience</span>. Learn Apex, LWC, Integrations, and enterprise-grade architecture from industry veterans who&rsquo;ve shipped real Salesforce solutions &mdash; with 1-on-1 mentorship, real-world projects, and dedicated interview prep to make you truly job-ready.
         </m.p>
 
         <m.div
@@ -112,7 +111,7 @@ export default function Hero({ onEnroll }) {
             }}
             className="group inline-flex items-center justify-center gap-2 bg-brand-orange text-white font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-xl shadow-brand-orange/30"
           >
-            Enroll Today
+            Book a Free Demo Class
             <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
           </button>
           <a
@@ -129,6 +128,7 @@ export default function Hero({ onEnroll }) {
             Talk to Us on WhatsApp
           </a>
         </m.div>
+
       </div>
 
       {/* Trust strip */}
@@ -139,7 +139,7 @@ export default function Hero({ onEnroll }) {
         className="absolute bottom-0 inset-x-0 z-10 border-t border-white/10 bg-white/5 backdrop-blur-sm"
       >
         <div className="max-w-7xl mx-auto px-5 lg:px-8 py-5 flex flex-wrap items-center justify-center md:justify-between gap-4 text-white/90 text-base md:text-lg font-semibold">
-          {["200+ Learners Trained", "Guaranteed Placement Support", "Weekday Batches"].map((t, i) => (
+          {["200+ Learners Trained", "15+ Placed in Salesforce Roles", "Weekday Batches"].map((t, i) => (
             <span key={i} className="flex items-center gap-2.5">
               <span className="h-2 w-2 rounded-full bg-brand-gold" /> {t}
             </span>

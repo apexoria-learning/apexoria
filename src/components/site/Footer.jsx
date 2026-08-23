@@ -1,13 +1,27 @@
+import { useState } from "react";
 import { Phone, Mail, Download, Heart, FileText } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { toast } from "sonner";
 import { CONTACT, LOGO_URL, RESOURCES } from "../../data";
+import BrochureGateDialog from "./BrochureGateDialog";
+import { trackEvent } from "@/lib/analytics";
+
+// Map a Resource label ("LWC Notes", "Apex Notes", "QA Notes") to the
+// exact Source dropdown value used by the "Apexoria Learning Magnet
+// Form" (see CMS_SETUP.md). Anything not matching the "X Notes" pattern
+// falls back to `Notes - <label>` — Google Forms will silently drop the
+// row if the string isn't a valid dropdown option, but we still let the
+// user download the file (fail-open behaviour inherited from the dialog).
+function toSourceLabel(label) {
+  const m = /^(.+)\s+Notes$/i.exec(label || "");
+  return `Notes - ${m ? m[1] : label}`;
+}
 
 export default function Footer() {
   const { pathname } = useLocation();
   const isHomePage = pathname === '/';
   const navigate = useNavigate();
   const year = new Date().getFullYear();
+  const [gate, setGate] = useState({ open: false, sourceLabel: "", fileUrl: "", fileTitle: "" });
   const links = [
     { label: "Courses", href: "/courses" },
     { label: "About", id: "why" },
@@ -32,17 +46,10 @@ export default function Footer() {
     }
   };
 
-  const handleResourceDownload = async (path, label) => {
-    try {
-      const res = await fetch(path, { method: "HEAD" });
-      if (res.ok) {
-        window.open(path, "_blank", "noopener,noreferrer");
-      } else {
-        toast.info(`${label} will be available shortly. Please reach out on WhatsApp for a copy.`);
-      }
-    } catch {
-      toast.info(`${label} will be available shortly. Please reach out on WhatsApp for a copy.`);
-    }
+  const openResourceGate = (path, label) => {
+    const sourceLabel = toSourceLabel(label);
+    trackEvent("brochure_gate_open", { location: "footer_resource", source: sourceLabel });
+    setGate({ open: true, sourceLabel, fileUrl: path, fileTitle: label });
   };
 
   return (
@@ -111,7 +118,7 @@ export default function Footer() {
                 <li key={r.file}>
                   <button
                     data-testid={`footer-resource-${r.file.split("/").pop().replace(/\.pdf$/, "")}`}
-                    onClick={() => handleResourceDownload(r.file, r.label)}
+                    onClick={() => openResourceGate(r.file, r.label)}
                     className="inline-flex items-center gap-2 text-sm text-white/80 hover:text-brand-gold transition-colors"
                   >
                     <FileText size={16} className="text-brand-blue" /> {r.label}
@@ -130,6 +137,14 @@ export default function Footer() {
           </p>
         </div>
       </div>
+
+      <BrochureGateDialog
+        open={gate.open}
+        onOpenChange={(open) => setGate((g) => ({ ...g, open }))}
+        sourceLabel={gate.sourceLabel}
+        fileUrl={gate.fileUrl}
+        fileTitle={gate.fileTitle}
+      />
     </footer>
   );
 }
