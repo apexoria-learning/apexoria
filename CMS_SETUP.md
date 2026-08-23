@@ -72,6 +72,24 @@ Also add the Firebase **web** config keys (same values as in `.env`) so they're 
 | `REACT_APP_FIREBASE_APP_ID` | `1:659226371563:web:1a51eb8751c45c2d13a5ae` |
 | `REACT_APP_FIREBASE_MEASUREMENT_ID` | `G-E4KWDWYNB2` |
 
+Also add the **Downloads Google Form** vars used by the brochure / study-notes lead gate (see [BrochureGateDialog.jsx](src/components/site/BrochureGateDialog.jsx)). These POST Name + Phone + Source to the "Apexoria Learning Magnet Form" (a separate Google Form from the main counselling-call form, so downloads and callback requests live in different sheets):
+
+| Name | Value |
+|---|---|
+| `REACT_APP_GF_DL_ACTION` | `https://docs.google.com/forms/d/e/1FAIpQLSdbVLrIoDYJkUrm_W9mJwc_Mdzgdf93YLWovE3CIT0wGC6SIw/formResponse` |
+| `REACT_APP_GF_DL_ENTRY_NAME` | `entry.466762972` |
+| `REACT_APP_GF_DL_ENTRY_PHONE` | `entry.380885209` |
+| `REACT_APP_GF_DL_ENTRY_SOURCE` | `entry.920188423` |
+
+Source dropdown values in the form MUST match these exact strings (case + spaces):
+
+- `Download Brochure` — sent by FinalCTA "Download Brochure" button
+- `Notes - LWC` — sent by Footer LWC Notes button
+- `Notes - Apex` — sent by Footer Apex Notes button
+- `Notes - QA` — sent by Footer QA Notes button
+
+If any of the 4 vars is missing at build time, the gate dialog falls back to opening the file directly (no lead captured, but user still gets the download).
+
 ### 4. Push & deploy
 
 ```bash

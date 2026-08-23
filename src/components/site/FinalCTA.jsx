@@ -1,25 +1,19 @@
+import { useState } from "react";
 import { Phone, Instagram, Linkedin, Facebook, ArrowRight, Download } from "lucide-react";
-import { toast } from "sonner";
 import { CONTACT, BROCHURE_URL } from "../../data";
 import { Reveal } from "./Reveal";
 import { trackEvent } from "@/lib/analytics";
+import BrochureGateDialog from "./BrochureGateDialog";
 
 export default function FinalCTA({ onEnroll }) {
-  const handleBrochureDownload = async (ev) => {
-    ev.preventDefault();
-    try {
-      const res = await fetch(BROCHURE_URL, { method: "HEAD" });
-      if (res.ok) {
-        trackEvent("brochure_download", { location: "final_cta", available: true });
-        window.open(BROCHURE_URL, "_blank", "noopener,noreferrer");
-      } else {
-        trackEvent("brochure_download", { location: "final_cta", available: false });
-        toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
-      }
-    } catch {
-      trackEvent("brochure_download", { location: "final_cta", available: false });
-      toast.info("Brochure download will be available shortly. Please reach out on WhatsApp for details.");
-    }
+  // The brochure download is now gated behind BrochureGateDialog. The
+  // Google-Form POST + HEAD-check + graceful 404 toast all live inside
+  // the dialog so this component just owns the open/close state.
+  const [gateOpen, setGateOpen] = useState(false);
+
+  const openBrochureGate = () => {
+    trackEvent("brochure_gate_open", { location: "final_cta" });
+    setGateOpen(true);
   };
 
   return (
@@ -43,7 +37,7 @@ export default function FinalCTA({ onEnroll }) {
               }}
               className="group inline-flex items-center gap-2 bg-brand-orange text-white font-bold px-8 py-4 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-xl shadow-brand-orange/30"
             >
-              Enroll Today
+              Book a Free Demo Class
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </button>
             <a
@@ -71,7 +65,7 @@ export default function FinalCTA({ onEnroll }) {
           <div className="mt-6 flex justify-center">
             <button
               data-testid="final-brochure-btn"
-              onClick={handleBrochureDownload}
+              onClick={openBrochureGate}
               className="inline-flex items-center gap-2 border-2 border-white/25 text-white font-bold px-6 py-3 rounded-full hover:bg-white/10 transition-colors"
             >
               <Download size={18} className="text-brand-gold" /> Download Brochure
@@ -79,6 +73,14 @@ export default function FinalCTA({ onEnroll }) {
           </div>
         </Reveal>
       </div>
+
+      <BrochureGateDialog
+        open={gateOpen}
+        onOpenChange={setGateOpen}
+        sourceLabel="Download Brochure"
+        fileUrl={BROCHURE_URL}
+        fileTitle="Course Brochure"
+      />
     </section>
   );
 }

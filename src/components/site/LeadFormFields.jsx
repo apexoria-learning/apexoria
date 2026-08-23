@@ -7,7 +7,7 @@ import {
 import { COURSE_OPTIONS } from "../../data";
 import { trackEvent } from "@/lib/analytics";
 
-const EMPTY = { full_name: "", phone: "", email: "", course_interest: "", preferred_batch: "", message: "", company_website: "" };
+const EMPTY = { intent: "demo", full_name: "", phone: "", email: "", course_interest: "", preferred_batch: "", message: "", company_website: "" };
 
 export default function LeadFormFields({ pageMountedAt, prefillCourse, onSuccess }) {
   const [form, setForm] = useState(() => ({ ...EMPTY, course_interest: prefillCourse || "" }));
@@ -57,6 +57,10 @@ export default function LeadFormFields({ pageMountedAt, prefillCourse, onSuccess
     return "";
   };
 
+  // Values must EXACTLY match the option strings on the Google Form's
+  // "What would you like to do?" question, otherwise GF silently drops them.
+  const mapIntentToGF = (value) => (value === "enrol" ? "Ready to Enroll" : "Attend a free demo");
+
   const submit = async (ev) => {
     ev.preventDefault();
     if (loading || cooldown) return;
@@ -103,6 +107,11 @@ export default function LeadFormFields({ pageMountedAt, prefillCourse, onSuccess
       const batchVal = mapBatchToGF(form.preferred_batch);
       if (batchVal) fd.append(process.env.REACT_APP_GF_ENTRY_BATCH, batchVal);
       if (form.message) fd.append(process.env.REACT_APP_GF_ENTRY_MESSAGE, form.message);
+      // Intent field is optional — only sent if the entry id is configured
+      // (lets us ship the code before adding the question on the Google Form).
+      if (process.env.REACT_APP_GF_ENTRY_INTENT) {
+        fd.append(process.env.REACT_APP_GF_ENTRY_INTENT, mapIntentToGF(form.intent));
+      }
 
       await fetch(process.env.REACT_APP_GF_ACTION_URL, {
         method: "POST",
@@ -114,9 +123,14 @@ export default function LeadFormFields({ pageMountedAt, prefillCourse, onSuccess
       trackEvent("lead_form_submit_success", {
         course: mapCourseToGF(form.course_interest),
         batch: mapBatchToGF(form.preferred_batch) || "unspecified",
+        intent: form.intent,
       });
       onSuccess();
-      toast.success("Thanks! We'll call you shortly for your free counselling session.");
+      toast.success(
+        form.intent === "enrol"
+          ? "Thanks! We'll call you shortly to help you enrol."
+          : "Thanks! We'll call you shortly to schedule your free demo class."
+      );
       setForm(EMPTY);
       setCooldown(true);
       clearTimeout(cooldownTimer.current);
@@ -144,6 +158,50 @@ export default function LeadFormFields({ pageMountedAt, prefillCourse, onSuccess
       />
 
       <div className="space-y-4">
+        {/* Demo-vs-enrol intent radio — default is "demo" to align with the
+            reframed CTA ("Book a Free Demo Class"). Captured only as an
+            analytics dimension + confirmation-toast switch; no new field on
+            the Google Form (kept on purpose to avoid a GF schema change). */}
+        <div>
+          <span className="block text-sm font-semibold text-navy mb-2">I&apos;d like to&hellip;</span>
+          <div
+            role="radiogroup"
+            aria-label="Attend a demo first, or enrol now"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-2"
+          >
+            {[
+              { value: "demo", label: "Attend a free demo class first" },
+              { value: "enrol", label: "I'm ready to enrol" },
+            ].map((opt) => {
+              const active = form.intent === opt.value;
+              return (
+                <label
+                  key={opt.value}
+                  data-testid={`lead-intent-${opt.value}`}
+                  className={`flex items-center gap-2 cursor-pointer rounded-xl border px-4 py-2.5 text-sm font-semibold transition ${
+                    active
+                      ? "border-brand-orange bg-brand-orange/10 text-navy"
+                      : "border-slate-200 bg-white text-slate-600 hover:border-slate-300"
+                  }`}
+                >
+                  <input
+                    type="radio"
+                    name="lead-intent"
+                    value={opt.value}
+                    checked={active}
+                    onChange={() => {
+                      set("intent", opt.value);
+                      trackEvent("demo_intent_selected", { intent: opt.value });
+                    }}
+                    className="h-4 w-4 accent-brand-orange"
+                  />
+                  {opt.label}
+                </label>
+              );
+            })}
+          </div>
+        </div>
+
         <div>
           <label className="block text-sm font-semibold text-navy mb-1.5">Full Name *</label>
           <input data-testid="lead-name" className={inputCls("full_name")} placeholder="Your full name" value={form.full_name} onChange={(e) => set("full_name", e.target.value)} />
@@ -205,7 +263,7 @@ export default function LeadFormFields({ pageMountedAt, prefillCourse, onSuccess
           disabled={loading || cooldown}
           className="w-full flex items-center justify-center gap-2 bg-brand-orange text-white font-bold py-4 rounded-full hover:scale-[1.02] active:scale-95 transition-transform shadow-lg shadow-brand-orange/30 disabled:opacity-70 disabled:cursor-not-allowed"
         >
-          {loading ? <><Loader2 size={18} className="animate-spin" /> Sending...</> : "Get Free Counselling Call"}
+          {loading ? <><Loader2 size={18} className="animate-spin" /> Sending...</> : (form.intent === "enrol" ? "Get Enrolment Details" : "Book My Free Demo")}
         </button>
       </div>
     </form>

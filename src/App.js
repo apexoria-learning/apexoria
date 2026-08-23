@@ -31,6 +31,7 @@ const FaqSection = lazy(() => import("@/components/site/FAQ"));
 const FinalCTA = lazy(() => import("@/components/site/FinalCTA"));
 const Footer = lazy(() => import("@/components/site/Footer"));
 const WhatsAppWidget = lazy(() => import("@/components/site/WhatsAppWidget"));
+const MobileCTABar = lazy(() => import("@/components/site/MobileCTABar"));
 
 function App() {
   const [prefillCourse, setPrefillCourse] = useState("");
@@ -160,7 +161,7 @@ function App() {
       <Suspense fallback={<div aria-hidden="true" style={{ minHeight: "5500px" }} />}>
         <Founder />
         <InterviewPrep onEnroll={handleEnroll} />
-        <Pricing />
+        <Pricing onEnroll={handleEnroll} />
         <Batches onEnroll={handleEnroll} />
         <PlacementSupport onEnroll={handleEnroll} />
         <SuccessStories />
@@ -171,6 +172,7 @@ function App() {
         <FinalCTA onEnroll={handleEnroll} />
         <Footer />
         <WhatsAppWidget />
+        <MobileCTABar onEnroll={() => handleEnroll()} />
       </Suspense>
       <Suspense fallback={null}>
         <Toaster position="top-center" richColors />

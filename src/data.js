@@ -12,7 +12,8 @@ export const CONTACT = {
   "instagram": "https://instagram.com/apexoria_learning",
   "instagramHandle": "@apexoria_learning",
   "linkedin": "https://linkedin.com/company/apexoria-learning",
-  "facebook": "https://facebook.com/people/Apexoria-Learning/61579552420160"
+  "facebook": "https://facebook.com/people/Apexoria-Learning/61579552420160",
+  "responseSLA": "We reply within 2 hours \u00b7 Mon\u2013Sat 9am\u20138pm IST"
 };
 
 // Pre-filled WhatsApp CTA (floating widget + hero + footer).

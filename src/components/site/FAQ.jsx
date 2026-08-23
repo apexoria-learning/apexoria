@@ -52,6 +52,21 @@ export default function FaqSection({ onEnroll }) {
                 className="group-hover:translate-x-1 transition-transform"
               />
             </button>
+            {/* Secondary, lower-commitment path for undecided visitors:
+                same handler as the primary counsellor CTA, softer label. */}
+            <div className="mt-3">
+              <button
+                type="button"
+                data-testid="faq-demo-btn"
+                onClick={() => {
+                  trackEvent("faq_demo_click");
+                  onEnroll && onEnroll();
+                }}
+                className="text-sm font-semibold text-brand-blue hover:text-brand-orange transition-colors"
+              >
+                Prefer to see a class first? Book a free demo &rarr;
+              </button>
+            </div>
           </div>
         </Reveal>
 
