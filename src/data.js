@@ -831,7 +831,7 @@ export const ALL_COURSES_PAGE = {
   },
   "automation-qa": {
     "title": "Salesforce Automation QA",
-    "tagline": "Level up into high-end automation testing",
+    "tagline": "Level up into high-end automation testing.",
     "chips": [
       "Advanced",
       "Automation Track",
