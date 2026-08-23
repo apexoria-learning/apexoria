@@ -780,9 +780,10 @@ export const ALL_COURSES_PAGE = {
       },
       {
         "week": 8,
-        "topic": "Workflows And Approvals",
+        "topic": "Processes & Analytics",
         "points": [
-          "Reports And Dashboards"
+          "Reports And Dashboards",
+          "Workflows And Approvals"
         ]
       },
       {
@@ -840,70 +841,135 @@ export const ALL_COURSES_PAGE = {
     "weekByWeek": [
       {
         "week": 1,
-        "topic": "Automation Fundamentals",
+        "topic": "QA Fundamentals",
         "points": [
-          "Why automate?",
-          "Test automation pyramid",
-          "Tooling landscape"
+          "SDLC & STLC",
+          "Bug reporting",
+          "Severity & Priority",
+          "API Testing with Postman",
+          "Agile & JIRA"
         ]
       },
       {
         "week": 2,
-        "topic": "Playwright for Web",
+        "topic": "CRM  Basics ",
         "points": [
-          "Setup & first test",
-          "Locators & assertions",
-          "Page Object Model"
+          "Definition Of Cloud Computing And Types",
+          "Definition Of Salesforce And It’s Products",
+          "Sales Cloud-Generic Business Process",
+          "Service Cloud and Customer Service"
         ]
       },
       {
         "week": 3,
-        "topic": "Provar for Salesforce",
+        "topic": "Salesforce-Force.Com Platform",
         "points": [
-          "Provar architecture",
-          "Test case creation",
-          "Data-driven testing"
+          "Objects & Fields ",
+          "Validation Rules",
+          "Page Layourt",
+          "Roles",
+          "Profiles"
         ]
       },
       {
         "week": 4,
-        "topic": "Selenium Basics",
+        "topic": "Security Model",
         "points": [
-          "WebDriver fundamentals",
-          "Cross-browser testing",
-          "Waits & synchronization"
+          "Profile Level",
+          "Object Level Security Model",
+          "Permission Set Level",
+          "Field Level Security Model",
+          "Record Level Security"
         ]
       },
       {
         "week": 5,
-        "topic": "CI/CD Integration",
+        "topic": "Processes & Analytics",
         "points": [
-          "Jenkins/GitHub Actions",
-          "Automated test pipelines",
-          "Reporting & notifications"
+          "Workflow and Approvals",
+          "Reports and Dashboards"
         ]
       },
       {
         "week": 6,
-        "topic": "Real-World Scenarios",
+        "topic": " Java  Fundamentals for Automation",
         "points": [
-          "Salesforce Lightning automation",
-          "API + UI hybrid tests",
-          "Mock interviews"
+          "Java Basics",
+          "OOPS",
+          "Collections",
+          "Loops and Statements"
+        ]
+      },
+      {
+        "week": 7,
+        "topic": "Selenium  Fundamentals",
+        "points": [
+          "Selenium Webdriver",
+          "Webdriver methods",
+          "Locators",
+          "Different Web Elements"
+        ]
+      },
+      {
+        "week": 8,
+        "topic": "Advanced Selenium ",
+        "points": [
+          "Handling Alerts, frames, tabs",
+          "Mouse and  Keyboard actions",
+          "Advanced Waits"
+        ]
+      },
+      {
+        "week": 9,
+        "topic": "Framework",
+        "points": [
+          "Cucumber framework",
+          "Page object model",
+          "TestNG",
+          "Data driven framework"
+        ]
+      },
+      {
+        "week": 10,
+        "topic": "Installations and Hands on Project",
+        "points": [
+          "Installing Selenium, IDE and supportives",
+          "Project development from Scratch ",
+          "Utility classes",
+          "Provar Highlights "
+        ]
+      },
+      {
+        "week": 11,
+        "topic": "AI enabled automation",
+        "points": [
+          "Use of AI  tools for automation",
+          "AI agent ",
+          "Promting framework"
+        ]
+      },
+      {
+        "week": 12,
+        "topic": "Real-World Project and Interview Prep",
+        "points": [
+          "Mock interviews",
+          "Automation Project",
+          "Resume reviews",
+          "Job Referrals"
         ]
       }
     ],
     "outcomes": [
-      "Build end-to-end test suites with Playwright and Provar",
+      "Build end-to-end test suites with Selenium",
       "Integrate automated tests into CI/CD pipelines",
       "Understand Selenium patterns and cross-browser challenges",
       "Land high-end automation QA roles in Salesforce teams"
     ],
-    "whoThisIsFor": "Manual QA engineers ready to upskill into automation, SDET aspirants, or developers pivoting into QA automation roles.",
+    "whoThisIsFor": "Graduates looking for change. Manual QA engineers ready to upskill into automation, SDET aspirants, or developers pivoting into QA automation roles.",
     "testimonial": {
-      "name": "Rohit Deshmukh",
+      "name": "Neha Alone",
       "role": "Automation QA Engineer",
-      "quote": "Provar was new to me. The real-world scenarios and CI/CD integration made everything click. Got placed as an SDET within a month of finishing.",
+      "quote": "Selenium automation was new to me. The real-world scenarios made everything click. Got placed as an SDET within a month of finishing.",
       "photo": null
     },
     "faq": [
