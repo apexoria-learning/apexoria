@@ -676,7 +676,7 @@ export const ALL_COURSES_PAGE = {
     ],
     "whoThisIsFor": "Anyone who wants complete hands-on knowledge and a portfolio project that stands out in interviews. Ideal for career-switchers, bootcamp grads, or professionals upskilling for senior roles.",
     "testimonial": {
-      "name": "Priyanka Rajguru",
+      "name": "Sneha Gupta",
       "role": "Salesforce Developer",
       "quote": "The capstone project gave me something real to show in interviews. The mentors break down complex topics so clearly. Highly recommend Apexoria!",
       "photo": null
@@ -812,7 +812,7 @@ export const ALL_COURSES_PAGE = {
     ],
     "whoThisIsFor": "Non-coders looking for Salesforce careers, manual testers pivoting into CRM testing, or anyone who wants a no-code path into the Salesforce ecosystem.",
     "testimonial": {
-      "name": "Aditya Tandiye",
+      "name": "Priyanka Rajguru",
       "role": "Salesforce QA Analyst",
       "quote": "The mock interviews made me confident. I cleared my first QA role interview on the second attempt and the placement support was genuine.",
       "photo": null
