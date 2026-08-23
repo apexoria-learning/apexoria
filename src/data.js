@@ -701,7 +701,7 @@ export const ALL_COURSES_PAGE = {
     "title": "Salesforce QA Testing",
     "tagline": "Land a no-code Salesforce testing role",
     "chips": [
-      "60 hrs",
+      "50 hrs",
       "No-Code",
       "2.5 Months"
     ],
@@ -714,15 +714,18 @@ export const ALL_COURSES_PAGE = {
           "Software testing lifecycle",
           "Test case design",
           "Bug reporting",
-          "SDLC"
+          "SDLC",
+          "Severity & Priority"
         ]
       },
       {
         "week": 2,
-        "topic": "Tyd",
+        "topic": "Types of Testing",
         "points": [
-          "Manual testing on standard/custom objects",
-          "Data validation scenarios"
+          "Manual testing (Functional)",
+          "Smoke Sanity and Regression",
+          "Integration Testing",
+          "Monkey Testing"
         ]
       },
       {
