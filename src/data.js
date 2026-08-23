@@ -713,12 +713,13 @@ export const ALL_COURSES_PAGE = {
         "points": [
           "Software testing lifecycle",
           "Test case design",
-          "Bug reporting"
+          "Bug reporting",
+          "SDLC"
         ]
       },
       {
         "week": 2,
-        "topic": "Salesforce UI Testing",
+        "topic": "Tyd",
         "points": [
           "Manual testing on standard/custom objects",
           "Data validation scenarios"
@@ -744,15 +745,53 @@ export const ALL_COURSES_PAGE = {
       },
       {
         "week": 5,
-        "topic": "Salesforce-Specific Scenarios",
+        "topic": "CRM  Basics ",
         "points": [
-          "Testing integrations",
-          "Validation rules & flows",
-          "Security & permissions testing"
+          "Definition Of Cloud Computing And Types",
+          "Definition Of Salesforce And It’s Products",
+          "Sales Cloud-Generic Business Process",
+          "Service Cloud and Customer Service"
         ]
       },
       {
         "week": 6,
+        "topic": "Salesforce-Force.Com Platform",
+        "points": [
+          "Objects & Fields ",
+          " Validation Rule",
+          "Page Layourt",
+          "Roles",
+          "Profiles"
+        ]
+      },
+      {
+        "week": 7,
+        "topic": "Security Model",
+        "points": [
+          "Object Level Security Model",
+          "Profile Level",
+          "Permission Set Level",
+          "Field Level Security Model",
+          "Record Level Security"
+        ]
+      },
+      {
+        "week": 8,
+        "topic": "Workflows And Approvals",
+        "points": [
+          "Reports And Dashboards"
+        ]
+      },
+      {
+        "week": 9,
+        "topic": "Salesforce-Specific Scenarios",
+        "points": [
+          "Salesforce testing Strategies",
+          "Hand on practice"
+        ]
+      },
+      {
+        "week": 10,
         "topic": "Mock Interviews & Placement Prep",
         "points": [
           "QA interview questions",
