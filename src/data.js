@@ -149,7 +149,6 @@ export const PATHS = [
       "Manual testing fundamentals",
       "Salesforce app testing (UI, data, integration)",
       "API testing with Postman",
-      "Automation with Playwright / Provar / Selenium",
       "Placement & interview support"
     ]
   },
