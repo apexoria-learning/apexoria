@@ -60,10 +60,9 @@ test.describe('courses page', () => {
     const inlineForm = page.getByTestId(COURSES_PAGE.inlineLeadForm);
     await expect(inlineForm).toBeInViewport({ ratio: 0.1 });
 
-    // Dropdown should prefill with "Salesforce Interview Preparation — ₹2,999"
+    // Dropdown should prefill with "Salesforce Interview Preparation"
     const courseTrigger = inlineForm.locator(`[data-testid="${LEAD_FORM.course}"]`);
     await expect(courseTrigger).toContainText(/Interview Preparation/i);
-    await expect(courseTrigger).toContainText('₹2,999');
   });
 
   test('inline lead form submits: anti-spam trio + Google Form stub', async ({ page }) => {

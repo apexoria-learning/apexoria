@@ -87,6 +87,7 @@ const PATH_TIER = z.object({
   tier: z.string().trim().min(1),
   level: z.string().trim().min(1),
   price: z.string().trim().min(1),
+  originalPrice: z.string().trim().optional().or(z.literal("")),
   detail: z.string().trim().optional().or(z.literal("")),
   color: hexColorSchema,
   popular: z.boolean().optional(),
@@ -171,6 +172,7 @@ const INTERVIEW_PREP = z.object({
   headlineSuffix: z.string().trim().optional().or(z.literal("")),
   subCopy: z.string().trim().min(1),
   price: z.string().trim().min(1),
+  originalPrice: z.string().trim().optional().or(z.literal("")),
   tagline: z.string().trim().optional().or(z.literal("")),
   features: z.array(z.object({
     icon: z.string().trim().min(1),

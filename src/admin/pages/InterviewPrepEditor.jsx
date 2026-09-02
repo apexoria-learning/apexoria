@@ -141,6 +141,19 @@ export default function InterviewPrepEditor() {
               data-testid="interview-prep-price"
             />
           </Field>
+          <Field
+            label="Original Price (strikethrough)"
+            hint="Optional. Shown struck through above Price to display a discount."
+            error={errFor(["originalPrice"])}
+          >
+            <TextInput
+              value={data.originalPrice || ""}
+              onChange={(v) => setData("originalPrice", v)}
+              placeholder="₹3,499"
+              error={errFor(["originalPrice"])}
+              data-testid="interview-prep-original-price"
+            />
+          </Field>
           <Field label="Tagline" error={errFor(["tagline"])}>
             <TextInput
               value={data.tagline}
