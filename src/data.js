@@ -146,7 +146,7 @@ export const PATHS = [
     "homepageFeatured": true,
     "includes": [
       "Best for those who want a no-coding Salesforce role",
-      "Manual + Automation testing fundamentals",
+      "Manual testing fundamentals",
       "Salesforce app testing (UI, data, integration)",
       "API testing with Postman",
       "Automation with Playwright / Provar / Selenium",
