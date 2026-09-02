@@ -81,6 +81,7 @@ export const PATHS = [
     "tier": "Salesforce Foundation",
     "level": "Beginner",
     "price": "₹1,999",
+    "originalPrice": "₹2,499",
     "detail": "5 hrs / week",
     "color": "#1E90FF",
     "popular": false,
@@ -99,6 +100,7 @@ export const PATHS = [
     "tier": "Salesforce Crash Course",
     "level": "Intermediate",
     "price": "₹9,999",
+    "originalPrice": "₹11,999",
     "detail": "22 hrs / month · 1 month",
     "color": "#F5B400",
     "popular": false,
@@ -117,6 +119,7 @@ export const PATHS = [
     "tier": "Salesforce Complete Course",
     "level": "Advanced",
     "price": "₹21,999",
+    "originalPrice": "₹24,999",
     "detail": "70 hrs · 3 months",
     "color": "#2E7D32",
     "popular": true,
@@ -136,6 +139,7 @@ export const PATHS = [
     "tier": "Salesforce QA Testing Course",
     "level": "No-Code Track",
     "price": "₹17,999",
+    "originalPrice": "₹19,999",
     "detail": "60 hrs · 2.5 months",
     "color": "#8E44AD",
     "popular": false,
@@ -153,7 +157,8 @@ export const PATHS = [
     "id": "automation-qa",
     "tier": "Salesforce Automation QA",
     "level": "Advanced Automation",
-    "price": "₹22,000",
+    "price": "₹21,999",
+    "originalPrice": "₹24,999",
     "detail": "~30% coding · CI/CD",
     "color": "#8E44AD",
     "popular": false,
@@ -172,6 +177,7 @@ export const PATHS = [
     "tier": "Salesforce Interview Preparation",
     "level": "Career Track",
     "price": "₹2,999",
+    "originalPrice": "₹3,499",
     "detail": "2 weeks · career accelerator",
     "color": "#F5B400",
     "popular": false,
@@ -323,12 +329,12 @@ export const PLACEMENT_STEPS = [
 
 // Values shown in the Lead Form 'Interested Course' dropdown.
 export const COURSE_OPTIONS = [
-  "Salesforce Foundation — ₹1,999",
-  "Salesforce Crash Course — ₹9,999",
-  "Salesforce Complete Course — ₹21,999",
-  "Salesforce QA Testing Course — ₹17,999",
-  "Salesforce Automation QA — ₹22,000",
-  "Salesforce Interview Preparation — ₹2,999",
+  "Salesforce Foundation",
+  "Salesforce Crash Course",
+  "Salesforce Complete Course",
+  "Salesforce QA Testing Course",
+  "Salesforce Automation QA",
+  "Salesforce Interview Preparation",
   "Not sure yet — need guidance"
 ];
 
@@ -410,6 +416,7 @@ export const INTERVIEW_PREP = {
   "headlineSuffix": ".",
   "subCopy": "Short-form program for anyone with basic Salesforce knowledge who needs the interview edge. Bootcamp grads, self-taught developers, working professionals switching companies — all welcome.",
   "price": "₹2,999",
+  "originalPrice": "₹3,499",
   "tagline": "2-week Career Track",
   "features": [
     {
@@ -510,7 +517,7 @@ export const ALL_COURSES_PAGE = {
         "a": "You can, but we recommend Foundation for anyone unfamiliar with Salesforce. It makes the Development track much easier."
       }
     ],
-    "enrollLabel": "Salesforce Foundation — ₹1,999"
+    "enrollLabel": "Salesforce Foundation"
   },
   "crash-course": {
     "title": "Salesforce Crash Course",
@@ -581,7 +588,7 @@ export const ALL_COURSES_PAGE = {
         "a": "Start with Foundation first to build confidence, then jump into Crash Course."
       }
     ],
-    "enrollLabel": "Salesforce Crash Course — ₹9,999"
+    "enrollLabel": "Salesforce Crash Course"
   },
   "complete-course": {
     "title": "Salesforce Complete Course",
@@ -701,7 +708,7 @@ export const ALL_COURSES_PAGE = {
         "a": "A deployable Loan/Case Management system built with Apex, LWC, and REST integrations — real complexity that interviewers respect."
       }
     ],
-    "enrollLabel": "Salesforce Complete Course — ₹21,999"
+    "enrollLabel": "Salesforce Complete Course"
   },
   "salesforce-qa": {
     "title": "Salesforce QA Testing",
@@ -833,7 +840,7 @@ export const ALL_COURSES_PAGE = {
         "a": "Yes! After completing this, you can enroll in our Automation QA track to learn Playwright and Provar."
       }
     ],
-    "enrollLabel": "Salesforce QA Testing Course — ₹17,999"
+    "enrollLabel": "Salesforce QA Testing Course"
   },
   "automation-qa": {
     "title": "Salesforce Automation QA",
@@ -988,7 +995,7 @@ export const ALL_COURSES_PAGE = {
         "a": "Playwright and Selenium skills transfer to any web app. Provar is Salesforce-specific."
       }
     ],
-    "enrollLabel": "Salesforce Automation QA — ₹22,000"
+    "enrollLabel": "Salesforce Automation QA"
   },
   "interview-prep": {
     "title": "Salesforce Interview Preparation",
@@ -1042,6 +1049,6 @@ export const ALL_COURSES_PAGE = {
         "a": "We provide referrals and support, but job outcomes depend on your skill level and market conditions. This program maximizes your chances."
       }
     ],
-    "enrollLabel": "Salesforce Interview Preparation — ₹2,999"
+    "enrollLabel": "Salesforce Interview Preparation"
   }
 };

@@ -170,6 +170,18 @@ export default function PricingPage() {
                       />
                     </Field>
                     <Field
+                      label="Original Price (strikethrough)"
+                      hint="Optional. Shown struck through above Price to display a discount."
+                      error={errFor("PATHS", `${i}.originalPrice`)}
+                    >
+                      <TextInput
+                        value={p.originalPrice || ""}
+                        onChange={(v) => setPath(i, "originalPrice", v)}
+                        placeholder="₹11,999"
+                        error={!!errFor("PATHS", `${i}.originalPrice`)}
+                      />
+                    </Field>
+                    <Field
                       label="Detail"
                       hint="E.g. 70 hrs · 3 months."
                       error={errFor("PATHS", `${i}.detail`)}

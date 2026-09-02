@@ -53,7 +53,12 @@ export default function Pricing({ onEnroll }) {
                   {p.level}
                 </span>
                 <h3 className="font-display text-xl font-bold text-navy">{p.tier}</h3>
-                <div className="mt-3 font-display font-black text-4xl text-navy">{p.price}</div>
+                {p.originalPrice && (
+                  <div className="mt-3 text-sm font-semibold text-slate-400 line-through">
+                    {p.originalPrice}
+                  </div>
+                )}
+                <div className={`${p.originalPrice ? "mt-0" : "mt-3"} font-display font-black text-4xl text-navy`}>{p.price}</div>
                 <p className="mt-1 text-sm text-slate-500">{p.detail}</p>
 
                 <ul className="mt-5 space-y-2.5 flex-1">

@@ -141,6 +141,11 @@ export default function CourseDetailSection({ courseId, onEnroll, index = 0 }) {
           <div className="lg:sticky lg:top-24">
             <Reveal>
               <div className="bg-white rounded-xl border border-slate-200 shadow-xl shadow-black/5 p-8">
+                {pathData.originalPrice && (
+                  <div className="text-base font-semibold text-slate-400 line-through">
+                    {pathData.originalPrice}
+                  </div>
+                )}
                 <div className="font-display text-5xl font-black text-navy">{pathData.price}</div>
                 <p className="mt-2 text-slate-600">{pathData.detail}</p>
 

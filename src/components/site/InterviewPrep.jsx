@@ -72,6 +72,11 @@ export default function InterviewPrep({ onEnroll }) {
           {/* Right column — price card */}
           <Reveal>
             <div className="bg-white rounded-xl border border-slate-200 shadow-xl shadow-black/5 p-8 sticky top-24">
+              {INTERVIEW_PREP.originalPrice && (
+                <div className="text-lg font-semibold text-slate-400 line-through">
+                  {INTERVIEW_PREP.originalPrice}
+                </div>
+              )}
               <div
                 data-testid={TEST_IDS.price}
                 className="font-display text-6xl font-black text-navy"
@@ -99,7 +104,7 @@ export default function InterviewPrep({ onEnroll }) {
                   trackEvent("interview_prep_enroll_click", {
                     price: INTERVIEW_PREP.price,
                   });
-                  onEnroll("Salesforce Interview Preparation — ₹2,999");
+                  onEnroll("Salesforce Interview Preparation");
                 }}
                 className="mt-6 w-full bg-brand-orange text-white font-bold py-3.5 rounded-full hover:scale-105 active:scale-95 transition-transform shadow-lg shadow-brand-orange/30"
               >

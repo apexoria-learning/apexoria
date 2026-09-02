@@ -37,10 +37,9 @@ test.describe('interview prep section', () => {
     // Should scroll to homepage lead form
     await expect(page.getByTestId(LEAD_FORM.section)).toBeInViewport({ ratio: 0.1 });
 
-    // Dropdown should prefill with "Salesforce Interview Preparation — ₹2,999"
+    // Dropdown should prefill with "Salesforce Interview Preparation"
     const courseTrigger = page.getByTestId(LEAD_FORM.course);
     await expect(courseTrigger).toContainText(/Interview Preparation/i);
-    await expect(courseTrigger).toContainText('₹2,999');
   });
 
   test('whatsapp button href includes wa.me/917498490687', async ({ page }) => {
