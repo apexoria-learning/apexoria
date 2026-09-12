@@ -199,10 +199,10 @@ export const SPECIAL_OFFER = {
 // Founder profile block.
 export const FOUNDER = {
   "name": "Founder & Lead Instructor",
-  "role": "Salesforce Ecosystem · 5+ Years Experience · 3+ Years Teaching",
+  "role": "Building Careers, One Salesforce Skill at a Time",
   "photo": "/founder-img.png",
   "certifications": [],
-  "bio": "Salesforce professional with 5+ years of hands-on experience in the Salesforce ecosystem and 3+ years of teaching experience mentoring aspiring developers and QA testers. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
+  "bio": "Salesforce professional having more than 8 years of hands-on experience in the Salesforce ecosystem mentoring aspiring developers and QA testers. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
   "skills": [
     "Apex",
     "LWC",
