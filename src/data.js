@@ -210,10 +210,10 @@ export const SPECIAL_OFFER = {
 // Founder profile block.
 export const FOUNDER = {
   "name": "Founder & Lead Instructor",
-  "role": "Salesforce Ecosystem · 5+ Years Experience · 3+ Years Teaching",
+  "role": "Building Careers, One Salesforce Skill at a Time ",
   "photo": "/founder-img.png",
   "certifications": [],
-  "bio": "Salesforce professional with 5+ years of hands-on experience in the Salesforce ecosystem and 3+ years of teaching experience mentoring aspiring developers and QA testers. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
+  "bio": "Salesforce professional having more than 8 years of hands-on experience in the Salesforce ecosystem mentoring aspiring developers and QA testers. Proficient in Apex, Lightning Web Components (LWC), Triggers, SOQL, and Salesforce Integrations (REST/SOAP APIs). Strong expertise in customizing Salesforce applications, automation (Flows, Process Builder, Workflows), and security settings (Profiles, Sharing Rules, Permission Sets). Experienced in optimizing queries and troubleshooting system performance. Passionate about delivering high-quality solutions, improving business processes, and staying updated with Salesforce best practices.",
   "skills": [
     "Apex",
     "LWC",
@@ -280,23 +280,23 @@ export const STATS = [
 // Upcoming cohorts. Seats <=5 shows orange urgency badge.
 export const BATCHES = [
   {
-    "start": "11 August 2026",
+    "start": "28 Sep 2026",
     "mode": "Weekday",
     "time": "Morning (9 AM – 11 AM)",
     "seats": 8,
     "course": "Salesforce Complete Course"
   },
   {
-    "start": "26 August 2026",
+    "start": "5 Oct 2026",
     "mode": "Weekday",
-    "time": "Afternoon (1 PM – 4 PM)",
+    "time": "Evening (6 PM – 8 PM)",
     "seats": 10,
     "course": "Salesforce Complete Course"
   },
   {
-    "start": "26 Aug 2026",
+    "start": "19 Oct 2026",
     "mode": "Weekday",
-    "time": "Evening (8 PM – 10 PM)",
+    "time": "Night (8 PM – 10 PM)",
     "seats": 8,
     "course": "Salesforce QA"
   }
