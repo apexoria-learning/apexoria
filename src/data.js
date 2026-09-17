@@ -16,7 +16,7 @@ export const CONTACT = {
 };
 
 // Pre-filled WhatsApp CTA (floating widget + hero + footer).
-export const WHATSAPP_LINK = "https://wa.me/917498490687?text=Hi%20Apexoria%20Learning%2C%20I%27m%20interested%20in%20your%20Salesforce%20courses";
+export const WHATSAPP_LINK = "https://wa.me/918623022095?text=Hi%20Apexoria%20Learning%2C%20I%27m%20interested%20in%20your%20Salesforce%20courses";
 
 // Apexoria wordmark used in the navbar.
 export const LOGO_URL = "/apexoria-logo.jpeg";
