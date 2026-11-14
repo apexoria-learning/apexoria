@@ -47,14 +47,14 @@ Read the whole file at the start of every session. If any entry applies to your 
 - Category: product-decision
 - Fact: When the consent banner shipped, the user chose to leave GA4 (`G-2GWDGQ115Q`) loading unconditionally from `public/index.html`; only the Meta Pixel is behind the banner.
 - Affects: Frontend + QA
-- Impact: Do not move the GA4 snippet behind `src/lib/consent.js` without a new decision. Note the published privacy policy (v1.0, CMS `LEGAL_PAGES.privacy`) says GA4 is not used — a v1.1 draft disclosing GA4 + Meta Pixel is with Kajal for approval. Revisit gating if legal review says GA4 needs consent.
+- Impact: Do not move the GA4 snippet behind `src/lib/consent.js` without a new decision. Privacy policy v1.1 (approved by Kajal 2026-11-14, CMS `LEGAL_PAGES.privacy`) discloses that GA4 runs on every visit and is not controlled by the cookie banner — if GA4 is ever gated, update §3.5 and §8 of the policy in the same change. Revisit gating if legal review says GA4 needs consent.
 - Source: user chose "Leave GA4 as is; only gate the Meta Pixel" in chat on 2026-11-14.
 
 ### 2026-11-14 — Meta Pixel is consent-gated and env-gated (`REACT_APP_META_PIXEL_ID`)
 - Category: integration
 - Fact: The Meta Pixel lives in [src/lib/metaPixel.js](../src/lib/metaPixel.js) and is mounted via [ConsentBanner.jsx](../src/components/site/ConsentBanner.jsx) above `<Routes>` in `src/index.js`; it loads only when `REACT_APP_META_PIXEL_ID` is set in Vercel AND the visitor clicks Accept.
 - Affects: Frontend + QA + Deployment
-- Impact: Do NOT paste Meta's base code into `public/index.html` or add a Meta tag via GTM — that bypasses consent. New Meta events go through `META_EVENT_MAP` in [src/lib/analytics.js](../src/lib/analytics.js) (standard events only, never form values). With the env var unset the banner and footer "Cookie settings" link don't render, so Playwright specs are unaffected; if a spec runs with the var set, dismiss the banner first (it overlays the bottom of the viewport, z-70). Pixel id must be digits only or the module stays inert. Privacy policy v1.1 must be published before the env var is set in production.
+- Impact: Do NOT paste Meta's base code into `public/index.html` or add a Meta tag via GTM — that bypasses consent. New Meta events go through `META_EVENT_MAP` in [src/lib/analytics.js](../src/lib/analytics.js) (standard events only, never form values). With the env var unset the banner and footer "Cookie settings" link don't render, so Playwright specs are unaffected; if a spec runs with the var set, dismiss the banner first (it overlays the bottom of the viewport, z-70). Pixel id must be digits only or the module stays inert. Privacy policy v1.1 (ships in the same branch) discloses the pixel for ad measurement + retargeting — keep the two in sync.
 - Source: user asked to add the Facebook pixel in chat on 2026-11-14.
 
 ### 2026-08-02 — Google Tag Manager container `GTM-PR4M68SJ` removed from `public/index.html` (perf: GTmetrix Phase 2)

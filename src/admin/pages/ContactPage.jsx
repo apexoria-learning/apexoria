@@ -59,14 +59,14 @@ export default function ContactPage() {
           </Field>
           <Field
             label="Phone (raw, digits only)"
-            hint="Used in the tel: link. E.g. 917498490687"
+            hint="Used in the tel: link. E.g. 918623022095"
             error={errContact(["phoneRaw"])}
             required
           >
             <TextInput
               value={c.phoneRaw}
               onChange={(v) => setC("phoneRaw", v)}
-              placeholder="917498490687"
+              placeholder="918623022095"
               error={errContact(["phoneRaw"])}
             />
           </Field>
