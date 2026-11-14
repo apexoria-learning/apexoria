@@ -113,6 +113,7 @@ All variables are read at build time by CRA (must be prefixed `REACT_APP_`). **N
 | `REACT_APP_GF_ENTRY_MESSAGE`   | Google Form `entry.*` id for message                                    |
 | `REACT_APP_GF_ENTRY_INTENT`    | Google Form `entry.*` id for demo-vs-enrol intent radio *(optional — leave unset to skip)* |
 | `REACT_APP_GTM_ID` *(optional)*| Google Tag Manager container id (e.g. `GTM-XXXXXX`). Leave unset to skip GTM. |
+| `REACT_APP_META_PIXEL_ID` *(optional)*| Meta (Facebook) Pixel id — digits only. Leave unset and the pixel, consent banner and footer "Cookie settings" link are all off. See [Analytics](#analytics). |
 
 Grab the `entry.*` ids by opening your Google Form's live URL, viewing source, and searching for `entry.` — each field has one.
 
@@ -188,6 +189,7 @@ Three stacks are wired up and every named event fans out to all three via [src/l
 2. **Vercel Analytics** — rendered from `<Analytics />` inside [App.js](src/App.js); autocaptures pageviews + Web Vitals.
 3. **Google Analytics 4** — gtag installed inline in [index.html](public/index.html) (property `G-2GWDGQ115Q`); receives every named event via `window.gtag`.
 4. **Google Tag Manager (optional)** — loads at runtime only when `REACT_APP_GTM_ID` is set. Coexists with GA4 for future server-side tagging.
+5. **Meta Pixel (optional, consent-gated)** — [src/lib/metaPixel.js](src/lib/metaPixel.js). Off unless `REACT_APP_META_PIXEL_ID` is set. When set, [ConsentBanner.jsx](src/components/site/ConsentBanner.jsx) asks first, and `fbevents.js` loads only after **Accept** (choice stored in `localStorage` key `apex_consent_v1`; Footer → "Cookie settings" reopens it, Reject revokes and clears `_fbp`/`_fbc`). Never on `/admin`. Sends `PageView` (incl. client-side route changes), `Lead` on `lead_form_submit_success` (`content_category` = course only), and `Contact` on WhatsApp clicks. `autoConfig` is off; keep **Automatic Advanced Matching OFF** in Meta Events Manager. GA4 is *not* behind this banner — see [.github/GOTCHAS.md](.github/GOTCHAS.md) 2026-11-14.
 
 Named events currently fired:
 

@@ -4,6 +4,9 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { CONTACT, LOGO_URL, RESOURCES } from "../../data";
 import BrochureGateDialog from "./BrochureGateDialog";
 import { trackEvent } from "@/lib/analytics";
+import { openConsentSettings } from "@/lib/consent";
+import { isMetaPixelEnabled } from "@/lib/metaPixel";
+import { CONSENT_BANNER } from "@/constants/testIds";
 
 // Map a Resource label ("LWC Notes", "Apex Notes", "QA Notes") to the
 // exact Source dropdown value used by the "Apexoria Learning Magnet
@@ -91,6 +94,18 @@ export default function Footer() {
               })}
               <li><Link to="/privacy" data-testid="footer-privacy-link" className="hover:text-brand-gold transition-colors">Privacy Policy</Link></li>
               <li><Link to="/terms" data-testid="footer-terms-link" className="hover:text-brand-gold transition-colors">Terms</Link></li>
+              {isMetaPixelEnabled() && (
+                <li>
+                  <button
+                    type="button"
+                    data-testid={CONSENT_BANNER.footerSettings}
+                    onClick={openConsentSettings}
+                    className="hover:text-brand-gold transition-colors"
+                  >
+                    Cookie settings
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
 

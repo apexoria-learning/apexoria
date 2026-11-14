@@ -11,6 +11,8 @@
 //   2. Vercel Analytics track(name, params)     — always fires (dynamic import)
 //   3. window.dataLayer.push({ event, ...})     — fires if GTM is loaded
 //   4. window.gtag('event', name, params)       — fires if GA4/gtag is loaded
+//   5. Meta Pixel (fbq)                         — mapped events only, and only
+//      after the visitor accepts the consent banner (src/lib/metaPixel.js)
 //
 // GTM is loaded at runtime only when REACT_APP_GTM_ID is set (see
 // initAnalytics below). If the env var is missing the site behaves exactly
@@ -21,8 +23,21 @@
 //   trackEvent('lead_form_submit', { course: 'Salesforce Complete' });
 
 import { track as vercelTrack } from "@vercel/analytics";
+import { trackMetaEvent } from "./metaPixel";
 
 const GTM_ID = process.env.REACT_APP_GTM_ID;
+
+// Named events that also go to the Meta Pixel (consent-gated inside
+// trackMetaEvent). Only Meta standard events, and never form values —
+// course name is the only parameter we pass.
+const WHATSAPP_CONTACT = () => ["Contact"];
+const META_EVENT_MAP = {
+  lead_form_submit_success: (p) => ["Lead", p.course ? { content_category: p.course } : undefined],
+  whatsapp_click: WHATSAPP_CONTACT,
+  mobile_bar_whatsapp_click: WHATSAPP_CONTACT,
+  interview_prep_whatsapp_click: WHATSAPP_CONTACT,
+  pricing_special_offer_whatsapp_click: WHATSAPP_CONTACT,
+};
 
 /**
  * Fire a named analytics event across every stack that's loaded.
@@ -43,6 +58,10 @@ export function trackEvent(name, params = {}) {
     }
     if (typeof window.gtag === "function") {
       window.gtag("event", name, params);
+    }
+    const toMeta = META_EVENT_MAP[name];
+    if (toMeta) {
+      trackMetaEvent(...toMeta(params || {}));
     }
   } catch {
     // Swallow — analytics must never break the UI.

@@ -43,6 +43,20 @@ Read the whole file at the start of every session. If any entry applies to your 
 
 ## Entries
 
+### 2026-11-14 — GA4 stays ungated (loads before consent) — partner decision
+- Category: product-decision
+- Fact: When the consent banner shipped, the user chose to leave GA4 (`G-2GWDGQ115Q`) loading unconditionally from `public/index.html`; only the Meta Pixel is behind the banner.
+- Affects: Frontend + QA
+- Impact: Do not move the GA4 snippet behind `src/lib/consent.js` without a new decision. Note the published privacy policy (v1.0, CMS `LEGAL_PAGES.privacy`) says GA4 is not used — a v1.1 draft disclosing GA4 + Meta Pixel is with Kajal for approval. Revisit gating if legal review says GA4 needs consent.
+- Source: user chose "Leave GA4 as is; only gate the Meta Pixel" in chat on 2026-11-14.
+
+### 2026-11-14 — Meta Pixel is consent-gated and env-gated (`REACT_APP_META_PIXEL_ID`)
+- Category: integration
+- Fact: The Meta Pixel lives in [src/lib/metaPixel.js](../src/lib/metaPixel.js) and is mounted via [ConsentBanner.jsx](../src/components/site/ConsentBanner.jsx) above `<Routes>` in `src/index.js`; it loads only when `REACT_APP_META_PIXEL_ID` is set in Vercel AND the visitor clicks Accept.
+- Affects: Frontend + QA + Deployment
+- Impact: Do NOT paste Meta's base code into `public/index.html` or add a Meta tag via GTM — that bypasses consent. New Meta events go through `META_EVENT_MAP` in [src/lib/analytics.js](../src/lib/analytics.js) (standard events only, never form values). With the env var unset the banner and footer "Cookie settings" link don't render, so Playwright specs are unaffected; if a spec runs with the var set, dismiss the banner first (it overlays the bottom of the viewport, z-70). Pixel id must be digits only or the module stays inert. Privacy policy v1.1 must be published before the env var is set in production.
+- Source: user asked to add the Facebook pixel in chat on 2026-11-14.
+
 ### 2026-08-02 — Google Tag Manager container `GTM-PR4M68SJ` removed from `public/index.html` (perf: GTmetrix Phase 2)
 - Category: product-decision
 - Fact: Both the GTM head-side `<script>` loader and the `<noscript>` iframe were removed from [public/index.html](../public/index.html) as part of GTmetrix Phase 2 (2026-08-02). The `preconnect` to `https://www.googletagmanager.com` was also removed (only GA4's own `gtag.js` uses that host now — its `<script async src="…/gtag/js?id=G-…">` provides its own connection). Container `GTM-PR4M68SJ` was empty (no active tags — LinkedIn Insight / Meta Pixel had not been wired yet), so nothing broke. Site is now on FOUR analytics stacks: PostHog (inline autocapture), Vercel Analytics (`<Analytics />` in App.js), GA4 (inline gtag per 2026-07-21 entry), Vercel Speed Insights (`<SpeedInsights />` in App.js).
