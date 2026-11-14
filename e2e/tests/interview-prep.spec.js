@@ -42,7 +42,7 @@ test.describe('interview prep section', () => {
     await expect(courseTrigger).toContainText(/Interview Preparation/i);
   });
 
-  test('whatsapp button href includes wa.me/917498490687', async ({ page }) => {
+  test('whatsapp button href includes wa.me/918623022095', async ({ page }) => {
     await page.goto('/', { waitUntil: 'domcontentloaded' });
 
     const section = page.getByTestId(INTERVIEW_PREP.section);
@@ -52,6 +52,6 @@ test.describe('interview prep section', () => {
     await expect(whatsappBtn).toBeVisible();
 
     const href = await whatsappBtn.getAttribute('href');
-    expect(href).toContain('wa.me/917498490687');
+    expect(href).toContain('wa.me/918623022095');
   });
 });

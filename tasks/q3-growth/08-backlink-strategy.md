@@ -29,7 +29,7 @@ Low-effort, high-yield. Every listing is a citation (NAP: Name, Address, Phone).
 **Format for every listing (paste verbatim):**
 - **Name:** Apexoria Learning
 - **Website:** `https://www.apexorialearning.in/`
-- **Phone:** +91 74984 90687
+- **Phone:** +91 86230 22095
 - **Email:** apexorialearning@gmail.com
 - **Category:** Educational Institution / Training Provider / IT Training
 - **Description (55 chars):** Salesforce Training & Placement India | Apexoria

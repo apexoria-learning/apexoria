@@ -6,6 +6,7 @@ import { LazyMotion, domAnimation } from "framer-motion";
 import "@/index.css";
 import App from "@/App";
 import ScrollToHashHandler from "@/components/ScrollToHashHandler";
+import ConsentBanner from "@/components/site/ConsentBanner";
 
 // Lazy-load the admin bundle so the marketing site stays small.
 const AdminApp = lazy(() => import("@/admin/AdminApp"));
@@ -48,6 +49,9 @@ root.render(
               single route's component tree it unmounts on route change and
               the hash-scroll never fires on the destination route. */}
           <ScrollToHashHandler />
+          {/* Inert unless REACT_APP_META_PIXEL_ID is set. Above <Routes> so
+              the pixel fires PageView on every client-side route change. */}
+          <ConsentBanner />
           <Routes>
           <Route
             path="/admin/*"

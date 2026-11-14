@@ -69,7 +69,7 @@ test.describe('pricing → learn more → course detail', () => {
 
     // Button should be an anchor with WhatsApp href (not a prefill action)
     const href = await offerBtn.getAttribute('href');
-    expect(href).toContain('wa.me/917498490687');
+    expect(href).toContain('wa.me/918623022095');
   });
 });
 
